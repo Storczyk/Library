@@ -10,6 +10,9 @@ using Library.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Library.Infrastructure.Models;
+using Library.Infrastructure.Extensions.Email;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Library.Web.Extensions;
 
 namespace Library.Web
 {
@@ -28,8 +31,14 @@ namespace Library.Web
             services.AddDbContext<LibraryDbContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<LibraryDbContext>()
-    .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<LibraryDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<RazorViewEngineOptions>(opt =>
+            {
+                opt.ViewLocationExpanders.Add(new ViewLocationExpander());
+            });
             services.AddMvc();
         }
 
@@ -47,12 +56,18 @@ namespace Library.Web
             }
 
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area=Default}/{controller=Home}/{action=Index}"
+                    );
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
             });
         }
     }

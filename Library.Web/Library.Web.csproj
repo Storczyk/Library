@@ -17,8 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Area\Admin\" />
-    <Folder Include="Area\Default\" />
+    <Folder Include="Areas\Admin\Views\Home\" />
   </ItemGroup>
 
 </Project>
