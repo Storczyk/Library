@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 
-namespace Library.Web
+namespace Library.Web.Extensions
 {
     public static class RolesData
     {
