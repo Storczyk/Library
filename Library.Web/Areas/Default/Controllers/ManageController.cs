@@ -13,6 +13,7 @@ using Library.Web.Extensions;
 
 namespace Library.Infrastructure.Areas.Default.Controllers
 {
+    [Area("Default")]
     [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller
@@ -21,7 +22,7 @@ namespace Library.Infrastructure.Areas.Default.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
-        private readonly UrlEncoder _urlEncoder;
+
 
 
         public ManageController(
@@ -35,7 +36,6 @@ namespace Library.Infrastructure.Areas.Default.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
-            _urlEncoder = urlEncoder;
         }
 
         [TempData]
@@ -210,29 +210,6 @@ namespace Library.Infrastructure.Areas.Default.Controllers
 
             return RedirectToAction(nameof(SetPassword));
         }
-        /*
-        [HttpGet]
-        public async Task<IActionResult> GenerateRecoveryCodes()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            if (!user.TwoFactorEnabled)
-            {
-                throw new ApplicationException($"Cannot generate recovery codes for user with ID '{user.Id}' as they do not have 2FA enabled.");
-            }
-
-            var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
-            var model = new GenerateRecoveryCodesViewModel { RecoveryCodes = recoveryCodes.ToArray() };
-
-            _logger.LogInformation("User with ID {UserId} has generated new 2FA recovery codes.", user.Id);
-
-            return View(model);
-        }*/
-
         #region Helpers
 
         private void AddErrors(IdentityResult result)
