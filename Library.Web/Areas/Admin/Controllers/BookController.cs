@@ -25,20 +25,13 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(BookCommand bookCommand)
+        public IActionResult Add(AddBookCommand addBookCommand)
         {
-            var addBookCommand = new AddBookCommand
+            if(ModelState.IsValid)
             {
-                Author = bookCommand.Author,
-                BookTitle = bookCommand.BookTitle,
-                Ean = bookCommand.Ean,
-                Isbn = bookCommand.Isbn,
-                Pages = bookCommand.Pages,
-                Publisher = bookCommand.Publisher,
-                Year = bookCommand.Year
-            };
-
-            commandBus.Send(addBookCommand);
+                commandBus.Send(addBookCommand);
+            }
+            
             return RedirectToAction("Index");
         }
     }

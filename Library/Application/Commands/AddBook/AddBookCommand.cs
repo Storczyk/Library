@@ -1,9 +1,11 @@
 ﻿using Library.Application.General;
+using System.ComponentModel;
 
 namespace Library.Application.Commands.AddBook
 {
     public class AddBookCommand : ICommand
     {
+        [DisplayName("Title")]
         public string BookTitle { get; set; }
 
         public string Author { get; set; }
@@ -14,8 +16,10 @@ namespace Library.Application.Commands.AddBook
 
         public string Publisher { get; set; }
 
+        [DisplayName("ISBN")]
         public long Isbn { get; set; }
 
+        [DisplayName("EAN")]
         public long Ean { get; set; }
     }
 }
