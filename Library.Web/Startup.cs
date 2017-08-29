@@ -76,45 +76,5 @@ namespace Library.Web
 
             });
         }
-
-        //private async void CreateRolesAndUsers(IServiceProvider serviceProvider)
-        //{
-            
-        //    var options = new DbContextOptionsBuilder<LibraryDbContext>()
-        //        .UseSqlServer("Server=PSROCZYK-RZE\\SQLEXPRESS;Database=libraryDB;User Id=test;Password=test;MultipleActiveResultSets=True");
-
-        //    LibraryDbContext context = new LibraryDbContext(options.Options);
-
-        //    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-        //    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            
-        //    // In Startup iam creating first Admin Role and creating a default Admin User    
-        //    if (!await roleManager.RoleExistsAsync("Admin"))
-        //    {
-
-        //        // first we create Admin rool   
-        //        var role = new IdentityRole();
-        //        role.Name = "Admin";
-        //        await roleManager.CreateAsync(role);
-
-
-        //        //Here we create a Admin super user who will maintain the website                  
-
-        //        var user = new ApplicationUser();
-        //        user.UserName = "PGS";
-        //        user.Email = "testingpgsapp@gmail.com";
-
-        //        string userPWD = "Test90()";
-
-        //        var createPowerUser = await userManager.CreateAsync(user, userPWD);
-
-        //        //Add default User to Role Admin   
-        //        if (createPowerUser.Succeeded)
-        //        {
-        //            var result1 = await userManager.AddToRoleAsync(user, "Admin");
-
-        //        }
-        //    }
-        //}
     }
 }
