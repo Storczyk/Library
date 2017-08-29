@@ -17,9 +17,31 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var query = new GetAllBooksQuery();
-            var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(query);
+            //var query = new GetAllBooksQuery();
+            //var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(query);
+            List<BookQuery> books = new List<BookQuery>
+            {
+                new BookQuery
+                {
+                    
+                },
+                new BookQuery
+                {
 
+                },
+                new BookQuery
+                {
+
+                },
+                new BookQuery
+                {
+
+                },
+                new BookQuery
+                {
+
+                }
+            };
             return View(books);
         }
 

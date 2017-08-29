@@ -22,3 +22,8 @@
 {
     font-size: 15px;
 }
+
+.book-row{
+    height: 200px;
+    background-color: black;
+}
