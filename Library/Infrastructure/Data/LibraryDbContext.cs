@@ -26,9 +26,7 @@ namespace Library.Infrastructure.Data
     .Ignore(i => i.LockoutEnd)
     .Ignore(i => i.AccessFailedCount)
     .Ignore(i => i.ConcurrencyStamp)
-    .Ignore(i => i.SecurityStamp)
-    .Ignore(i => i.NormalizedUserName)
-    .Ignore(i => i.NormalizedEmail);
+    .Ignore(i => i.SecurityStamp);
             builder.Entity<ApplicationUser>().ToTable("Users");
             builder.Ignore<IdentityRoleClaim<string>>();
             builder.Ignore<IdentityUserClaim<string>>();

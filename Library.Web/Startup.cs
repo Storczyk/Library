@@ -33,7 +33,7 @@ namespace Library.Web
                 o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<LibraryDbContext>()
-                .AddDefaultTokenProviders()
+                .AddDefaultTokenProviders();
                 //.AddUserStore<LibraryUserStore>()
                 //.AddUserManager<LibraryUserManager>();
 
