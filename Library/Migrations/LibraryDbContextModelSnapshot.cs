@@ -20,6 +20,28 @@ namespace Library.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Library.DomainModel.Book", b =>
+                {
+                    b.Property<string>("BookTitle")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author");
+
+                    b.Property<string>("Ean");
+
+                    b.Property<string>("Isbn");
+
+                    b.Property<int>("Pages");
+
+                    b.Property<string>("Publisher");
+
+                    b.Property<int>("Year");
+
+                    b.HasKey("BookTitle");
+
+                    b.ToTable("Books");
+                });
+
             modelBuilder.Entity("Library.Infrastructure.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")

@@ -1,11 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Library.DomainModel
 {
     public class Book
     {
-        public string Title { get; set; }
+        [Key]
+        public string BookTitle { get; set; }
+
+        public string Author { get; set; }
+
+        public int Year { get; set; }
+
+        public int Pages { get; set; }
+
+        public string Publisher { get; set; }
+
+        public string Isbn { get; set; }
+
+        public string Ean { get; set; }
     }
 }

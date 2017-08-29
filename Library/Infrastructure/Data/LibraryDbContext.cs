@@ -1,4 +1,5 @@
-﻿using Library.Infrastructure.Models;
+﻿using Library.DomainModel;
+using Library.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,5 +30,6 @@ namespace Library.Infrastructure.Data
             builder.Ignore<IdentityUserLogin<string>>();
             builder.Ignore<IdentityUserToken<string>>();
         }
+        public DbSet<Book> Books { get; set; }
     }
 }
