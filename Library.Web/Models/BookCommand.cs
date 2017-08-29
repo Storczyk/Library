@@ -5,13 +5,13 @@ namespace Library.Web.Models
 {
     public class BookCommand
     {
-        [Required]
         [DisplayName("Title")]
         public string BookTitle { get; set; }
 
         [Required]
         public string Author { get; set; }
 
+        [Required]
         public int Year { get; set; }
 
         public int Pages { get; set; }

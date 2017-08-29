@@ -33,7 +33,6 @@ namespace Library.Web
                 .AddUserStore<LibraryUserStore>()
                 .AddDefaultTokenProviders();
 
-
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<RazorViewEngineOptions>(opt =>
             {
