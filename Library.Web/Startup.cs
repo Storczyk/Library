@@ -30,7 +30,9 @@ namespace Library.Web
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<LibraryDbContext>()
                 .AddDefaultTokenProviders()
-                .AddUserStore<LibraryUserStore>();
+                .AddUserStore<LibraryUserStore>()
+                .AddDefaultTokenProviders();
+
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<RazorViewEngineOptions>(opt =>
