@@ -1,7 +1,10 @@
 ﻿using Library.Application.Commands.AddBook;
 using Library.Application.General;
+using Library.Application.Queries;
+using Library.Application.Queries.GetAllBooks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Library.Web.Areas.Admin.Controllers
 {
@@ -14,7 +17,10 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var query = new GetAllBooksQuery();
+            var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(query);
+
+            return View(books);
         }
 
         [HttpGet]
@@ -26,11 +32,11 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(AddBookCommand addBookCommand)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 commandBus.Send(addBookCommand);
             }
-            
+
             return RedirectToAction("Index");
         }
     }
