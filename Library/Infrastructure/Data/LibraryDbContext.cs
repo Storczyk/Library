@@ -19,16 +19,14 @@ namespace Library.Infrastructure.Data
                  .Ignore(i => i.TwoFactorEnabled)
                  .Ignore(i => i.PhoneNumber)
                  .Ignore(i => i.PhoneNumberConfirmed)
-    .Ignore(i => i.LockoutEnabled)
-    .Ignore(i => i.LockoutEnd)
-    .Ignore(i => i.AccessFailedCount)
-    .Ignore(i => i.ConcurrencyStamp)
-    .Ignore(i => i.SecurityStamp);
+                 .Ignore(i => i.LockoutEnabled)
+                 .Ignore(i => i.LockoutEnd)
+                 .Ignore(i => i.AccessFailedCount)
+                 .Ignore(i => i.ConcurrencyStamp)
+                 .Ignore(i => i.SecurityStamp);
             builder.Entity<ApplicationUser>().ToTable("Users");
-            builder.Ignore<IdentityRoleClaim<string>>();
             builder.Ignore<IdentityUserClaim<string>>();
             builder.Ignore<IdentityUserLogin<string>>();
-            builder.Ignore<IdentityRoleClaim<string>>();
             builder.Ignore<IdentityUserToken<string>>();
         }
     }
