@@ -12,8 +12,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Queries\" />
-  </ItemGroup>
-
 </Project>
