@@ -10,6 +10,10 @@ using Library.Infrastructure.Extensions.Email;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Library.Web.Extensions;
 using Library.Infrastructure.Identity;
+using Autofac;
+using Library.Application.GeneralConcrete;
+using Library.Application.General;
+using System.Reflection;
 
 namespace Library.Web
 {
@@ -40,6 +44,16 @@ namespace Library.Web
                 opt.ViewLocationExpanders.Add(new ViewLocationExpander());
             });
             services.AddMvc();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<CommandBus>().As<ICommandBus>();
+            builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>();
+            builder.RegisterAssemblyTypes(Assembly.Load("Library"))
+                .AsClosedTypesOf(typeof(ICommandHandler<>));
+            builder.RegisterAssemblyTypes(Assembly.Load("Library"))
+                .AsClosedTypesOf(typeof(IQueryHandler<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

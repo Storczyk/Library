@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-
+using Autofac.Extensions.DependencyInjection;
 namespace Library.Web
 {
     public class Program
@@ -13,6 +13,7 @@ namespace Library.Web
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureServices(services => services.AddAutofac())
                 .Build();
     }
 }

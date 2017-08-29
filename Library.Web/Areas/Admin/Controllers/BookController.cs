@@ -1,4 +1,5 @@
-﻿using Library.Web.Models;
+﻿using Library.Application.General;
+using Library.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace Library.Web.Areas.Admin.Controllers
     [Authorize(Roles = "Administrator")]
     public class BookController : BaseController
     {
-        public BookController() : base() { }
+        public BookController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
 
         [HttpGet]
         public IActionResult Index()
