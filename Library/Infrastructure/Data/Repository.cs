@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Library.Infrastructure.Data
 {
-    /*public class Repository<TEntity> where TEntity:class
+    public class Repository<TEntity> where TEntity:class
     {
         internal LibraryDbContext context;
         internal DbSet<TEntity> dbSet;
@@ -15,7 +15,7 @@ namespace Library.Infrastructure.Data
         {
             var options = new DbContextOptionsBuilder<LibraryDbContext>();
             options.UseSqlServer("Server=PSROCZYK-RZE\\SQLEXPRESS;Database=libraryDB;User Id=test;Password=test;MultipleActiveResultSets=True");
-            //context = new LibraryDbContext(options.Options);
+            context = new LibraryDbContext(options.Options);
             this.dbSet = context.Set<TEntity>();
         }
         public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
@@ -53,6 +53,7 @@ namespace Library.Infrastructure.Data
         public virtual void Insert(TEntity entity)
         {
             dbSet.Add(entity);
+            context.SaveChanges();
         }
 
         public virtual void Delete(object id)
@@ -75,5 +76,5 @@ namespace Library.Infrastructure.Data
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
         }
-    }*/
+    }
 }
