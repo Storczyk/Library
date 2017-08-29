@@ -1,0 +1,19 @@
+﻿@model Library.Web.Models.BookCommand
+@{
+    ViewData["Title"] = "Add book";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+<div class="first-row">
+    @using (Html.BeginForm("Add", "Book", FormMethod.Post))
+    {
+        @Html.LabelFor(m => m.BookTitle)
+        @Html.LabelFor(m => m.Pages, new { @class = "required" })
+
+        <div style="margin-top: 50px;">
+            <input type="submit" value="Add book" class="btn btn-primary" style="margin-right: 40px;" />
+            @Html.ActionLink("Go back to the list", "Index", null, new { @class = "btn btn-primary back-btn" })
+        </div>
+    }
+
+</div>
