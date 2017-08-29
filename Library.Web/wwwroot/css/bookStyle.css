@@ -1,0 +1,24 @@
+﻿body {
+    min-height: 100%;
+}
+
+.required::after {
+    content: " *";
+    font-weight: bold;
+    color: red;
+    font-size: 15px;
+}
+
+.first-row{
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.add-textbox{
+    width: 100%;
+}
+
+.add-label
+{
+    font-size: 15px;
+}
