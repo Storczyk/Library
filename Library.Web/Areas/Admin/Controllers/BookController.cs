@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Library.Web.Areas.Admin.Controllers
+﻿namespace Library.Web.Areas.Admin.Controllers
 {
-    public class BookController:BaseController
+    public class BookController : BaseController
     {
     }
 }
