@@ -4,6 +4,7 @@ using Library.Application.Commands.EditBook;
 using Library.Application.General;
 using Library.Application.Queries;
 using Library.Application.Queries.GetBook;
+using Library.DomainModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Library.Web.Areas.Admin.Controllers
                 new BookQuery
                 {
                     BookTitle = "title",
-                    Author = "authot",
+                    Author = new Author{FirstName="asd"},
                     Ean = "2",
                     Id = "3",
                     Isbn = "4231",

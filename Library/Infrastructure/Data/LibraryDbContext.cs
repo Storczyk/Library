@@ -11,6 +11,8 @@ namespace Library.Infrastructure.Data
         { }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Author> Authors { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -27,7 +29,7 @@ namespace Library.Infrastructure.Data
             builder.Entity<ApplicationUser>().ToTable("Users");
             builder.Ignore<IdentityUserClaim<string>>();
             builder.Ignore<IdentityUserLogin<string>>();
-            builder.Ignore<IdentityUserToken<string>>();
+            builder.Ignore<IdentityUserToken<string>>();            
         }
     }
 }

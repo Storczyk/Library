@@ -1,4 +1,5 @@
 ﻿using Library.Application.General;
+using Library.DomainModel;
 
 namespace Library.Application.Commands.EditBook
 {
@@ -7,7 +8,8 @@ namespace Library.Application.Commands.EditBook
         public string Id { get; set; }
         public string BookTitle { get; set; }
 
-        public string Author { get; set; }
+        public Author Author { get; set; }
+        public Genre Genre { get; set; }
 
         public int Year { get; set; }
 

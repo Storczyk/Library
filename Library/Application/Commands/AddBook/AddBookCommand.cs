@@ -1,4 +1,5 @@
 ﻿using Library.Application.General;
+using Library.DomainModel;
 using System.ComponentModel;
 
 namespace Library.Application.Commands.AddBook
@@ -8,7 +9,8 @@ namespace Library.Application.Commands.AddBook
         [DisplayName("Title")]
         public string BookTitle { get; set; }
 
-        public string Author { get; set; }
+        public Author Author { get; set; }
+        public Genre Genre { get; set; }
 
         public int Year { get; set; }
 

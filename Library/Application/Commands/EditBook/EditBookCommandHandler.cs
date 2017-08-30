@@ -17,13 +17,14 @@ namespace Library.Application.Commands.EditBook
             repository.Update(new Book
             {
                 Id = Guid.Parse(command.Id),
-                Author = command.Author,
-                BookTitle = command.BookTitle,
-                Ean = command.Ean,
-                Isbn = command.Isbn,
-                Pages = command.Pages,
-                Publisher = command.Publisher,
-                Year = command.Year,
+                Author=command.Author,
+                Genre = command.Genre,
+                BookTitle=command.BookTitle,
+                Ean=command.Ean,
+                Isbn=command.Isbn,
+                Pages=command.Pages,
+                Publisher=command.Publisher,
+                Year=command.Year,
             });
         }
     }
