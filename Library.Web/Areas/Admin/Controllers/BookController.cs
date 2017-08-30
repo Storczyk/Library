@@ -65,11 +65,11 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(string id)
+        public IActionResult Delete([FromBody] DeleteBookCommand deleteBookCommand)
         {
             if (ModelState.IsValid)
             {
-                var deleteBookCommand = new DeleteBookCommand { Id = id };
+                //var deleteBookCommand = new DeleteBookCommand { Id = id };
                 commandBus.Send(deleteBookCommand);
             }
             return RedirectToAction("Index");
