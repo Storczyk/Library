@@ -70,12 +70,9 @@ namespace Library.Web
 
             app.UseStaticFiles();
             app.UseAuthentication();
-
-            //var serviceProvider = app.ApplicationServices.GetService<IServiceProvider>();
+    
             RolesData.SeedRoles(app.ApplicationServices).Wait();
             RolesData.SeedUsers(app.ApplicationServices).Wait();
-
-            //CreateRolesAndUsers(serviceProvider);
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -11,8 +11,8 @@ using System;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20170830055715_addedIdToBook")]
-    partial class addedIdToBook
+    [Migration("20170830061121_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
