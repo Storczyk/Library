@@ -1,22 +1,20 @@
 ﻿using Library.Application.General;
 using Library.DomainModel;
 using Library.Infrastructure.Data;
-using System;
 
-namespace Library.Application.Commands.EditBook
+namespace Library.Application.Commands.Books.AddBook
 {
-    public class EditBookCommandHandler : ICommandHandler<EditBookCommand>
+    public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
     {
-        private readonly BookRepository repository;
-        public EditBookCommandHandler(BookRepository repository)
+        private readonly IBookRepository repository;
+        public AddBookCommandHandler(IBookRepository repository)
         {
             this.repository = repository;
         }
-        public void Handle(EditBookCommand command)
+        public void Handle(AddBookCommand command)
         {
-            repository.Update(new Book
+            repository.Insert(new Book
             {
-                Id = Guid.Parse(command.Id),
                 Author = command.Author,
                 Genre = command.Genre,
                 BookTitle = command.BookTitle,
@@ -25,7 +23,7 @@ namespace Library.Application.Commands.EditBook
                 Isbn = command.Isbn,
                 Pages = command.Pages,
                 Publisher = command.Publisher,
-                Year = command.Year,
+                Year = command.Year
             });
         }
     }

@@ -1,20 +1,19 @@
-﻿using Library.DomainModel;
+﻿using Library.Application.General;
+using Library.DomainModel;
 using System.ComponentModel;
 
-namespace Library.Application.Queries
+namespace Library.Application.Commands.Books.AddBook
 {
-    public class BookQuery
+    public class AddBookCommand : ICommand
     {
-        public string Id { get; set; }
-
         [DisplayName("Title")]
         public string BookTitle { get; set; }
-
-        public string Description { get; set; }
 
         public Author Author { get; set; }
 
         public Genre Genre { get; set; }
+
+        public string Description { get; set; }
 
         public int Year { get; set; }
 

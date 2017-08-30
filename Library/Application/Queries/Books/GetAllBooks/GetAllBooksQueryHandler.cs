@@ -4,12 +4,12 @@ using Library.Infrastructure.Data;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library.Application.Queries.GetAllBooks
+namespace Library.Application.Queries.Books.GetAllBooks
 {
     public class GetAllBooksQueryHandler : IQueryHandler<GetAllBooksQuery, IEnumerable<BookQuery>>
     {
-        private readonly BookRepository repository;
-        public GetAllBooksQueryHandler(BookRepository repository)
+        private readonly IBookRepository repository;
+        public GetAllBooksQueryHandler(IBookRepository repository)
         {
             this.repository = repository;
         }
@@ -29,7 +29,6 @@ namespace Library.Application.Queries.GetAllBooks
                 Year = i.Year,
             }).ToList();
             return list;
-
         }
     }
 }

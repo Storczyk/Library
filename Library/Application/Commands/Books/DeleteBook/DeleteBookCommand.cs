@@ -1,6 +1,6 @@
 ﻿using Library.Application.General;
 
-namespace Library.Application.Commands.DeleteBook
+namespace Library.Application.Commands.Books.DeleteBook
 {
     public class DeleteBookCommand : ICommand
     {

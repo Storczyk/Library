@@ -1,7 +1,7 @@
 ﻿using Library.Application.General;
 using Library.DomainModel;
 
-namespace Library.Application.Commands.EditBook
+namespace Library.Application.Commands.Books.EditBook
 {
     public class EditBookCommand : ICommand
     {

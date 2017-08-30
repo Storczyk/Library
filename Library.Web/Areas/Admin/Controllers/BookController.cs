@@ -1,10 +1,10 @@
-﻿using Library.Application.Commands.AddBook;
-using Library.Application.Commands.DeleteBook;
-using Library.Application.Commands.EditBook;
+﻿using Library.Application.Commands.Books.AddBook;
+using Library.Application.Commands.Books.DeleteBook;
+using Library.Application.Commands.Books.EditBook;
 using Library.Application.General;
-using Library.Application.Queries;
-using Library.Application.Queries.GetAllBooks;
-using Library.Application.Queries.GetBook;
+using Library.Application.Queries.Books;
+using Library.Application.Queries.Books.GetAllBooks;
+using Library.Application.Queries.Books.GetBook;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

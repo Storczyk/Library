@@ -3,12 +3,12 @@ using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
 
-namespace Library.Application.Commands.DeleteBook
+namespace Library.Application.Commands.Books.DeleteBook
 {
     public class DeleteBookCommandHandler : ICommandHandler<DeleteBookCommand>
     {
-        private readonly BookRepository repository;
-        public DeleteBookCommandHandler(BookRepository repository)
+        private readonly IBookRepository repository;
+        public DeleteBookCommandHandler(IBookRepository repository)
         {
             this.repository = repository;
         }

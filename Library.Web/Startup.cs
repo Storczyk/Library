@@ -36,7 +36,7 @@ namespace Library.Web
                 .AddDefaultTokenProviders()
                 .AddUserStore<LibraryUserStore>()
                 .AddDefaultTokenProviders();
-            services.AddScoped<BookRepository, BookRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<RazorViewEngineOptions>(opt =>
             {

@@ -3,12 +3,12 @@ using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
 using System.Linq;
-namespace Library.Application.Queries.GetBook
+namespace Library.Application.Queries.Books.GetBook
 {
     public class GetBookQueryHandler : IQueryHandler<GetBookQuery, BookQuery>
     {
-        private readonly BookRepository repository;
-        public GetBookQueryHandler(BookRepository repository)
+        private readonly IBookRepository repository;
+        public GetBookQueryHandler(IBookRepository repository)
         {
             this.repository = repository;
         }

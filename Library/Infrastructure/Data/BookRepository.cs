@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Library.Infrastructure.Data
 {
-    public class BookRepository
+    public class BookRepository : IBookRepository
     {
         private readonly LibraryDbContext context;
 
@@ -31,18 +31,33 @@ namespace Library.Infrastructure.Data
 
         public void Insert(Book entity)
         {
+            var author = context.Authors.FirstOrDefault(i => i.FirstName == entity.Author.FirstName && i.LastName == entity.Author.LastName);
+            if (author != null)
+                entity.Author = author;
+            var genre = context.Genres.FirstOrDefault(i => i.Description ==entity.Description);
+            if (genre != null)
+                entity.Genre = genre;
+
             context.Books.Add(entity);
             context.SaveChanges();
         }
 
-        public virtual void Delete(Guid id)
+        public void Delete(Guid id)
         {
             context.Books.Remove(GetByID(id));
             context.SaveChanges();
         }
 
-        public virtual void Update(Book entityToUpdate)
+        public void Update(Book entityToUpdate)
         {
+            var author = context.Authors.FirstOrDefault(i => i.FirstName == entityToUpdate.Author.FirstName && i.LastName == entityToUpdate.Author.LastName);
+            if (author != null)
+                entityToUpdate.Author = author;
+            var genre = context.Genres.FirstOrDefault(i => i.Description == entityToUpdate.Description);
+            if (genre != null)
+                entityToUpdate.Genre = genre;
+
+
             context.Books.Update(entityToUpdate);
             context.SaveChanges();
         }

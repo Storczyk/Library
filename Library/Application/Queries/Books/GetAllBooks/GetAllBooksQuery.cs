@@ -1,7 +1,7 @@
 ﻿using Library.Application.General;
 using System.Collections.Generic;
 
-namespace Library.Application.Queries.GetAllBooks
+namespace Library.Application.Queries.Books.GetAllBooks
 {
     public class GetAllBooksQuery : IQuery<IEnumerable<BookQuery>>
     {
