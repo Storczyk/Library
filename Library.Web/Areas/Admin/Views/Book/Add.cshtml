@@ -16,32 +16,32 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Author, new { @class = "required add-label" })
                 @Html.TextBoxFor(m => m.Author, new { @class = "form-control add-textbox" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Year, new { @class = "required add-label" })
-            @Html.TextBoxFor(m => m.Year, new { @class = "form-control add-textbox" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Pages, new { @class = "add-label" })
-            @Html.TextBoxFor(m => m.Pages, new { @class = "form-control add-textbox" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Publisher, new { @class = "add-label" })
-            @Html.TextBoxFor(m => m.Publisher, new { @class = "form-control add-textbox" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Isbn, new { @class = "add-label" })
-            @Html.TextBoxFor(m => m.Isbn, new { @class = "form-control add-textbox" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Ean, new { @class = "add-label" })
-            @Html.TextBoxFor(m => m.Ean, new { @class = "form-control add-textbox" })
-        </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Year, new { @class = "required add-label" })
+                @Html.TextBoxFor(m => m.Year, new { @class = "form-control add-textbox" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Pages, new { @class = "add-label" })
+                @Html.TextBoxFor(m => m.Pages, new { @class = "form-control add-textbox" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Publisher, new { @class = "add-label" })
+                @Html.TextBoxFor(m => m.Publisher, new { @class = "form-control add-textbox" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Isbn, new { @class = "add-label" })
+                @Html.TextBoxFor(m => m.Isbn, new { @class = "form-control add-textbox" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ean, new { @class = "add-label" })
+                @Html.TextBoxFor(m => m.Ean, new { @class = "form-control add-textbox" })
+            </div>
 
-        <div style="margin-top: 50px;">
-            <input type="submit" value="Add book" class="btn btn-primary" style="margin-right: 70px;" />
-            @Html.ActionLink("Go back to the list", "Index", null, new { @class = "btn btn-primary back-btn" })
-        </div>
+            <div style="margin-top: 50px;">
+                <input type="submit" value="Add book" class="btn btn-primary" style="margin-right: 70px;" />
+                @Html.ActionLink("Go back to the list", "Index", null, new { @class = "btn btn-primary back-btn" })
+            </div>
         }
     </div>
     <div class="text-center col-md-4"> MIEJSCE NA REKLAMY ( ͡° ͜ʖ ͡°) </div>
