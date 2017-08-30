@@ -3,15 +3,14 @@ using Library.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
 namespace Library.Infrastructure.Data
 {
     public class LibraryDbContext : IdentityDbContext<ApplicationUser>
     {
         public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
-        {
+        { }
 
-        }
+        public DbSet<Book> Books { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -30,6 +29,5 @@ namespace Library.Infrastructure.Data
             builder.Ignore<IdentityUserLogin<string>>();
             builder.Ignore<IdentityUserToken<string>>();
         }
-        public DbSet<Book> Books { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace Library.Application.Commands.AddBook
     public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
     {
         private readonly Repository<Book> repository;
-        public AddBookCommandHandler()
+        public AddBookCommandHandler(Repository<Book> repository)
         {
-            repository = new Repository<Book>();
+            this.repository = repository;
         }
         public void Handle(AddBookCommand command)
         {
@@ -23,7 +23,6 @@ namespace Library.Application.Commands.AddBook
                 Publisher = command.Publisher,
                 Year=command.Year
             });
-            //repo.AddBook(command);
         }
     }
 }

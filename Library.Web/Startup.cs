@@ -14,6 +14,7 @@ using Autofac;
 using Library.Application.GeneralConcrete;
 using Library.Application.General;
 using System.Reflection;
+using Library.DomainModel;
 
 namespace Library.Web
 {
@@ -35,7 +36,7 @@ namespace Library.Web
                 .AddDefaultTokenProviders()
                 .AddUserStore<LibraryUserStore>()
                 .AddDefaultTokenProviders();
-
+            services.AddScoped<Repository<Book>, Repository<Book>>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<RazorViewEngineOptions>(opt =>
             {
