@@ -14,6 +14,11 @@
     margin-bottom: 80px;
 }
 
+.index-first-row {
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
 .add-textbox {
     width: 100%;
 }
@@ -28,7 +33,7 @@
 
 .book-row {
     padding-bottom: 10px;
-    border: 1px outset black;
+    border: 1px solid midnightblue;
     border-radius: 25px;
 }
 
@@ -40,10 +45,18 @@
 .book-title {
     border-bottom: 1px;
     border-bottom-style: double;
-    border-bottom-color: darkgray;
+    border-bottom-color: midnightblue;
     font-size: 20px;
     font-weight: bold;
     width: 300px;
+}
+
+.add-book-frame{
+    border-style: solid;
+    border-color: midnightblue;
+    border-radius: 100px;
+    width: 50px;
+    margin-bottom: 10px;
 }
 
 .book-span {
