@@ -29,10 +29,10 @@ namespace Library.Infrastructure.Data
 
         public void Insert(Book entity)
         {
-            var author = context.Authors.FirstOrDefault(i => i.FirstName == entity.Author.FirstName && i.LastName == entity.Author.LastName);
+            var author = context.Authors.FirstOrDefault(i => i.Name == entity.Author.Name );
             if (author != null)
                 entity.Author = author;
-            var genre = context.Genres.FirstOrDefault(i => i.Description ==entity.Description);
+            var genre = context.Genres.FirstOrDefault(i => i.Description == entity.Genre.Description);
             if (genre != null)
                 entity.Genre = genre;
 
@@ -48,10 +48,10 @@ namespace Library.Infrastructure.Data
 
         public void Update(Book entityToUpdate)
         {
-            var author = context.Authors.FirstOrDefault(i => i.FirstName == entityToUpdate.Author.FirstName && i.LastName == entityToUpdate.Author.LastName);
+            var author = context.Authors.FirstOrDefault(i => i.Name == entityToUpdate.Author.Name);
             if (author != null)
                 entityToUpdate.Author = author;
-            var genre = context.Genres.FirstOrDefault(i => i.Description == entityToUpdate.Description);
+            var genre = context.Genres.FirstOrDefault(i => i.Description == entityToUpdate.Genre.Description);
             if (genre != null)
                 entityToUpdate.Genre = genre;
 
