@@ -1,19 +1,20 @@
 ﻿using Library.Application.General;
 using Library.DomainModel;
 using Library.Infrastructure.Data;
+using System;
 using System.Linq;
 namespace Library.Application.Queries.GetBook
 {
     public class GetBookQueryHandler : IQueryHandler<GetBookQuery, BookQuery>
     {
-        private readonly Repository<Book> repository;
-        public GetBookQueryHandler(Repository<Book> repository)
+        private readonly BookRepository repository;
+        public GetBookQueryHandler(BookRepository repository)
         {
             this.repository = repository;
         }
         public BookQuery Handle(GetBookQuery query)
         {
-            var x = repository.GetByID(query.Id);
+            var x = repository.GetByID(Guid.Parse(query.Id));
             return new BookQuery
             {
                 Id = x.Id.ToString(),

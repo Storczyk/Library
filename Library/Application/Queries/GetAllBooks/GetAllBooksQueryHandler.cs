@@ -8,8 +8,8 @@ namespace Library.Application.Queries.GetAllBooks
 {
     public class GetAllBooksQueryHandler : IQueryHandler<GetAllBooksQuery, IEnumerable<BookQuery>>
     {
-        private readonly Repository<Book> repository;
-        public GetAllBooksQueryHandler(Repository<Book> repository)
+        private readonly BookRepository repository;
+        public GetAllBooksQueryHandler(BookRepository repository)
         {
             this.repository = repository;
         }

@@ -6,8 +6,8 @@ namespace Library.Application.Commands.AddBook
 {
     public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
     {
-        private readonly Repository<Book> repository;
-        public AddBookCommandHandler(Repository<Book> repository)
+        private readonly BookRepository repository;
+        public AddBookCommandHandler(BookRepository repository)
         {
             this.repository = repository;
         }
