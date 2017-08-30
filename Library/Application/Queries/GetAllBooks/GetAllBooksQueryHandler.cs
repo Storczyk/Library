@@ -15,7 +15,7 @@ namespace Library.Application.Queries.GetAllBooks
         }
         public IEnumerable<BookQuery> Handle(GetAllBooksQuery query)
         {
-            return repository.Get(query.Page, query.PageSize).Select(i => new BookQuery
+            var list = repository.Get(query.Page, query.PageSize).Select(i => new BookQuery
             {
                 Author = i.Author,
                 Genre = i.Genre,
@@ -27,7 +27,8 @@ namespace Library.Application.Queries.GetAllBooks
                 Pages = i.Pages,
                 Publisher = i.Publisher,
                 Year = i.Year,
-            });
+            }).ToList();
+            return list;
 
         }
     }

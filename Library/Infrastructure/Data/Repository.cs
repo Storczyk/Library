@@ -20,14 +20,16 @@ namespace Library.Infrastructure.Data
         }
         public IEnumerable<Book> Get(int page = 1, int pageSize = 10)
         {
-            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize);
+            if (page < 1) page = 1;
+            if (pageSize < 1) pageSize = 10;
+            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).Include(i => i.Genre).ToList();
         }
         public Book GetByID(Guid id)
         {
             return context.Books.Find(id);
         }
 
-        public  void Insert(Book entity)
+        public void Insert(Book entity)
         {
             context.Books.Add(entity);
             context.SaveChanges();
