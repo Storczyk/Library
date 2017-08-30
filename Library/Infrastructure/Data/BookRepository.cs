@@ -32,7 +32,7 @@ namespace Library.Infrastructure.Data
             var author = context.Authors.FirstOrDefault(i => i.FirstName == entity.Author.FirstName && i.LastName == entity.Author.LastName);
             if (author != null)
                 entity.Author = author;
-            var genre = context.Genres.FirstOrDefault(i => i.Description ==entity.Description);
+            var genre = context.Genres.FirstOrDefault(i => i.Description == entity.Genre.Description);
             if (genre != null)
                 entity.Genre = genre;
 
