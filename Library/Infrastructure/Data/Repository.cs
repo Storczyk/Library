@@ -47,7 +47,8 @@ namespace Library.Infrastructure.Data
         }
         public virtual TEntity GetByID(object id)
         {
-            return dbSet.Find(id);
+            Guid.TryParse(id.ToString(), out Guid result);
+            return dbSet.Find(result);
         }
 
         public virtual void Insert(TEntity entity)

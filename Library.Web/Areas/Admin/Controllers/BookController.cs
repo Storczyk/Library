@@ -46,12 +46,8 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Edit(GetBookQuery getBookQuery)
         {
-            //var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(getBookQuery);
-            var book = new BookQuery();
-            book.BookTitle = "Title";
-            book.Year = 1223;
-            book.Description = "sqwd";
-            book.Pages = 17;
+            var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(getBookQuery);
+
             return View(book);
         }
 
@@ -60,7 +56,7 @@ namespace Library.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //commandBus.Send(deleteBookCommand);
+                commandBus.Send(deleteBookCommand);
             }
             return Ok("Deleted");
         }
