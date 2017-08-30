@@ -14,17 +14,17 @@ namespace Library.Application.Commands.EditBook
         }
         public void Handle(EditBookCommand command)
         {
-            //repository.Update(new Book
-            //{
-            //    Id = Guid.Parse(command.Id),
-            //    Author=command.Author,
-            //    BookTitle=command.BookTitle,
-            //    Ean=command.Ean,
-            //    Isbn=command.Isbn,
-            //    Pages=command.Pages,
-            //    Publisher=command.Publisher,
-            //    Year=command.Year,
-            //});
+            repository.Update(new Book
+            {
+                Id = Guid.Parse(command.Id),
+                Author = command.Author,
+                BookTitle = command.BookTitle,
+                Ean = command.Ean,
+                Isbn = command.Isbn,
+                Pages = command.Pages,
+                Publisher = command.Publisher,
+                Year = command.Year,
+            });
         }
     }
 }

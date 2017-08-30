@@ -56,18 +56,21 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(GetBookQuery bookQuery)
+        [Route("/Admin/Book/Edit/{id}")]
+        public IActionResult Edit(string id)
         {
-            var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(bookQuery);
+            var getBookQuery = new GetBookQuery { Id = id };
+            var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(getBookQuery);
 
             return View(book);
         }
 
         [HttpPost]
-        public IActionResult Delete(DeleteBookCommand deleteBookCommand)
+        public IActionResult Delete(string id)
         {
             if (ModelState.IsValid)
             {
+                var deleteBookCommand = new DeleteBookCommand { Id = id };
                 commandBus.Send(deleteBookCommand);
             }
             return RedirectToAction("Index");

@@ -4,6 +4,6 @@ namespace Library.Application.Queries.GetBook
 {
     public class GetBookQuery : IQuery<BookQuery>
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }
