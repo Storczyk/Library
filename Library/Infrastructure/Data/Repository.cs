@@ -18,7 +18,7 @@ namespace Library.Infrastructure.Data
             context = new LibraryDbContext(options.Options);
             this.dbSet = context.Set<TEntity>();
         }
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
+        public virtual IEnumerable<TEntity> Get(int page=1, int pageSize = 10, Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, 
             IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")
