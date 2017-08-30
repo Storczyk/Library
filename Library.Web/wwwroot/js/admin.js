@@ -6,7 +6,7 @@
         url: "/Admin/Book/Delete",
         contentType: "application/json",
         complete: function() {
-            window.location.href = "Index";
+            window.location.href = "/Admin/Book/Index";
         }
     });
 }
