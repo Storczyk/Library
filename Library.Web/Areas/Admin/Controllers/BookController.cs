@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace Library.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class BookController : BaseController
     {
         public BookController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
@@ -57,10 +57,8 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [Route("/Admin/Book/Edit/{id}")]
-        public IActionResult Edit(string id)
+        public IActionResult Edit(GetBookQuery getBookQuery)
         {
-            var getBookQuery = new GetBookQuery { Id = id };
             var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(getBookQuery);
 
             return View(book);
