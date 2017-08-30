@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Library.DomainModel;
+using System.ComponentModel;
 
 namespace Library.Application.Queries
 {
@@ -9,7 +10,8 @@ namespace Library.Application.Queries
         [DisplayName("Title")]
         public string BookTitle { get; set; }
 
-        public string Author { get; set; }
+        public Author Author { get; set; }
+        public Genre Genre { get; set; }
 
         public int Year { get; set; }
 

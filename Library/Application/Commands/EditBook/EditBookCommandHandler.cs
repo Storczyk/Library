@@ -18,6 +18,7 @@ namespace Library.Application.Commands.EditBook
             {
                 Id = Guid.Parse(command.Id),
                 Author=command.Author,
+                Genre = command.Genre,
                 BookTitle=command.BookTitle,
                 Ean=command.Ean,
                 Isbn=command.Isbn,

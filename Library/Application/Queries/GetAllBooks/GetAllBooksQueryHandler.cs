@@ -18,6 +18,7 @@ namespace Library.Application.Queries.GetAllBooks
             return repository.Get(query.Page, query.PageSize).Select(i => new BookQuery
             {
                 Author = i.Author,
+                Genre = i.Genre,
                 BookTitle = i.BookTitle,
                 Ean = i.Ean,
                 Id = i.Id.ToString(),
