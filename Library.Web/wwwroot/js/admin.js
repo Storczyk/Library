@@ -9,9 +9,7 @@
     });
 }
 
-function sendDeleteBookCommand(id) {
-    var Id = id;
-    console.log(JSON.stringify({ id }));
+function sendDeleteBookCommand(Id) {
     $.ajax({
         type: "POST",
         data: JSON.stringify({ Id }),
