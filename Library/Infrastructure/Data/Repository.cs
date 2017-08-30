@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Library.DomainModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,79 +8,40 @@ using System.Text;
 
 namespace Library.Infrastructure.Data
 {
-    public class Repository<TEntity> where TEntity : class
+    public class BookRepository
     {
-        internal LibraryDbContext context;
-        internal DbSet<TEntity> dbSet;
-        public Repository()
+        private readonly LibraryDbContext context;
+
+        public BookRepository()
         {
             var options = new DbContextOptionsBuilder<LibraryDbContext>();
             options.UseSqlServer("Server=PSROCZYK-RZE\\SQLEXPRESS;Database=libraryDB;User Id=test;Password=test;MultipleActiveResultSets=True");
             context = new LibraryDbContext(options.Options);
-            this.dbSet = context.Set<TEntity>();
         }
-        public virtual IEnumerable<TEntity> Get(int page = 1, int pageSize = 10, Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>,
-            IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
+        public IEnumerable<Book> Get(int page = 1, int pageSize = 10)
         {
-            IQueryable<TEntity> query = dbSet;
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
-            }
+            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize);
         }
-        public virtual TEntity GetByID(object id)
+        public Book GetByID(Guid id)
         {
-            if (Guid.TryParse(id.ToString(), out Guid result))
-            {
-                return dbSet.Find(result);
-            }
-            return dbSet.Find(id);
+            return context.Books.Find(id);
         }
 
-        public virtual void Insert(TEntity entity)
+        public  void Insert(Book entity)
         {
-            dbSet.Add(entity);
+            context.Books.Add(entity);
             context.SaveChanges();
         }
 
-        public virtual void Delete(object id)
+        public virtual void Delete(Guid id)
         {
-            TEntity entityToDelete = dbSet.Find(id);
-            Delete(entityToDelete);
-        }
-
-        public virtual void Delete(TEntity entityToDelete)
-        {
-            if (context.Entry(entityToDelete).State == EntityState.Detached)
-            {
-                dbSet.Attach(entityToDelete);
-            }
-            dbSet.Remove(entityToDelete);
+            context.Books.Remove(GetByID(id));
             context.SaveChanges();
         }
 
-        public virtual void Update(TEntity entityToUpdate)
+        public virtual void Update(Book entityToUpdate)
         {
-            dbSet.Attach(entityToUpdate);
-            context.Entry(entityToUpdate).State = EntityState.Modified;
+            context.Books.Update(entityToUpdate);
             context.SaveChanges();
         }
     }

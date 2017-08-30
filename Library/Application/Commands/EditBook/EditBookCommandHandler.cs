@@ -7,8 +7,8 @@ namespace Library.Application.Commands.EditBook
 {
     public class EditBookCommandHandler : ICommandHandler<EditBookCommand>
     {
-        private readonly Repository<Book> repository;
-        public EditBookCommandHandler(Repository<Book> repository)
+        private readonly BookRepository repository;
+        public EditBookCommandHandler(BookRepository repository)
         {
             this.repository = repository;
         }
