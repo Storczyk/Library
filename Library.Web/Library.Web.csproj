@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Library\Library.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Home\" />
-  </ItemGroup>
-
 </Project>
