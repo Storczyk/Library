@@ -47,6 +47,10 @@ namespace Library.Infrastructure.Data
         }
         public virtual TEntity GetByID(object id)
         {
+            if(Guid.TryParse(id.ToString(), out Guid result))
+            {
+                return dbSet.Find(result);
+            }
             return dbSet.Find(id);
         }
 
