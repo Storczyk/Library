@@ -1,6 +1,6 @@
 ﻿function sendEditBookCommand(id) {
     var model = { "Id": id };
-
+    console.log(model);
     $.ajax({
         type: "GET",
         data: model,
@@ -9,13 +9,12 @@
     });
 }
 
-function sendDeleteBookCommand(id) {
-    var model = { "Id": id };
-    console.log(model);
+function sendDeleteBookCommand(Id) {
     $.ajax({
         type: "POST",
-        data: model,
+        data: JSON.stringify({ Id }),
         url: "/Admin/Book/Delete",
-        contentType: "application/json",
+        contentType: "application/json"
+
     });
 }
