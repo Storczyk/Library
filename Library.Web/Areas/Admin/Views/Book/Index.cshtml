@@ -5,7 +5,11 @@
     ViewData["Title"] = "Books";
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
 }
-<div class="row first-row" style="font-size: 12px;">
+<div class="row index-first-row" style="font-size: 12px;">
+    <div class="add-book-frame">
+        <a href="/Admin/Book/Add" class="btn btn-link" style="font-size: 20px;"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+
     @foreach (var book in Model)
     {
         <div class="col-md-12 book-row" style="margin-bottom: 20px;">
