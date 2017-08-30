@@ -13,8 +13,8 @@
             <div class="col-sm-6 properties-column">
                 <p>
                     <div class="book-title" style="display: inline-block">@book.BookTitle</div>
-                    <span onclick="sendDeleteBookCommand('@book.Id')" class="glyphicon glyphicon-trash" style="float:right; margin-left: 20px; font-size: 20px;"></span>
-                    <span onclick="sendEditBookCommand('@book.Id')" class="glyphicon glyphicon-edit" style="float:right; font-size: 20px;"></span>
+                    <button onclick="sendDeleteBookCommand('@book.Id')" type="button" class="btn btn-link" style="float:right; margin-left: 20px; font-size: 20px;"><span class="glyphicon glyphicon-trash"></span></button>
+                    <button onclick="sendEditBookCommand('@book.Id')" type="button" class="btn btn-link" style="float:right; font-size: 20px;"><span class="glyphicon glyphicon-edit"></span></button>
                 </p>
                 <p>
                     <span>Author: </span>
