@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Library.Infrastructure.Data
 {
-    public class Repository<TEntity> where TEntity:class
+    public class Repository<TEntity> where TEntity : class
     {
         internal LibraryDbContext context;
         internal DbSet<TEntity> dbSet;
@@ -18,8 +18,8 @@ namespace Library.Infrastructure.Data
             context = new LibraryDbContext(options.Options);
             this.dbSet = context.Set<TEntity>();
         }
-        public virtual IEnumerable<TEntity> Get(int page=1, int pageSize = 10, Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, 
+        public virtual IEnumerable<TEntity> Get(int page = 1, int pageSize = 10, Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>,
             IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")
         {
@@ -47,7 +47,7 @@ namespace Library.Infrastructure.Data
         }
         public virtual TEntity GetByID(object id)
         {
-            if(Guid.TryParse(id.ToString(), out Guid result))
+            if (Guid.TryParse(id.ToString(), out Guid result))
             {
                 return dbSet.Find(result);
             }

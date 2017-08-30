@@ -1,18 +1,4 @@
-﻿function sendEditBookCommand(id) {
-    var model = { "Id": id };
-    $.ajax({
-        type: "GET",
-        data: model,
-        url: "/Admin/Book/Edit",
-        dataType: 'json',
-        contentType: "application/json",
-        success: function (data) {
-            alert(data.redirect);
-        }
-    });
-}
-
-function sendDeleteBookCommand(id) {
+﻿function sendDeleteBookCommand(id) {
     $.ajax({
         type: "POST",
         data: JSON.stringify({ id }),
