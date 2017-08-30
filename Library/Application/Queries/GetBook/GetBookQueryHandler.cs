@@ -1,12 +1,32 @@
 ﻿using Library.Application.General;
-
+using Library.DomainModel;
+using Library.Infrastructure.Data;
+using System.Linq;
 namespace Library.Application.Queries.GetBook
 {
     public class GetBookQueryHandler : IQueryHandler<GetBookQuery, BookQuery>
     {
+        private readonly Repository<Book> repository;
+        public GetBookQueryHandler(Repository<Book> repository)
+        {
+            this.repository = repository;
+        }
         public BookQuery Handle(GetBookQuery query)
         {
-            throw new System.NotImplementedException();
+            var x = repository.GetByID(query.Id);
+            return new BookQuery
+            {
+                Id = x.Id.ToString(),
+                Author = x.Author,
+                BookTitle = x.BookTitle,
+                Description = x.Description,
+                Ean = x.Ean,
+                Genre = x.Genre,
+                Isbn = x.Isbn,
+                Pages = x.Pages,
+                Publisher = x.Publisher,
+                Year = x.Year,
+            };
         }
     }
 }
