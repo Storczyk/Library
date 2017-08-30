@@ -1,8 +1,9 @@
 ﻿using Library.Application.Commands.AddBook;
+using Library.Application.Commands.DeleteBook;
 using Library.Application.Commands.EditBook;
 using Library.Application.General;
 using Library.Application.Queries;
-using Library.Application.Queries.GetAllBooks;
+using Library.Application.Queries.GetBook;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -26,53 +27,9 @@ namespace Library.Web.Areas.Admin.Controllers
                 {
                     BookTitle = "title",
                     Author = "authot",
-                    Ean = 12,
-                    Id = 0,
-                    Isbn = 4231,
-                    Pages = 14,
-                    Publisher = "publisher",
-                    Year = 2012
-                },
-                new BookQuery
-                {
-                         BookTitle = "title",
-                    Author = "authot",
-                    Ean = 12,
-                    Id = 1,
-                    Isbn = 4231,
-                    Pages = 14,
-                    Publisher = "publisher",
-                    Year = 2012
-                },
-                new BookQuery
-                {
-                                BookTitle = "title",
-                    Author = "authot",
-                    Ean = 12,
-                    Id = 2,
-                    Isbn = 4231,
-                    Pages = 14,
-                    Publisher = "publisher",
-                    Year = 2012
-                },
-                new BookQuery
-                {
-                                        BookTitle = "title",
-                    Author = "authot",
-                    Ean = 12,
-                    Id = 3,
-                    Isbn = 4231,
-                    Pages = 14,
-                    Publisher = "publisher",
-                    Year = 2012
-                },
-                new BookQuery
-                {
-                                        BookTitle = "title",
-                    Author = "authot",
-                    Ean = 12,
-                    Id = 4,
-                    Isbn = 4231,
+                    Ean = "2",
+                    Id = "3",
+                    Isbn = "4231",
                     Pages = 14,
                     Publisher = "publisher",
                     Year = 2012
@@ -99,12 +56,21 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(GetBookQuery bookQuery)
         {
-            //var book = queryDispatcher.Dispatch<>();
-            //return View(book);
+            var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(bookQuery);
 
-            return View();
+            return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(DeleteBookCommand deleteBookCommand)
+        {
+            if (ModelState.IsValid)
+            {
+                commandBus.Send(deleteBookCommand);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

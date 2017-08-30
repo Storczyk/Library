@@ -11,8 +11,8 @@ using System;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20170829123516_asd")]
-    partial class asd
+    [Migration("20170830061121_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,12 @@ namespace Library.Migrations
 
             modelBuilder.Entity("Library.DomainModel.Book", b =>
                 {
-                    b.Property<string>("BookTitle")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Author");
+
+                    b.Property<string>("BookTitle");
 
                     b.Property<string>("Ean");
 
@@ -38,7 +40,7 @@ namespace Library.Migrations
 
                     b.Property<int>("Year");
 
-                    b.HasKey("BookTitle");
+                    b.HasKey("Id");
 
                     b.ToTable("Books");
                 });

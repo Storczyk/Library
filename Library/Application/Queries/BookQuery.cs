@@ -4,7 +4,7 @@ namespace Library.Application.Queries
 {
     public class BookQuery
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [DisplayName("Title")]
         public string BookTitle { get; set; }
@@ -18,9 +18,9 @@ namespace Library.Application.Queries
         public string Publisher { get; set; }
 
         [DisplayName("ISBN")]
-        public long Isbn { get; set; }
+        public string Isbn { get; set; }
 
         [DisplayName("EAN")]
-        public long Ean { get; set; }
+        public string Ean { get; set; }
     }
 }

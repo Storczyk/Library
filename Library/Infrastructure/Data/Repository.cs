@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Library.Infrastructure.Data
 {
-    /*public class Repository<TEntity> where TEntity:class
+    public class Repository<TEntity> where TEntity:class
     {
         internal LibraryDbContext context;
         internal DbSet<TEntity> dbSet;
@@ -15,10 +15,10 @@ namespace Library.Infrastructure.Data
         {
             var options = new DbContextOptionsBuilder<LibraryDbContext>();
             options.UseSqlServer("Server=PSROCZYK-RZE\\SQLEXPRESS;Database=libraryDB;User Id=test;Password=test;MultipleActiveResultSets=True");
-            //context = new LibraryDbContext(options.Options);
+            context = new LibraryDbContext(options.Options);
             this.dbSet = context.Set<TEntity>();
         }
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
+        public virtual IEnumerable<TEntity> Get(int page=1, int pageSize = 10, Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, 
             IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")
@@ -53,6 +53,7 @@ namespace Library.Infrastructure.Data
         public virtual void Insert(TEntity entity)
         {
             dbSet.Add(entity);
+            context.SaveChanges();
         }
 
         public virtual void Delete(object id)
@@ -68,12 +69,14 @@ namespace Library.Infrastructure.Data
                 dbSet.Attach(entityToDelete);
             }
             dbSet.Remove(entityToDelete);
+            context.SaveChanges();
         }
 
         public virtual void Update(TEntity entityToUpdate)
         {
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
+            context.SaveChanges();
         }
-    }*/
+    }
 }

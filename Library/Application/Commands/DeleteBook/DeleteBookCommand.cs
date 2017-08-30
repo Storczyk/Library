@@ -4,5 +4,6 @@ namespace Library.Application.Commands.DeleteBook
 {
     public class DeleteBookCommand : ICommand
     {
+        public string Id { get; set; }
     }
 }

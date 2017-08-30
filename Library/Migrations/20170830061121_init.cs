@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Library.Migrations
 {
-    public partial class asd : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,8 +27,9 @@ namespace Library.Migrations
                 name: "Books",
                 columns: table => new
                 {
-                    BookTitle = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BookTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ean = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Isbn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Pages = table.Column<int>(type: "int", nullable: false),
@@ -37,7 +38,7 @@ namespace Library.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Books", x => x.BookTitle);
+                    table.PrimaryKey("PK_Books", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(

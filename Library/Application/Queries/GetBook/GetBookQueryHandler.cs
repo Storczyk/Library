@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Library.Application.General;
 
 namespace Library.Application.Queries.GetBook
 {
-    class GetBookQueryHandler
+    public class GetBookQueryHandler : IQueryHandler<GetBookQuery, BookQuery>
     {
+        public BookQuery Handle(GetBookQuery query)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

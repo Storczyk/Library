@@ -8,6 +8,8 @@ namespace Library.DomainModel
     public class Book
     {
         [Key]
+        public Guid Id { get; set; }
+
         public string BookTitle { get; set; }
 
         public string Author { get; set; }

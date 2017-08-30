@@ -14,6 +14,7 @@ using Autofac;
 using Library.Application.GeneralConcrete;
 using Library.Application.General;
 using System.Reflection;
+using Library.DomainModel;
 
 namespace Library.Web
 {
@@ -25,7 +26,6 @@ namespace Library.Web
         }
 
         public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -36,7 +36,7 @@ namespace Library.Web
                 .AddDefaultTokenProviders()
                 .AddUserStore<LibraryUserStore>()
                 .AddDefaultTokenProviders();
-
+            services.AddScoped<Repository<Book>, Repository<Book>>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<RazorViewEngineOptions>(opt =>
             {
@@ -70,12 +70,9 @@ namespace Library.Web
 
             app.UseStaticFiles();
             app.UseAuthentication();
-
-            //var serviceProvider = app.ApplicationServices.GetService<IServiceProvider>();
+    
             RolesData.SeedRoles(app.ApplicationServices).Wait();
             RolesData.SeedUsers(app.ApplicationServices).Wait();
-
-            //CreateRolesAndUsers(serviceProvider);
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

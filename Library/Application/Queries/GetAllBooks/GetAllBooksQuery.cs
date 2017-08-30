@@ -5,5 +5,7 @@ namespace Library.Application.Queries.GetAllBooks
 {
     public class GetAllBooksQuery : IQuery<IEnumerable<BookQuery>>
     {
+        public int Page { get; set; }
+        public int PageSize { get; set; }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Library.Application.General;
 
 namespace Library.Application.Queries.GetBook
 {
-    class GetBookQuery
+    public class GetBookQuery : IQuery<BookQuery>
     {
+        public int Id { get; set; }
     }
 }
