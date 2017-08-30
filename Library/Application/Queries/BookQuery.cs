@@ -9,6 +9,7 @@ namespace Library.Application.Queries
 
         [DisplayName("Title")]
         public string BookTitle { get; set; }
+        public string Description { get; set; }
 
         public Author Author { get; set; }
         public Genre Genre { get; set; }

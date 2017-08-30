@@ -20,6 +20,7 @@ namespace Library.Application.Commands.EditBook
                 Author=command.Author,
                 Genre = command.Genre,
                 BookTitle=command.BookTitle,
+                Description = command.Description,
                 Ean=command.Ean,
                 Isbn=command.Isbn,
                 Pages=command.Pages,

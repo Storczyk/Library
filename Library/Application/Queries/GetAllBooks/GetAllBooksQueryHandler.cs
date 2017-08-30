@@ -19,6 +19,7 @@ namespace Library.Application.Queries.GetAllBooks
             {
                 Author = i.Author,
                 Genre = i.Genre,
+                Description = i.Description,
                 BookTitle = i.BookTitle,
                 Ean = i.Ean,
                 Id = i.Id.ToString(),
