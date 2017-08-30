@@ -56,9 +56,9 @@ namespace Library.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //commandBus.Send(deleteBookCommand);
+                commandBus.Send(deleteBookCommand);
             }
-            return RedirectToAction("Index");
+            return Ok("Deleted");
         }
 
         [HttpPost]

@@ -1,20 +1,26 @@
 ﻿function sendEditBookCommand(id) {
     var model = { "Id": id };
-    console.log(model);
     $.ajax({
         type: "GET",
         data: model,
         url: "/Admin/Book/Edit",
-        contentType: "application/json"
+        dataType: 'json',
+        contentType: "application/json",
+        success: function (data) {
+            alert(data.redirect);
+        }
     });
 }
 
-function sendDeleteBookCommand(Id) {
+function sendDeleteBookCommand(id) {
     $.ajax({
         type: "POST",
-        data: JSON.stringify({ Id }),
+        data: JSON.stringify({ id }),
+        dataType: 'json',
         url: "/Admin/Book/Delete",
-        contentType: "application/json"
-
+        contentType: "application/json",
+        complete: function() {
+            window.location.href = "Index";
+        }
     });
 }
