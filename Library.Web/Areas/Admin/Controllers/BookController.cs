@@ -1,4 +1,6 @@
 ﻿using Library.Application.Commands.AddBook;
+using Library.Application.Commands.DeleteBook;
+using Library.Application.Commands.EditBook;
 using Library.Application.General;
 using Library.Application.Queries;
 using Library.Application.Queries.GetAllBooks;
@@ -59,6 +61,26 @@ namespace Library.Web.Areas.Admin.Controllers
                 commandBus.Send(addBookCommand);
             }
 
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(DeleteBookCommand deleteBookCommand)
+        {
+            if (ModelState.IsValid)
+            {
+                commandBus.Send(deleteBookCommand);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Update(EditBookCommand editBookCommand)
+        {
+            if (ModelState.IsValid)
+            {
+                commandBus.Send(editBookCommand);
+            }
             return RedirectToAction("Index");
         }
     }
