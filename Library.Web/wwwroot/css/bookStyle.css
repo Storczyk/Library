@@ -9,21 +9,45 @@
     font-size: 15px;
 }
 
-.first-row{
+.first-row {
     margin-top: 80px;
     margin-bottom: 80px;
 }
 
-.add-textbox{
+.add-textbox {
     width: 100%;
 }
 
-.add-label
-{
+.add-label {
     font-size: 15px;
 }
 
-.book-row{
-    height: 200px;
-    background-color: black;
+.book-row {
+    padding-bottom: 10px;
+    border: 1px outset black;
+    border-radius: 25px;
+}
+
+.properties-column {
+    padding-top: 10px;
+    padding-right: 50px;
+}
+
+.book-title {
+    border-bottom: 1px;
+    border-bottom-style: double;
+    border-bottom-color: darkgray;
+    font-size: 20px;
+    font-weight: bold;
+    width: 300px;
+}
+
+.book-span {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.book-description {
+    margin-top: 10px;
+    font-size: 12px;
 }
