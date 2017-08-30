@@ -3,8 +3,8 @@ using Library.Application.Commands.DeleteBook;
 using Library.Application.Commands.EditBook;
 using Library.Application.General;
 using Library.Application.Queries;
+using Library.Application.Queries.GetAllBooks;
 using Library.Application.Queries.GetBook;
-using Library.DomainModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace Library.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class BookController : BaseController
     {
         public BookController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
@@ -20,22 +20,9 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            //var query = new GetAllBooksQuery();
-            //var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(query);
-            List<BookQuery> books = new List<BookQuery>
-            {
-                new BookQuery
-                {
-                    BookTitle = "title",
-                    Author = new Author{FirstName="asd"},
-                    Ean = "2",
-                    Id = "3",
-                    Isbn = "4231",
-                    Pages = 14,
-                    Publisher = "publisher",
-                    Year = 2012
-                }
-            };
+            var query = new GetAllBooksQuery();
+            var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(query);
+
             return View(books);
         }
 
@@ -65,12 +52,11 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(string id)
+        public IActionResult Delete([FromBody] DeleteBookCommand deleteBookCommand)
         {
             if (ModelState.IsValid)
             {
-                var deleteBookCommand = new DeleteBookCommand { Id = id };
-                commandBus.Send(deleteBookCommand);
+                //commandBus.Send(deleteBookCommand);
             }
             return RedirectToAction("Index");
         }

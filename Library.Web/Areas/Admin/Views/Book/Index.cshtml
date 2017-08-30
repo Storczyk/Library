@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<Library.Application.Queries.BookQuery>
+
 @{
     <script src="~/js/admin.js"></script>
     <link rel="stylesheet" href="~/css/bookStyle.css" />
     ViewData["Title"] = "Books";
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
 }
-
 <div class="row first-row" style="font-size: 12px;">
     @foreach (var book in Model)
     {
         <div class="col-md-12 book-row" style="margin-bottom: 20px;">
             <div class="col-sm-6 properties-column">
                 <p>
-                    <div class="book-title" style="display: inline-block">@book.Id @book.BookTitle</div>
-                    <a href="/Admin/Book/Delete/@book.Id" class="glyphicon glyphicon-trash" style="float:right; margin-left: 20px; font-size: 20px;"></a>
-                    <span onclick="sendEditBookCommand(@book.Id)" class="glyphicon glyphicon-edit" style="float:right; font-size: 20px;"></span>
+                    <div class="book-title" style="display: inline-block">@book.BookTitle</div>
+                    <a  onclick="sendDeleteBookCommand('@book.Id');" class="glyphicon glyphicon-trash" style="float:right; margin-left: 20px; font-size: 20px;"></a>
+                    <a onclick="sendEditBookCommand('@book.Id');" class="glyphicon glyphicon-edit" style="float:right; font-size: 20px;"></a>
                 </p>
                 <p>
                     <span>Author: </span>
@@ -42,18 +42,10 @@
                     <span style="margin-left: 10px;">ISBN: </span>
                     <span class="book-span">@book.Isbn</span>
                 </p>
+                <p style="font-weight:bold;">@book.Id</p>
             </div>
             <div class="col-sm-6">
-                <p class="book-description">
-                    Kontynuacja powieści Tego lata w Zawrociu i Góry śpiących węży Jedna znała jego ciemną stronę,
-                    druga tylko jasną.Pierwsza kochała go nad życie, ale oddała go drugiej bez walki.Po latach chce go odzyskać,
-                    choć to tylko walka o jego duszę,bo Świr nie żyje od dziesięciu lat. Maska Arlekina to trzecia cześć
-                    uwielbianego przez czytelników cyklu o Zawrociu. Po dziesięciu latach od śmierci męża Matyldy ktoś stawia na jego grobie piękną, m...
-                    Kontynuacja powieści Tego lata w Zawrociu i Góry śpiących węży Jedna znała jego ciemną stronę,
-                    druga tylko jasną.Pierwsza kochała go nad życie, ale oddała go drugiej bez walki.Po latach chce go odzyskać,
-                    choć to tylko walka o jego duszę,bo Świr nie żyje od dziesięciu lat. Maska Arlekina to trzecia cześć
-                    uwielbianego przez czytelników cyklu o Zawrociu. Po dziesięciu latach od śmierci męża Matyldy ktoś stawia na jego grobie piękną, m...
-                </p>
+                <p class="book-description">@book.Description</p>
             </div>
         </div>
     }

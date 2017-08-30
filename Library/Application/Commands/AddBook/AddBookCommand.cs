@@ -10,7 +10,10 @@ namespace Library.Application.Commands.AddBook
         public string BookTitle { get; set; }
 
         public Author Author { get; set; }
+
         public Genre Genre { get; set; }
+
+        public string Description { get; set; }
 
         public int Year { get; set; }
 

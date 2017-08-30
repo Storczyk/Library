@@ -10,12 +10,16 @@
 }
 
 .first-row {
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom: 80px;
 }
 
 .add-textbox {
     width: 100%;
+}
+
+.description-add-textbox{
+    min-height: 100px;
 }
 
 .add-label {

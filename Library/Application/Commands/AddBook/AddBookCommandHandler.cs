@@ -16,12 +16,13 @@ namespace Library.Application.Commands.AddBook
             repository.Insert(new Book
             {
                 Author = command.Author,
-                BookTitle  =command.BookTitle,
+                BookTitle = command.BookTitle,
+                Description = command.Description,
                 Ean = command.Ean,
-                Isbn = command.Isbn, 
+                Isbn = command.Isbn,
                 Pages = command.Pages,
                 Publisher = command.Publisher,
-                Year=command.Year
+                Year = command.Year
             });
         }
     }
