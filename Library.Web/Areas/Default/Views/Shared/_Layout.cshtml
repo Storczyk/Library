@@ -31,8 +31,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Dashboard</a></li>
+                    }
+
                     <li><a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a></li>
                 </ul>
+
                 @await Html.PartialAsync("~/Areas/Default/Views/Shared/_LoginPartial.cshtml")
             </div>
         </div>
