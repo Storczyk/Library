@@ -16,7 +16,7 @@ namespace Library.Application.Commands.Books.EditBook
         {
             repository.Update(new Book
             {
-                Id = Guid.Parse(command.Id),
+                BookId = Guid.Parse(command.Id),
                 Author = new Author { Name = command.Author },
                 Genre = new Genre { Description = command.Genre },
                 BookTitle = command.BookTitle,

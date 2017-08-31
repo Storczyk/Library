@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Library.Application.Queries.BookQuery>
+﻿@model IEnumerable<Library.Application.Queries.Books.BookQuery>
 @{
     <script src="~/js/admin.js"></script>
     <link rel="stylesheet" href="~/css/bookStyle.css" />
@@ -21,7 +21,7 @@
                 </p>
                 <p>
                     <span>Author: </span>
-                    <span class="book-span">@book.Author.LastName</span>
+                    <span class="book-span">@book.Author</span>
                 </p>
                 <p>
                     <span>Genre:</span>

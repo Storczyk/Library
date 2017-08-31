@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace Library.Infrastructure.Data
@@ -54,8 +55,6 @@ namespace Library.Infrastructure.Data
             var genre = context.Genres.FirstOrDefault(i => i.Description == entityToUpdate.Genre.Description);
             if (genre != null)
                 entityToUpdate.Genre = genre;
-
-
             context.Books.Update(entityToUpdate);
             context.SaveChanges();
         }

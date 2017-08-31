@@ -8,7 +8,7 @@ namespace Library.DomainModel
     public class Author
     {
         [Key]
-        public int Id { get; set; }
+        public int AuthorId { get; set; }
         public string Name { get; set; }
         public ICollection<Book> Books { get; set; }
 

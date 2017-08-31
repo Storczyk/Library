@@ -8,7 +8,7 @@ namespace Library.DomainModel
     public class Book
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid BookId { get; set; }
 
         public string BookTitle { get; set; }
         public string Description { get; set; }
@@ -25,5 +25,7 @@ namespace Library.DomainModel
         public string Isbn { get; set; }
 
         public string Ean { get; set; }
+
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace Library.DomainModel
     public class Genre
     {
         [Key]
-        public int Id { get; set; }
+        public int GenreId { get; set; }
 
         public string Description { get; set; }
 

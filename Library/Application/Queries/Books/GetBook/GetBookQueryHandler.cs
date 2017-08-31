@@ -17,7 +17,7 @@ namespace Library.Application.Queries.Books.GetBook
             var x = repository.GetByID(Guid.Parse(query.Id));
             return new BookQuery
             {
-                Id = x.Id.ToString(),
+                Id = x.BookId.ToString(),
                 Author = x.Author,
                 BookTitle = x.BookTitle,
                 Description = x.Description,

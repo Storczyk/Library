@@ -22,21 +22,19 @@ namespace Library.Migrations
 
             modelBuilder.Entity("Library.DomainModel.Author", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AuthorId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("Name");
 
-                    b.Property<string>("LastName");
-
-                    b.HasKey("Id");
+                    b.HasKey("AuthorId");
 
                     b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("Library.DomainModel.Book", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("BookId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int?>("AuthorId");
@@ -57,7 +55,7 @@ namespace Library.Migrations
 
                     b.Property<int>("Year");
 
-                    b.HasKey("Id");
+                    b.HasKey("BookId");
 
                     b.HasIndex("AuthorId");
 
@@ -68,14 +66,50 @@ namespace Library.Migrations
 
             modelBuilder.Entity("Library.DomainModel.Genre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
-                    b.HasKey("Id");
+                    b.HasKey("GenreId");
 
                     b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("Library.DomainModel.Order", b =>
+                {
+                    b.Property<Guid>("OrderId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<DateTime>("OrderDate");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Library.DomainModel.OrderDetail", b =>
+                {
+                    b.Property<Guid>("OrderDetailId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("BookId");
+
+                    b.Property<Guid>("OrderId");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Library.Infrastructure.Models.ApplicationUser", b =>
@@ -175,6 +209,26 @@ namespace Library.Migrations
                     b.HasOne("Library.DomainModel.Genre", "Genre")
                         .WithMany("Books")
                         .HasForeignKey("GenreId");
+                });
+
+            modelBuilder.Entity("Library.DomainModel.Order", b =>
+                {
+                    b.HasOne("Library.Infrastructure.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Library.DomainModel.OrderDetail", b =>
+                {
+                    b.HasOne("Library.DomainModel.Book", "Book")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Library.DomainModel.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

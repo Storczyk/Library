@@ -22,7 +22,7 @@ namespace Library.Application.Queries.Books.GetAllBooks
                 Description = i.Description,
                 BookTitle = i.BookTitle,
                 Ean = i.Ean,
-                Id = i.Id.ToString(),
+                Id = i.BookId.ToString(),
                 Isbn = i.Isbn,
                 Pages = i.Pages,
                 Publisher = i.Publisher,
