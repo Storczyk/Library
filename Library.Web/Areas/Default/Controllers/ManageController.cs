@@ -11,7 +11,7 @@ using Library.Infrastructure.Models;
 using Library.Infrastructure.Extensions.Email;
 using Library.Web.Extensions;
 
-namespace Library.Infrastructure.Areas.Default.Controllers
+namespace Library.Web.Areas.Default.Controllers
 {
     [Area("Default")]
     [Authorize]

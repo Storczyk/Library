@@ -5,7 +5,7 @@ using Library.Web.Areas;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace Library.Infrastructure.Areas.Default.Controllers
+namespace Library.Web.Areas.Default.Controllers
 {
     [Area("Default")]
     public class HomeController : BaseController

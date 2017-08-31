@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace Library.Infrastructure.Areas.Default.Controllers
+namespace Library.Web.Areas.Default.Controllers
 {
     [Area("Default")]
     [Authorize]

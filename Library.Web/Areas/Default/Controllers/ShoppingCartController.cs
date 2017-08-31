@@ -4,6 +4,7 @@ using Library.Application.Queries.Books.GetBook;
 using Library.DomainModel;
 using Library.Infrastructure.Extensions.Cart;
 using Library.Web.Areas.Default.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,8 @@ namespace Library.Web.Areas.Default.Controllers
             };
             return View(viewModel);
         }
-
-        public IActionResult AddToCart(Guid id)
+        [HttpPost]
+        public IActionResult AddToCart(string id)
         {
             var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(new GetBookQuery { Id = id.ToString() });
             var newBook = new Book
@@ -48,7 +49,7 @@ namespace Library.Web.Areas.Default.Controllers
                 Year = book.Year,
             };
             var cart = shoppingCart.GetCart(this.HttpContext);
-            cart.AddToCart(newBook);
+            cart.AddToCart(newBook, HttpContext.Session);
             return RedirectToAction("Index");
         }
 

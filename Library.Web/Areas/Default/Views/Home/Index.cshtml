@@ -8,45 +8,58 @@
 @foreach (var book in Model)
 {
     <div class="col-md-1">
-        <a href="#" class="btn btn-link" style="font-size: 20px;"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
+        <a onclick="AddToCart('@book.Id')" class="btn btn-link" style="font-size: 20px;"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
     </div>
-            <div class="col-md-11">
-                <div class="col-md-12 book-row" style="margin-bottom: 20px;">
-                    <div class="col-sm-7 properties-column">
-                        <p>
-                            <div class="book-title" style="display: inline-block">@book.BookTitle</div>
-                        </p>
-                        <p>
-                            <span>Author: </span>
-                            <span class="book-span">@book.Author.Name</span>
-                        </p>
-                        <p>
-                            <span>Genre:</span>
-                            <span class="book-span">@book.Genre.Description</span>
-                        </p>
-                        <p>
-                            <span>Pages: </span>
-                            <span class="book-span">@book.Pages</span>
-                        </p>
-                        <p>
-                            <span>Year: </span>
-                            <span class="book-span">@book.Year</span>
-                        </p>
-                        <p>
-                            <span>Publisher: </span>
-                            <span class="book-span">@book.Publisher</span>
-                        </p>
-                        <p>
-                            <span>EAN: </span>
-                            <span class="book-span">@book.Ean</span>
-                            <span style="margin-left: 10px;">ISBN: </span>
-                            <span class="book-span">@book.Isbn</span>
-                        </p>
-                        <p style="font-weight:bold;">@book.Id</p>
-                    </div>
-                    <div class="col-sm-5">
-                        <p class="book-description">@book.Description</p>
-                    </div>
-                </div>
+    <div class="col-md-11">
+        <div class="col-md-12 book-row" style="margin-bottom: 20px;">
+            <div class="col-sm-7 properties-column">
+                <p>
+                    <div class="book-title" style="display: inline-block">@book.BookTitle</div>
+                </p>
+                <p>
+                    <span>Author: </span>
+                    <span class="book-span">@book.Author.Name</span>
+                </p>
+                <p>
+                    <span>Genre:</span>
+                    <span class="book-span">@book.Genre.Description</span>
+                </p>
+                <p>
+                    <span>Pages: </span>
+                    <span class="book-span">@book.Pages</span>
+                </p>
+                <p>
+                    <span>Year: </span>
+                    <span class="book-span">@book.Year</span>
+                </p>
+                <p>
+                    <span>Publisher: </span>
+                    <span class="book-span">@book.Publisher</span>
+                </p>
+                <p>
+                    <span>EAN: </span>
+                    <span class="book-span">@book.Ean</span>
+                    <span style="margin-left: 10px;">ISBN: </span>
+                    <span class="book-span">@book.Isbn</span>
+                </p>
+                <p style="font-weight:bold;">@book.Id</p>
             </div>
+            <div class="col-sm-5">
+                <p class="book-description">@book.Description</p>
+            </div>
+        </div>
+    </div>
 }
+<script>
+    function AddToCart(Id)
+    {
+        var id = Id;
+        $.ajax({
+            type: "POST",
+            data: { id: Id },
+            url: "/Default/ShoppingCart/AddToCart"           
+
+        });
+
+    }
+</script>
