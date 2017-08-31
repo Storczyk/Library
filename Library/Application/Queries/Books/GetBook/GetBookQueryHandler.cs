@@ -18,11 +18,11 @@ namespace Library.Application.Queries.Books.GetBook
             return new BookQuery
             {
                 Id = x.BookId.ToString(),
-                Author = x.Author.Name,
+                Author = x.Author,
                 BookTitle = x.BookTitle,
                 Description = x.Description,
                 Ean = x.Ean,
-                Genre = x.Genre.Description,
+                Genre = x.Genre,
                 Isbn = x.Isbn,
                 Pages = x.Pages,
                 Publisher = x.Publisher,
