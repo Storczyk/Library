@@ -15,6 +15,10 @@ using Library.Application.GeneralConcrete;
 using Library.Application.General;
 using System.Reflection;
 using Library.DomainModel;
+using Library.Infrastructure.Extensions.Cart;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System;
 
 namespace Library.Web
 {
@@ -36,6 +40,15 @@ namespace Library.Web
                 .AddDefaultTokenProviders()
                 .AddUserStore<LibraryUserStore>()
                 .AddDefaultTokenProviders();
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.CookieHttpOnly = true;
+            });
+            services.AddTransient<ShoppingCart, ShoppingCart>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<RazorViewEngineOptions>(opt =>
@@ -70,7 +83,8 @@ namespace Library.Web
 
             app.UseStaticFiles();
             app.UseAuthentication();
-    
+
+            app.UseSession();
             RolesData.SeedRoles(app.ApplicationServices).Wait();
             RolesData.SeedUsers(app.ApplicationServices).Wait();
             app.UseMvc(routes =>
