@@ -33,10 +33,15 @@
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("Administrator"))
                     {
-                        <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Dashboard</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Admin/Book/Index"><span class="glyphicon glyphicon-list-alt"></span> View books</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/Admin/Book/Add"><span class="glyphicon glyphicon-plus"></span> Add new book</a></li>
+                            </ul>
+                        </li>
                     }
-
-                    <li><a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a></li>
                 </ul>
 
                 @await Html.PartialAsync("~/Areas/Default/Views/Shared/_LoginPartial.cshtml")

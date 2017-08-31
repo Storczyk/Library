@@ -2,6 +2,17 @@
     min-height: 100%;
 }
 
+.navbar-default .navbar-nav > li.dropdown:hover > a,
+.navbar-default .navbar-nav > li.dropdown:hover > a:hover,
+.navbar-default .navbar-nav > li.dropdown:hover > a:focus {
+    background-color: rgb(231, 231, 231);
+    color: rgb(85, 85, 85);
+}
+
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
 .required::after {
     content: " *";
     font-weight: bold;
@@ -51,14 +62,6 @@
     width: 300px;
 }
 
-.add-book-frame{
-    border-style: solid;
-    border-color: midnightblue;
-    border-radius: 100px;
-    width: 50px;
-    margin-bottom: 10px;
-}
-
 .book-span {
     font-weight: bold;
     font-size: 12px;
@@ -67,4 +70,13 @@
 .book-description {
     margin-top: 10px;
     font-size: 12px;
+}
+
+.text-danger{
+    font-weight: bold;
+}
+
+.search {
+    background-color: steelblue;
+    border-radius: 20px;
 }

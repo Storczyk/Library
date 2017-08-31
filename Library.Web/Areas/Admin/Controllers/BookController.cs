@@ -35,11 +35,12 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(AddBookCommand addBookCommand)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                commandBus.Send(addBookCommand);
+                return View();
             }
 
+            commandBus.Send(addBookCommand);
             return RedirectToAction("Index");
         }
 
@@ -52,23 +53,26 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete([FromBody] DeleteBookCommand deleteBookCommand)
+        public IActionResult Delete([FromBody]DeleteBookCommand deleteBookCommand)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                commandBus.Send(deleteBookCommand);
+                return BadRequest();
             }
+
+            commandBus.Send(deleteBookCommand);
             return Ok("Deleted");
         }
 
         [HttpPost]
         public IActionResult Edit(EditBookCommand editBookCommand)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                commandBus.Send(editBookCommand);
+                return View();
             }
 
+            commandBus.Send(editBookCommand);
             return RedirectToAction("Index");
         }
     }

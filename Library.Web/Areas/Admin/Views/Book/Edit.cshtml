@@ -13,38 +13,47 @@
             @Html.HiddenFor(m => m.Id);
             <div class="form-group">
                 @Html.LabelFor(m => m.BookTitle, new { @class = "required add-label" })
+                @Html.ValidationMessageFor(m => m.BookTitle, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.BookTitle, new { @class = "form-control add-textbox" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Author, new { @class = "required add-label" })
-                @Html.TextBoxFor(m => m.Author.LastName, new { @class = "form-control add-textbox" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Genre.Description, new { @class = "add-label" })
-                @Html.TextBoxFor(m => m.Genre.Description, new { @class = "form-control add-textbox" })
+                @Html.ValidationMessageFor(m => m.Author, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.Author, new { @class = "form-control add-textbox" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Year, new { @class = "required add-label" })
+                @Html.ValidationMessageFor(m => m.Year, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.Year, new { @class = "form-control add-textbox" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Pages, new { @class = "required add-label" })
+                @Html.ValidationMessageFor(m => m.Pages, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.Pages, new { @class = "form-control add-textbox" })
             </div>
             <div class="form-group">
+                @Html.LabelFor(m => m.Genre, new { @class = "add-label" })
+                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.Genre, new { @class = "form-control add-textbox" })
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(m => m.Publisher, new { @class = "add-label" })
+                @Html.ValidationMessageFor(m => m.Publisher, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.Publisher, new { @class = "form-control add-textbox" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Isbn, new { @class = "add-label" })
+                @Html.ValidationMessageFor(m => m.Isbn, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.Isbn, new { @class = "form-control add-textbox" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Ean, new { @class = "add-label" })
+                @Html.ValidationMessageFor(m => m.Ean, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.Ean, new { @class = "form-control add-textbox" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Description, new { @class = "add-label" })
+                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                 @Html.TextAreaFor(m => m.Description, new { @class = "form-control description-add-textbox" })
             </div>
 

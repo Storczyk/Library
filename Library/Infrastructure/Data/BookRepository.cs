@@ -25,7 +25,7 @@ namespace Library.Infrastructure.Data
         }
         public Book GetByID(Guid id)
         {
-            return context.Books.Find(id);
+            return context.Books.Where(i => i.BookId == id).Include(i => i.Author).Include(i => i.Genre).FirstOrDefault();
         }
 
         public void Insert(Book entity)
