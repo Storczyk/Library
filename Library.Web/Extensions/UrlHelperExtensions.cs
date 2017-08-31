@@ -1,4 +1,4 @@
-﻿using Library.Infrastructure.Areas.Default.Controllers;
+﻿using Library.Web.Areas.Default.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Web.Extensions

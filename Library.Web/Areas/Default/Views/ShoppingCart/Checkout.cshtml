@@ -1,0 +1,24 @@
+﻿@model Library.DomainModel.Order
+@{
+    <link rel="stylesheet" href="~/css/bookStyle.css" />
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Checkout", "Books", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address, new { @class = "required add-label" })
+        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control add-textbox" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNumber, new { @class = "required add-label" })
+        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control add-textbox" })
+    </div>
+    <div style="margin-top: 50px;">
+        <input type="submit" value="Add book" class="btn btn-primary" style="margin-right: 70px;" />
+        @Html.ActionLink("Go back to the list", "Index", null, new { @class = "btn btn-primary back-btn" })
+    </div>
+}

@@ -113,7 +113,7 @@ namespace Library.Web.Areas.Default.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(BooksController.Index), "Home");
         }
 
 
@@ -123,7 +123,7 @@ namespace Library.Web.Areas.Default.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(BooksController.Index), "Home");
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -243,7 +243,7 @@ namespace Library.Web.Areas.Default.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(BooksController.Index), "Home");
             }
         }
 

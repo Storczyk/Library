@@ -8,6 +8,6 @@ namespace Library.Web.Areas.Default.ViewModels
 {
     public class ShoppingCartViewModel
     {
-        public List<Cart> CartItems { get; set; }
+        //public List<Cart> CartItems { get; set; }
     }
 }

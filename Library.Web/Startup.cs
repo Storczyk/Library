@@ -14,10 +14,6 @@ using Autofac;
 using Library.Application.GeneralConcrete;
 using Library.Application.General;
 using System.Reflection;
-using Library.DomainModel;
-using Library.Infrastructure.Extensions.Cart;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 
 namespace Library.Web
@@ -30,11 +26,13 @@ namespace Library.Web
         }
 
         public IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LibraryDbContext>(o =>
                 o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<LibraryDbContext>()
                 .AddDefaultTokenProviders()
@@ -48,6 +46,7 @@ namespace Library.Web
                 options.IdleTimeout = TimeSpan.FromSeconds(1000);
                 options.CookieHttpOnly = true;
             });
+
             services.AddTransient<ShoppingCart, ShoppingCart>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddTransient<IEmailSender, EmailSender>();

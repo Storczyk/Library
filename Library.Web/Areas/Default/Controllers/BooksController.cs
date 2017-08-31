@@ -8,9 +8,9 @@ using System.Collections.Generic;
 namespace Library.Web.Areas.Default.Controllers
 {
     [Area("Default")]
-    public class HomeController : BaseController
+    public class BooksController : BaseController
     {
-        public HomeController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher)
+        public BooksController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher)
         {
         }
 

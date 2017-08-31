@@ -51,11 +51,7 @@ namespace Library.Web.Extensions
             EmptyCart(session);
             var orderDetails = new List<OrderDetail>();
 
-            var order = new Order
-            {
-                OrderDetails = new 
-            }
-            return order.OrderId;
+            //return order.OrderId;
         }
     }
 }

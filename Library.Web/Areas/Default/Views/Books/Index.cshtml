@@ -8,7 +8,7 @@
 @foreach (var book in Model)
 {
     <div class="col-md-1">
-        <a onclick="AddToCart('@book.Id')" class="btn btn-link" style="font-size: 20px;"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
+        <a onclick="sendAddToCartCommand('@book.Id')" class="btn btn-link" style="font-size: 20px;"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
     </div>
     <div class="col-md-11">
         <div class="col-md-12 book-row" style="margin-bottom: 20px;">
@@ -51,15 +51,14 @@
     </div>
 }
 <script>
-    function AddToCart(Id)
-    {
-        var id = Id;
+    function sendAddToCartCommand(Id) {
+        console.log(JSON.stringify({ Id }));
         $.ajax({
             type: "POST",
-            data: { id: Id },
-            url: "/Default/ShoppingCart/AddToCart"           
-
+            data: JSON.stringify({ Id }),
+            dataType: 'json',
+            url: "/Default/ShoppingCart/AddToCart",
+            contentType: "application/json"
         });
-
     }
 </script>
