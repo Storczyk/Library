@@ -3,7 +3,7 @@ using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
 
-namespace Library.Application.Commands.Books.EditBook
+namespace Library.Application.Commands.Books
 {
     public class EditBookCommandHandler : ICommandHandler<EditBookCommand>
     {

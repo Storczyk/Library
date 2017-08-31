@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Application.Commands.Cart.AddToCart
+namespace Library.Application.Commands.Cart
 {
     public class AddToCartCommandHandler : ICommandHandler<AddToCartCommand>
     {

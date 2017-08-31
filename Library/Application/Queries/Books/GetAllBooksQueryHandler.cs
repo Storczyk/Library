@@ -4,7 +4,7 @@ using Library.Infrastructure.Data;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library.Application.Queries.Books.GetAllBooks
+namespace Library.Application.Queries.Books
 {
     public class GetAllBooksQueryHandler : IQueryHandler<GetAllBooksQuery, IEnumerable<BookQuery>>
     {

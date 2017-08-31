@@ -1,6 +1,6 @@
 ﻿using Library.Application.General;
 
-namespace Library.Application.Queries.Books.GetBook
+namespace Library.Application.Queries.Books
 {
     public class GetBookQuery : IQuery<BookQuery>
     {

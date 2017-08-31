@@ -1,7 +1,5 @@
 ﻿using Library.Application.General;
 using Library.Application.Queries.Books;
-using Library.Application.Queries.Books.GetAllBooks;
-using Library.Web.Areas;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 

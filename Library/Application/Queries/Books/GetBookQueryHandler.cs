@@ -3,7 +3,7 @@ using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
 using System.Linq;
-namespace Library.Application.Queries.Books.GetBook
+namespace Library.Application.Queries.Books
 {
     public class GetBookQueryHandler : IQueryHandler<GetBookQuery, BookQuery>
     {

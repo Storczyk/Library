@@ -1,15 +1,14 @@
 ﻿using Library.Application.General;
+using Library.Application.Queries.Books;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Application.Commands.Cart.AddToCart
+namespace Library.Application.Queries.Cart
 {
-    public class AddToCartCommand : ICommand
+    public class GetBooksFromCartQuery:IQuery<IEnumerable<BookQuery>>
     {
-        public Guid Id { get; set; }
-
         public ISession CurrentSession { get; set; }
     }
 }

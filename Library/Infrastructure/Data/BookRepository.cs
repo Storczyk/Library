@@ -1,4 +1,5 @@
-﻿using Library.DomainModel;
+﻿using Library.Application.Queries.Books;
+using Library.DomainModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,23 @@ namespace Library.Infrastructure.Data
             if (pageSize < 1) pageSize = 10;
             return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).Include(i => i.Genre).ToList();
         }
+
+        public IEnumerable<BookQuery> Get(string[] filters)
+        {
+            return context.Books.Where(i => filters.Contains(i.BookId.ToString())).Include(i => i.Author).Include(i => i.Genre).Select(i => new BookQuery
+            {
+                Author = i.Author,
+                Genre = i.Genre,
+                BookTitle = i.BookTitle,
+                Description=i.Description,
+                Ean = i.Ean,
+                Id=i.Ean,
+                Isbn=i.Isbn,
+                Pages=i.Pages,
+                Publisher=i.Publisher,
+                Year=i.Year,
+            });
+        }
         public Book GetByID(Guid id)
         {
             return context.Books.Where(i => i.BookId == id).Include(i => i.Author).Include(i => i.Genre).FirstOrDefault();
@@ -30,7 +48,7 @@ namespace Library.Infrastructure.Data
 
         public void Insert(Book entity)
         {
-            var author = context.Authors.FirstOrDefault(i => i.Name == entity.Author.Name );
+            var author = context.Authors.FirstOrDefault(i => i.Name == entity.Author.Name);
             if (author != null)
                 entity.Author = author;
             var genre = context.Genres.FirstOrDefault(i => i.Description == entity.Genre.Description);

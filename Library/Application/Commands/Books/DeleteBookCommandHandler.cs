@@ -3,7 +3,7 @@ using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
 
-namespace Library.Application.Commands.Books.DeleteBook
+namespace Library.Application.Commands.Books
 {
     public class DeleteBookCommandHandler : ICommandHandler<DeleteBookCommand>
     {

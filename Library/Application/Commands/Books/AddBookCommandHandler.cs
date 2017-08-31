@@ -2,7 +2,7 @@
 using Library.DomainModel;
 using Library.Infrastructure.Data;
 
-namespace Library.Application.Commands.Books.AddBook
+namespace Library.Application.Commands.Books
 {
     public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
     {

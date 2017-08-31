@@ -3,7 +3,7 @@ using Library.DomainModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Library.Application.Commands.Books.AddBook
+namespace Library.Application.Commands.Books
 {
     public class AddBookCommand : ICommand
     {
