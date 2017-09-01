@@ -3,6 +3,7 @@ using Library.Application.General;
 using Library.Application.Queries.Books;
 using Library.Application.Queries.Cart;
 using Library.Application.Queries.Order;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace Library.Web.Areas.Default.Controllers
 
             return View(orderViewModel);
         }
+
         [Route("[controller]/[action]")]
         [HttpPost]
         public void AddToCart([FromBody] AddToCartCommand addToCartCommand)
@@ -36,6 +38,7 @@ namespace Library.Web.Areas.Default.Controllers
             removeFromCartCommand.CurrentSession = HttpContext.Session;
             commandBus.Send(removeFromCartCommand);
         }
+
         [Route("[controller]/[action]")]
         [HttpGet]
         public int HowManyItemsInCart()
@@ -43,12 +46,15 @@ namespace Library.Web.Areas.Default.Controllers
             return HttpContext.Session.Keys.Count(i => i.Contains("cart_"));
         }
 
+        [Authorize]
         [Route("[controller]/[action]")]
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
+
+        [Authorize]
         [Route("[controller]/[action]")]
         [HttpPost]
         public IActionResult Checkout(int id)
