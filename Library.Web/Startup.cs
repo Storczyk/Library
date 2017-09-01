@@ -79,8 +79,8 @@ namespace Library.Web
             app.UseAuthentication();
 
             app.UseSession();
-            RolesData.SeedRoles(app.ApplicationServices).Wait();
-            RolesData.SeedUsers(app.ApplicationServices).Wait();
+            //RolesData.SeedRoles(app.ApplicationServices).Wait();
+            //RolesData.SeedUsers(app.ApplicationServices).Wait();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

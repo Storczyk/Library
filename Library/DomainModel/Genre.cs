@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Library.DomainModel
 {
-    public class Genre
+    /*public class Genre
     {
         [Key]
         public int GenreId { get; set; }
@@ -11,5 +11,5 @@ namespace Library.DomainModel
         public string Description { get; set; }
 
         public ICollection<Book> Books { get; set; }
-    }
+    }*/
 }

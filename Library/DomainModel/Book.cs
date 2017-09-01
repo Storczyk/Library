@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.DomainModel.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;

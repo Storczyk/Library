@@ -52,9 +52,6 @@ namespace Library.Infrastructure.Data
             var author = context.Authors.FirstOrDefault(i => i.Name == entity.Author.Name);
             if (author != null)
                 entity.Author = author;
-            var genre = context.Genres.FirstOrDefault(i => i.Description == entity.Genre.Description);
-            if (genre != null)
-                entity.Genre = genre;
 
             context.Books.Add(entity);
             context.SaveChanges();
@@ -71,9 +68,7 @@ namespace Library.Infrastructure.Data
             var author = context.Authors.FirstOrDefault(i => i.Name == entityToUpdate.Author.Name);
             if (author != null)
                 entityToUpdate.Author = author;
-            var genre = context.Genres.FirstOrDefault(i => i.Description == entityToUpdate.Genre.Description);
-            if (genre != null)
-                entityToUpdate.Genre = genre;
+
             context.Books.Update(entityToUpdate);
             context.SaveChanges();
         }
