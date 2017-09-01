@@ -79,13 +79,18 @@ namespace Library.Web
             app.UseAuthentication();
 
             app.UseSession();
-            //RolesData.SeedRoles(app.ApplicationServices).Wait();
-            //RolesData.SeedUsers(app.ApplicationServices).Wait();
+            RolesData.SeedRoles(app.ApplicationServices).Wait();
+            RolesData.SeedUsers(app.ApplicationServices).Wait();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "default",
+                    template: "{area:exists}/{controller=Books}/{action=Index}"
+                    );
+
+               routes.MapRoute(
                     name: "areaRoute",
-                    template: "{area=Default}/{controller=Books}/{action=Index}"
+                    template: "{controller=Books}/{action=Index}"
                     );
             });
         }

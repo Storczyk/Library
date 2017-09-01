@@ -13,7 +13,6 @@ using Library.Web.Extensions;
 
 namespace Library.Web.Areas.Default.Controllers
 {
-    [Area("Default")]
     [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller

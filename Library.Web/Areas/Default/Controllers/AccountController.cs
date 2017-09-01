@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace Library.Web.Areas.Default.Controllers
 {
-    [Area("Default")]
     [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller

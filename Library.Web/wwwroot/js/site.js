@@ -1,5 +1,5 @@
 ﻿function CountItemsInCart() {
-    $.get("/Default/ShoppingCart/HowManyItemsInCart",
+    $.get("/ShoppingCart/HowManyItemsInCart",
         function (data) {
             $('#counter').text('(' + data + ')')
         });
@@ -9,7 +9,7 @@ function SendAddToCartCommand(Id) {
         type: "POST",
         data: JSON.stringify({ Id }),
         dataType: 'json',
-        url: "/Default/ShoppingCart/AddToCart",
+        url: "/ShoppingCart/AddToCart",
         contentType: "application/json",
         complete: function () {
             CountItemsInCart();
@@ -19,7 +19,7 @@ function SendAddToCartCommand(Id) {
 function Delete(Id) {
     $.ajax({
         type: "POST",
-        url: "/Default/ShoppingCart/RemoveFromCart",
+        url: "/ShoppingCart/RemoveFromCart",
         data: JSON.stringify({ Id }),
         contentType: "application/json",
         dataType: 'json',

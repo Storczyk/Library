@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace Library.Web.Areas.Default.Controllers
 {
-    [Area("Default")]
+
     public class ShoppingCartController : BaseController
     {
         public ShoppingCartController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
@@ -25,33 +25,33 @@ namespace Library.Web.Areas.Default.Controllers
 
             return View(orderViewModel);
         }
-
+        [Route("[controller]/[action]")]
         [HttpPost]
         public void AddToCart([FromBody] AddToCartCommand addToCartCommand)
         {
             addToCartCommand.CurrentSession = HttpContext.Session;
             commandBus.Send(addToCartCommand);
         }
-
+        [Route("[controller]/[action]")]
         [HttpPost]
         public void RemoveFromCart([FromBody] RemoveFromCartCommand removeFromCartCommand)
         {
             removeFromCartCommand.CurrentSession = HttpContext.Session;
             commandBus.Send(removeFromCartCommand);
         }
-
+        [Route("[controller]/[action]")]
         [HttpGet]
         public int HowManyItemsInCart()
         {
             return HttpContext.Session.Keys.Count(i => i.Contains("cart_"));
         }
-
+        [Route("[controller]/[action]")]
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
-
+        [Route("[controller]/[action]")]
         [HttpPost]
         public IActionResult Checkout(int id)
         {
