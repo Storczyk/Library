@@ -27,19 +27,20 @@ namespace Library.Infrastructure.Data
 
         public IEnumerable<BookQuery> Get(string[] filters)
         {
-            return context.Books.Where(i => filters.Contains(i.BookId.ToString())).Include(i => i.Author).Include(i => i.Genre).Select(i => new BookQuery
+            var books= context.Books.Where(i => filters.Contains(i.BookId.ToString())).Include(i => i.Author).Include(i => i.Genre).Select(i => new BookQuery
             {
                 Author = i.Author,
                 Genre = i.Genre,
                 BookTitle = i.BookTitle,
-                Description=i.Description,
+                Description = i.Description,
                 Ean = i.Ean,
-                Id=i.Ean,
-                Isbn=i.Isbn,
-                Pages=i.Pages,
-                Publisher=i.Publisher,
-                Year=i.Year,
+                Id = i.BookId.ToString(),
+                Isbn = i.Isbn,
+                Pages = i.Pages,
+                Publisher = i.Publisher,
+                Year = i.Year,
             }).ToList();
+            return books;
         }
         public Book GetByID(Guid id)
         {

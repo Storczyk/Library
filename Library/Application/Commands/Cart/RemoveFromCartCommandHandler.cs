@@ -6,7 +6,7 @@ namespace Library.Application.Commands.Cart
     {
         public void Handle(RemoveFromCartCommand command)
         {
-            command.CurrentSession.Remove("cart_" + command.BookGuid.ToString());
+            command.CurrentSession.Remove("cart_" + command.Id.ToString());
         }
     }
 }

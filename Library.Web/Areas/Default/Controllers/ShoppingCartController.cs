@@ -34,7 +34,7 @@ namespace Library.Web.Areas.Default.Controllers
         }
 
         [HttpPost]
-        public IActionResult RemoveFromCart(RemoveFromCartCommand removeFromCartCommand)
+        public IActionResult RemoveFromCart([FromBody] RemoveFromCartCommand removeFromCartCommand)
         {
             removeFromCartCommand.CurrentSession = HttpContext.Session;
             commandBus.Send(removeFromCartCommand);

@@ -10,6 +10,7 @@ namespace Library.Application.Queries.Cart
     public class GetBooksFromCartQueryHandler : IQueryHandler<GetBooksFromCartQuery, IEnumerable<BookQuery>>
     {
         private readonly IBookRepository bookRepository;
+        private readonly string Cart = "cart_";
         public GetBooksFromCartQueryHandler(IBookRepository bookRepository)
         {
             this.bookRepository = bookRepository;
@@ -20,13 +21,15 @@ namespace Library.Application.Queries.Cart
             var bookIdsList = new List<string>();
             foreach(var item in keys)
             {
-                if (!item.Contains("cart_"))
+                if (!item.Contains(Cart))
                 {
                     continue;
                 }
-                bookIdsList.Add(item);
+                
+                bookIdsList.Add(item.Replace(Cart,""));
             }
-            return bookRepository.Get(bookIdsList.ToArray());
+            var books = bookRepository.Get(bookIdsList.ToArray());
+            return books;
         }
     }
 }

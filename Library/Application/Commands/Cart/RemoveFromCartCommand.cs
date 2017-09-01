@@ -6,7 +6,7 @@ namespace Library.Application.Commands.Cart
 {
     public class RemoveFromCartCommand : ICommand
     {
-        public Guid BookGuid { get; set; }
+        public Guid Id { get; set; }
 
         public ISession CurrentSession { get; set; }
     }

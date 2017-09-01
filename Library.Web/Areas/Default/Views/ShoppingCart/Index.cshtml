@@ -1,46 +1,37 @@
 ﻿@model Library.Application.Queries.Order.OrderQuery
-@{
-}
+
 <script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $(function () {
-        $(".RemoveLink").click(function () {
-            var recotdToDelete = $(this).attr("data-id");
-            if (recotdToDelete != '') {
-                $.post("/Default/ShoppingCart/RemoveFromCart", { "id": recotdToDelete });
-
-            }
-
-        });
-
-    });
+    function Delete(Id) {
+        $.ajax({
+                type:"POST",
+                url: "/Default/ShoppingCart/RemoveFromCart",
+                data: JSON.stringify({ Id }),
+                contentType: "application/json",
+                dataType: 'json',
+            });
+    }
 </script>
-
-<h3>
-    <em>Review</em> your cart:
-</h3>
 <p class="button">
-    @Html.ActionLink("Checkout ", "AddressAndPayment", "Checkout")
+    @Html.ActionLink("Checkout", "Checkout", "ShoppingCart")
 </p>
-<div id="update-message">
-</div>
 <table>
     <tr>
         <th>
             Book Name
         </th>
         <th></th>
-    </tr>@{int i = 1; }
-    @foreach (var item in  Model.Books)
+    </tr>
+    @foreach (var item in Model.Books)
     {
-       
-        <tr id="row-@i++">
+
+        <tr>
             <td>
-                @Html.ActionLink(item.BookTitle, "Details", "Store", new { id = item.Id}, null)
+                @Html.ActionLink(item.BookTitle, "Details", "Books", new { id = item.Id }, null)
             </td>
 
             <td>
-                <a href="#" class="RemoveLink" data-id="@item.Id">Remove from cart</a>
+                <a href="#" onclick="Delete('@item.Id')" class="RemoveLink">Remove from cart</a>
             </td>
         </tr>
     }
