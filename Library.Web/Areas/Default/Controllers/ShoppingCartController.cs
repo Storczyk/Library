@@ -27,11 +27,10 @@ namespace Library.Web.Areas.Default.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCart([FromBody] AddToCartCommand addToCartCommand)
+        public void AddToCart([FromBody] AddToCartCommand addToCartCommand)
         {
             addToCartCommand.CurrentSession = HttpContext.Session;
             commandBus.Send(addToCartCommand);
-            return RedirectToAction("Index");
         }
 
         [HttpPost]

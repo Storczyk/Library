@@ -24,7 +24,7 @@ function Delete(Id) {
         contentType: "application/json",
         dataType: 'json',
         complete: function () {
-            CountItemsInCart();
+            window.location.reload();
         }
     });
 }
