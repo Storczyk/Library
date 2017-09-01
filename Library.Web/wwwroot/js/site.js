@@ -1,4 +1,4 @@
-﻿function CountItemsInBasket() {
+﻿function CountItemsInCart() {
     $.get("/Default/ShoppingCart/HowManyItemsInBasket",
         function (data) {
             $('#counter').text(data)

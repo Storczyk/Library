@@ -27,7 +27,7 @@ namespace Library.Infrastructure.Data
 
         public IEnumerable<BookQuery> Get(string[] filters)
         {
-            var books= context.Books.Where(i => filters.Contains(i.BookId.ToString())).Include(i => i.Author).Include(i => i.Genre).Select(i => new BookQuery
+            var books= context.Books.Where(i => filters.Contains(i.BookId.ToString())).Include(i => i.Author).Select(i => new BookQuery
             {
                 Author = i.Author,
                 Genre = i.Genre,
@@ -44,7 +44,7 @@ namespace Library.Infrastructure.Data
         }
         public Book GetByID(Guid id)
         {
-            return context.Books.Where(i => i.BookId == id).Include(i => i.Author).Include(i => i.Genre).FirstOrDefault();
+            return context.Books.Where(i => i.BookId == id).Include(i => i.Author).FirstOrDefault();
         }
 
         public void Insert(Book entity)

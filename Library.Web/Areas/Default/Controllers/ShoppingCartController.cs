@@ -43,7 +43,7 @@ namespace Library.Web.Areas.Default.Controllers
         }
 
         [HttpGet]
-        public int HowManyItemsInBasket()
+        public int HowManyItemsInCart()
         {
             return HttpContext.Session.Keys.Count(i => i.Contains("cart_"));
         }
