@@ -58,7 +58,10 @@
             data: JSON.stringify({ Id }),
             dataType: 'json',
             url: "/Default/ShoppingCart/AddToCart",
-            contentType: "application/json"
+            contentType: "application/json",
+            complete: function () {
+                $('#counter').text(@Context.Session.Keys.Count(i => i.Contains("cart_")).ToString())
+                }
         });
     }
 </script>

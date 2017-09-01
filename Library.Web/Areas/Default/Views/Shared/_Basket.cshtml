@@ -1,0 +1,7 @@
+﻿<a class="nav navbar-nav navbar-right glyphicon btn btn-default btn-lg" href="/Default/ShoppingCart/Index">
+    <span class="glyphicon glyphicon-shopping-cart">Basket:
+    @{
+        <text> <strong id="counter">@Context.Session.Keys.Count(x => x.Contains("cart_")).ToString()</strong> @Context.Session.Keys.Count(x => x.Contains("cart_")).ToString()</text>
+    }
+    </span>
+</a>

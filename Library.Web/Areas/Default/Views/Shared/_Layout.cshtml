@@ -43,8 +43,14 @@
                         </li>
                     }
                 </ul>
-
-                @await Html.PartialAsync("~/Areas/Default/Views/Shared/_LoginPartial.cshtml")
+                <ul class="nav navbar-nav navbar-right">
+                    <li style="margin-right:40px">
+                        @await Html.PartialAsync("~/Areas/Default/Views/Shared/_Basket.cshtml")
+                    </li>
+                    <li>
+                        @await Html.PartialAsync("~/Areas/Default/Views/Shared/_LoginPartial.cshtml")
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
