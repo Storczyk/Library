@@ -13,7 +13,7 @@ namespace Library.Web.Areas.Default.Controllers
     [Area("Default")]
     public class ShoppingCartController : BaseController
     {
-        public ShoppingCartController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher){}
+        public ShoppingCartController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
 
         public IActionResult Index()
         {
@@ -54,5 +54,4 @@ namespace Library.Web.Areas.Default.Controllers
             return View();
         }
     }
-
 }
