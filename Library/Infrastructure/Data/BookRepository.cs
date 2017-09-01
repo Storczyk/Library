@@ -22,7 +22,7 @@ namespace Library.Infrastructure.Data
         {
             if (page < 1) page = 1;
             if (pageSize < 1) pageSize = 10;
-            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).Include(i => i.Genre).ToList();
+            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).ToList();
         }
 
         public IEnumerable<BookQuery> Get(string[] filters)

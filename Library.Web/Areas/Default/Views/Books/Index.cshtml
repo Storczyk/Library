@@ -59,24 +59,3 @@
             </div>
         }
     </div>
-<<<<<<< HEAD
-</div>
-
-<script>
-    function sendAddToCartCommand(Id) {
-        console.log(JSON.stringify({ Id }));
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify({ Id }),
-            dataType: 'json',
-            url: "/Default/ShoppingCart/AddToCart",
-            contentType: "application/json",
-            complete: function () {
-                $('#counter').text(@Context.Session.Keys.Count(i => i.Contains("cart_")).ToString())
-                }
-        });
-    }
-</script>
-=======
-}
->>>>>>> 03b94ff053539ea805330932c7ff55991171dc3f
