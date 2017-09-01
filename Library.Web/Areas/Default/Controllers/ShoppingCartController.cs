@@ -34,11 +34,10 @@ namespace Library.Web.Areas.Default.Controllers
         }
 
         [HttpPost]
-        public IActionResult RemoveFromCart([FromBody] RemoveFromCartCommand removeFromCartCommand)
+        public void RemoveFromCart([FromBody] RemoveFromCartCommand removeFromCartCommand)
         {
             removeFromCartCommand.CurrentSession = HttpContext.Session;
             commandBus.Send(removeFromCartCommand);
-            return Ok();
         }
 
         [HttpGet]
