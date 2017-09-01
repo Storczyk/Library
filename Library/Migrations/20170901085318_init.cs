@@ -37,19 +37,6 @@ namespace Library.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Genres",
-                columns: table => new
-                {
-                    GenreId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Genres", x => x.GenreId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -95,7 +82,7 @@ namespace Library.Migrations
                     BookTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ean = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GenreId = table.Column<int>(type: "int", nullable: true),
+                    Genre = table.Column<int>(type: "int", nullable: false),
                     Isbn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Pages = table.Column<int>(type: "int", nullable: false),
                     Publisher = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -109,12 +96,6 @@ namespace Library.Migrations
                         column: x => x.AuthorId,
                         principalTable: "Authors",
                         principalColumn: "AuthorId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Books_Genres_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "Genres",
-                        principalColumn: "GenreId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -149,6 +130,7 @@ namespace Library.Migrations
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -210,11 +192,6 @@ namespace Library.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_GenreId",
-                table: "Books",
-                column: "GenreId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_BookId",
                 table: "OrderDetails",
                 column: "BookId");
@@ -264,9 +241,6 @@ namespace Library.Migrations
 
             migrationBuilder.DropTable(
                 name: "Authors");
-
-            migrationBuilder.DropTable(
-                name: "Genres");
 
             migrationBuilder.DropTable(
                 name: "Users");

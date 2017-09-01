@@ -1,4 +1,5 @@
 ﻿using Library.DomainModel;
+using Library.DomainModel.Enums;
 using System.ComponentModel;
 
 namespace Library.Application.Queries.Books

@@ -1,4 +1,5 @@
 ﻿using Library.Application.General;
+using Library.DomainModel.Enums;
 using System.ComponentModel;
 
 namespace Library.Application.Commands.Books
@@ -14,7 +15,7 @@ namespace Library.Application.Commands.Books
 
         public string Author { get; set; }
 
-        public string Genre { get; set; }
+        public Genre Genre { get; set; }
 
         public int Year { get; set; }
 

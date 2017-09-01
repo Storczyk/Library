@@ -16,7 +16,7 @@ namespace Library.Application.Commands.Books
             repository.Insert(new Book
             {
                 Author = new Author { Name = command.Author },
-                Genre = new Genre { Description = command.Genre},
+                Genre = command.Genre,
                 BookTitle = command.BookTitle,
                 Description = command.Description,
                 Ean = command.Ean,
