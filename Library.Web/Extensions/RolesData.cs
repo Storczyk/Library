@@ -26,7 +26,6 @@ namespace Library.Web.Extensions
                         await roleManager.CreateAsync(new IdentityRole(role));
                     }
                 }
-
             }
         }
 
