@@ -39,7 +39,7 @@ namespace Library.Infrastructure.Data
                 Pages=i.Pages,
                 Publisher=i.Publisher,
                 Year=i.Year,
-            });
+            }).ToList();
         }
         public Book GetByID(Guid id)
         {

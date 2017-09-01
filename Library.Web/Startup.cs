@@ -47,7 +47,6 @@ namespace Library.Web
                 options.CookieHttpOnly = true;
             });
 
-            services.AddTransient<ShoppingCart, ShoppingCart>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<RazorViewEngineOptions>(opt =>
