@@ -7,7 +7,6 @@
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding: 0px;
     background-color: whitesmoke;
 }
 
@@ -40,11 +39,9 @@
 }
 
 footer {
-    padding-left:20px;
     font-weight: bold;
     height: 40px;
     color: #AAA;
-    height: 40px;
     padding-top: 15px;
     padding-left: 20%;
 }
