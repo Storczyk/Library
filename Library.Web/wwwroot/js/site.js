@@ -1,10 +1,10 @@
 ﻿function CountItemsInCart() {
-    $.get("/Default/ShoppingCart/HowManyItemsInBasket",
+    $.get("/Default/ShoppingCart/HowManyItemsInCart",
         function (data) {
-            $('#counter').text(data)
+            $('#counter').text('(' + data + ')')
         });
 }
-function sendAddToCartCommand(Id) {
+function SendAddToCartCommand(Id) {
     $.ajax({
         type: "POST",
         data: JSON.stringify({ Id }),
@@ -12,7 +12,7 @@ function sendAddToCartCommand(Id) {
         url: "/Default/ShoppingCart/AddToCart",
         contentType: "application/json",
         complete: function () {
-            CountItemsInBasket();
+            CountItemsInCart();
         }
     });
 }
@@ -24,7 +24,7 @@ function Delete(Id) {
         contentType: "application/json",
         dataType: 'json',
         complete: function () {
-            CountItemsInBasket();
+            CountItemsInCart();
         }
     });
 }
