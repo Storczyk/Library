@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Library.Web.Areas.Default.Controllers
 {
@@ -39,6 +40,12 @@ namespace Library.Web.Areas.Default.Controllers
             removeFromCartCommand.CurrentSession = HttpContext.Session;
             commandBus.Send(removeFromCartCommand);
             return Ok();
+        }
+
+        [HttpGet]
+        public int HowManyItemsInBasket()
+        {
+            return HttpContext.Session.Keys.Count(i => i.Contains("cart_"));
         }
 
         [HttpGet]
