@@ -26,7 +26,6 @@ li.dropdown:hover > .dropdown-menu {
 }
 
 .index-first-row {
-    margin-top: 20px;
     margin-bottom: 80px;
 }
 
@@ -79,4 +78,8 @@ li.dropdown:hover > .dropdown-menu {
 .search {
     background-color: steelblue;
     border-radius: 20px;
+}
+
+.button-wrapper {
+    text-align: center;
 }

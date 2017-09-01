@@ -74,10 +74,6 @@ namespace Library.Web
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
 
             app.UseStaticFiles();
             app.UseAuthentication();
@@ -89,12 +85,8 @@ namespace Library.Web
             {
                 routes.MapRoute(
                     name: "areaRoute",
-                    template: "{area=Default}/{controller=Home}/{action=Index}"
+                    template: "{area=Default}/{controller=Books}/{action=Index}"
                     );
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Book}/{action=Add}/{id?}");
             });
         }
     }

@@ -38,3 +38,7 @@ footer {
     font-weight: bold;
     min-height: 50px;
 }
+
+.body-content{
+    margin-top: 20px;
+}
