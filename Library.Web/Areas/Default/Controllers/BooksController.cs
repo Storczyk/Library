@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 namespace Library.Web.Areas.Default.Controllers
 {
-    //[Route("[controller]")]
     public class BooksController : BaseController
     {
         public BooksController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher)
