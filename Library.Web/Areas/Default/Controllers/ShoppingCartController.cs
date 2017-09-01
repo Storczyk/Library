@@ -5,6 +5,7 @@ using Library.Application.Queries.Cart;
 using Library.Application.Queries.Order;
 using Library.Web.Areas.Default.ViewModels;
 using Library.Web.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -39,18 +40,23 @@ namespace Library.Web.Areas.Default.Controllers
             removeFromCartCommand.CurrentSession = HttpContext.Session;
             commandBus.Send(removeFromCartCommand);
         }
+
         [Route("[controller]/[action]")]
         [HttpGet]
         public int HowManyItemsInCart()
         {
             return HttpContext.Session.Keys.Count(i => i.Contains("cart_"));
         }
+
+        [Authorize]
         [Route("[controller]/[action]")]
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
+
+        [Authorize]
         [Route("[controller]/[action]")]
         [HttpPost]
         public IActionResult Checkout(int id)

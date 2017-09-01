@@ -20,15 +20,6 @@ li.dropdown:hover > .dropdown-menu {
     font-size: 15px;
 }
 
-.first-row {
-    margin-top: 60px;
-    margin-bottom: 80px;
-}
-
-.index-first-row {
-    margin-bottom: 80px;
-}
-
 .add-textbox {
     width: 100%;
 }
@@ -45,6 +36,7 @@ li.dropdown:hover > .dropdown-menu {
     padding-bottom: 10px;
     border: 1px solid midnightblue;
     border-radius: 25px;
+    background-color: white;
 }
 
 .properties-column {
@@ -73,11 +65,6 @@ li.dropdown:hover > .dropdown-menu {
 
 .text-danger{
     font-weight: bold;
-}
-
-.search {
-    background-color: steelblue;
-    border-radius: 20px;
 }
 
 .button-wrapper {

@@ -1,4 +1,5 @@
 ﻿body {
+    min-height: 100%;
     padding-top: 50px;
     width: 100%;
 }
@@ -6,8 +7,12 @@
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 0px;
+    background-color: whitesmoke;
+}
+
+.content {
+    min-height: calc(100vh - 100px);
 }
 
 /* Carousel */
@@ -35,10 +40,16 @@
 }
 
 footer {
+    padding-left:20px;
     font-weight: bold;
-    min-height: 50px;
+    height: 40px;
+    color: #AAA;
+    height: 40px;
+    padding-top: 15px;
+    padding-left: 20%;
 }
 
-.body-content{
-    margin-top: 20px;
+.footer-color {
+    background-color: #222;
+    height: 50px;
 }

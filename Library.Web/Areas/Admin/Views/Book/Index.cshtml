@@ -6,22 +6,18 @@
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row index-first-row" style="font-size: 12px;">
-    <div class="col-lg-2 search" style="padding: 0">
+<div class="row">
+    <div class="col-md-3">
         <div class="form-group text-center" style="margin-top: 20px; margin-bottom: 20px;">
-            <label style="color: black; font-family: Georgia; font-size: 14px;">Search by title</label>
+            <label style="color: black; font-family: Georgia; font-size: 14px; display: block;">Search by title</label>
             <input type="text" class="form-control" style="height: 20px; width:130px; display: inline-block; margin-left: 15px;" />
             <a href="#" class="btn btn-link" style="display:inline-block"><span class="glyphicon glyphicon-search" style="color: black; font-size: 20px;"></span></a>
         </div>
     </div>
-    <div class="col-lg-10">
+    <div class="col-md-9">
         @foreach (var book in Model)
         {
-            <div class="col-md-1">
-                <a href="/Admin/Book/Edit?Id=@book.Id" class="btn btn-link" style="font-size: 20px;"><span class="glyphicon glyphicon-edit"></span></a>
-                <button onclick="sendDeleteBookCommand('@book.Id')" type="button" class="btn btn-link" style="font-size: 20px;"><span class="glyphicon glyphicon-trash"></span></button>
-            </div>
-            <div class="col-md-11">
+            <div class="col-md-10">
                 <div class="col-md-12 book-row" style="margin-bottom: 20px;">
                     <div class="col-sm-7 properties-column">
                         <p>
@@ -59,6 +55,10 @@
                         <p class="book-description">@book.Description</p>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-2" style="margin-top: 70px;">
+                <a href="/Admin/Book/Edit?Id=@book.Id" class="btn btn-link" style="font-size: 20px; color: black;"><span class="glyphicon glyphicon-edit"></span></a>
+                <button onclick="sendDeleteBookCommand('@book.Id')" type="button" class="btn btn-link" style="font-size: 20px; color: black;"><span class="glyphicon glyphicon-trash"></span></button>
             </div>
         }
     </div>
