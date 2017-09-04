@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Books" asp-action="Index" class="navbar-brand">Library</a>
+                <a asp-area="" asp-controller="Books" asp-action="Index" class="navbar-brand">Library<span class="glyphicon glyphicon-book"></span></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -42,6 +42,9 @@
                             </ul>
                         </li>
                     }
+                    <li>
+                        <a href="/Orders">My Orders <span class="glyphicon glyphicon-barcode"></span></a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li style="margin-right:40px">
