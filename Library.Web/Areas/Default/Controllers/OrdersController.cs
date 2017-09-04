@@ -10,13 +10,12 @@ using Library.Application.Queries.Order;
 namespace Library.Web.Areas.Default.Controllers
 {
     [Authorize]
-    public class OrdersControllers : BaseController
+    public class OrdersController : BaseController
     {
-        public OrdersControllers(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher)
+        public OrdersController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher)
         {
         }
 
-        [Route("[controller]/[action]")]
         public IActionResult Index()
         {
             

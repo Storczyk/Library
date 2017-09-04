@@ -1,9 +1,7 @@
 ﻿using Library.Application.General;
 using Library.Application.Queries.Books;
 using Library.Infrastructure.Data;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Application.Queries.Cart
 {
@@ -11,6 +9,7 @@ namespace Library.Application.Queries.Cart
     {
         private readonly IBookRepository bookRepository;
         private readonly string Cart = "cart_";
+
         public GetBooksFromCartQueryHandler(IBookRepository bookRepository)
         {
             this.bookRepository = bookRepository;

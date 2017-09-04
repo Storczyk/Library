@@ -4,19 +4,10 @@ using System.ComponentModel;
 
 namespace Library.Application.Queries.Books
 {
-    public class BookQuery
+    public class BookQuery:BookShortQuery
     {
         public string Id { get; set; }
-
-        [DisplayName("Title")]
-        public string BookTitle { get; set; }
-
-        public string Description { get; set; }
-
-        public Author Author { get; set; }
-
-        public Genre Genre { get; set; }
-
+      
         public int Year { get; set; }
 
         public int Pages { get; set; }

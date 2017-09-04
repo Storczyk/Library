@@ -45,6 +45,7 @@ namespace Library.Web
                 // Set a short timeout for easy testing.
                 options.IdleTimeout = TimeSpan.FromSeconds(1000);
             });
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<RazorViewEngineOptions>(opt =>
@@ -86,10 +87,10 @@ namespace Library.Web
                     template: "{area:exists}/{controller=Books}/{action=Index}"
                     );
 
-               routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{controller=Books}/{action=Index}"
-                    );
+                routes.MapRoute(
+                     name: "areaRoute",
+                     template: "{controller=Books}/{action=Index}"
+                     );
             });
         }
     }

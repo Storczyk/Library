@@ -10,7 +10,7 @@ namespace Library.Infrastructure.Data
     {
         IEnumerable<Book> Get(int page = 1, int pageSize = 10);
         IEnumerable<BookQuery> Get(string[] filters);
-        Book GetByID(Guid id);
+        Book GetByID(Guid id, bool isWithAuthor = true);
         void Insert(Book entity);
         void Delete(Guid id);
         void Update(Book entityToUpdate);

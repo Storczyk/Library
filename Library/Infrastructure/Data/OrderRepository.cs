@@ -2,6 +2,7 @@
 using Library.Application.Queries.Order;
 using Library.DomainModel;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,24 +30,46 @@ namespace Library.Infrastructure.Data
                 pageSize = 10;
             }
 
-            return context.Orders.Skip(pageSize * (page - 1)).Take(pageSize).Include(o => o.OrderDetails).Select(i => new OrderQuery
+            var list = context.Orders.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
             {
                 Address = i.Address,
                 PhoneNumber = i.PhoneNumber,
-                Books = i.OrderDetails.Select(j => new BookQuery
+                Books = i.OrderDetails.Select(j => new BookShortQuery
                 {
-                    Author = j.Book.Author,
                     BookTitle = j.Book.BookTitle,
+                    Author = j.Book.Author,
                     Description = j.Book.Description,
-                    Ean = j.Book.Ean,
                     Genre = j.Book.Genre,
-                    Id = j.Book.BookId.ToString(),
-                    Isbn = j.Book.Isbn,
-                    Pages = j.Book.Pages,
-                    Publisher = j.Book.Publisher,
-                    Year = j.Book.Year,
                 })
             }).ToList();
+            return list;
+        }
+
+        public void Insert(Order order, IEnumerable<string> booksIds)
+        {
+            var details = new List<OrderDetails>();
+            foreach (var book in booksIds)
+            {
+                var repoBook = context.Books.Find(Guid.Parse(book));
+                details.Add(new OrderDetails
+                {
+                    Book = repoBook,
+                    BookId = repoBook.BookId,
+                    ReturnDate = DateTime.Now.AddDays(30),
+                    Order = order,
+                });
+            }
+            order.OrderDetails = new List<OrderDetails>();
+            order.OrderDetails = details;
+            context.Orders.Add(order);
+            context.SaveChanges();
+
+        }
+
+        public void InsertDetails(OrderDetails orderDetails)
+        {
+            context.OrderDetails.Add(orderDetails);
+            context.SaveChanges();
         }
     }
 }

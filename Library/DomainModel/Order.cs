@@ -15,6 +15,6 @@ namespace Library.DomainModel
         public string Address { get; set; }
         public int PhoneNumber { get; set; }
         public ApplicationUser User { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }
