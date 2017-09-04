@@ -64,12 +64,12 @@ namespace Library.Web.Areas.Default.Controllers
         [HttpPost]
         public IActionResult Checkout(CreateOrderCommand createOrderCommand)
         {
-
+            createOrderCommand.Session = HttpContext.Session;
             createOrderCommand.BooksIds = queryDispatcher.Dispatch<GetBooksIdsFromCartQuery, IEnumerable<string>>(
                 new GetBooksIdsFromCartQuery { CurrentSession = HttpContext.Session });
 
             commandBus.Send(createOrderCommand);
-
+            
             return RedirectToAction("Index");
         }
     }

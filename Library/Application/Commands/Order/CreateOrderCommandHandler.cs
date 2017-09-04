@@ -3,6 +3,7 @@ using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Library.Application.Commands.Order
 {
@@ -17,20 +18,22 @@ namespace Library.Application.Commands.Order
             this.orderRepository = orderRepository;
         }
 
-        public void Handle(CreateOrderCommand command)
+        public void Handle(CreateOrderCommand createOrderCommand)
         {
             var order = new Library.DomainModel.Order
             {
-                Address = command.Address,
+                Address = createOrderCommand.Address,
                 OrderDate = DateTime.Now,
-                PhoneNumber = command.PhoneNumber,
+                PhoneNumber = createOrderCommand.PhoneNumber,
             };
-            //var orderId = orderRepository.Insert(order);
 
+            orderRepository.Insert(order, createOrderCommand.BooksIds);
 
-            orderRepository.Insert(order, command.BooksIds);
-            var x = orderRepository.GetAll(1, 10);
-
+            var keys = createOrderCommand.Session.Keys.Where(key => key.Contains("cart_")).ToList();
+            foreach(var key in keys)
+            {
+                createOrderCommand.Session.Remove(key);
+            }
         }
     }
 }
