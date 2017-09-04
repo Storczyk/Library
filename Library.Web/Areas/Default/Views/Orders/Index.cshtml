@@ -4,6 +4,9 @@
 @model IEnumerable<Library.Application.Queries.Order.OrderQuery>
 <div class="row">
     <div class="col-lg-6">
+        <table class="table table-bordered">
+
+        </table>
         @foreach (var item in Model)
         {
             @Html.DisplayFor(m => item.Address)
