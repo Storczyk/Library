@@ -8,12 +8,16 @@ namespace Library.Application.Queries.Order
 {
     public class OrderQuery
     {
+        [Display(Name = "Books")]
         public IEnumerable<BookShortQuery> Books { get; set; }
 
         [Required]
         public string Address { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Phone Number")]
         public int PhoneNumber { get; set; }
+
+        [Display(Name = "Order Date")]
+        public DateTime OrderDate { get; set; }
     }
 }

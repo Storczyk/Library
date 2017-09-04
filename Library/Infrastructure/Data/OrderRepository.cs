@@ -19,21 +19,13 @@ namespace Library.Infrastructure.Data
             context = new LibraryDbContext(options.Options);
         }
 
-        public IEnumerable<OrderQuery> GetAll(int page = 1, int pageSize = 50)
+        public IEnumerable<OrderQuery> GetAll(int page, int pageSize)
         {
-            if (page < 1)
-            {
-                page = 1;
-            }
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
-
-            var list = context.Orders.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
+            return context.Orders.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
             {
                 Address = i.Address,
                 PhoneNumber = i.PhoneNumber,
+                OrderDate = i.OrderDate,
                 Books = i.OrderDetails.Select(j => new BookShortQuery
                 {
                     BookTitle = j.Book.BookTitle,
@@ -42,7 +34,6 @@ namespace Library.Infrastructure.Data
                     Genre = j.Book.Genre,
                 })
             }).ToList();
-            return list;
         }
 
         public void Insert(Order order, IEnumerable<string> booksIds)
