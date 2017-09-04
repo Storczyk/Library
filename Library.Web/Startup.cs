@@ -45,6 +45,8 @@ namespace Library.Web
                 // Set a short timeout for easy testing.
                 options.IdleTimeout = TimeSpan.FromSeconds(1000);
             });
+
+            services.AddTransient<UserManager<ApplicationUser>>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddTransient<IEmailSender, EmailSender>();

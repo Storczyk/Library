@@ -63,7 +63,8 @@ namespace Library.Web.Areas.Default.Controllers
         [Route("[controller]/[action]")]
         [HttpPost]
         public IActionResult Checkout(CreateOrderCommand createOrderCommand)
-        {
+        {            
+            createOrderCommand.User = this.User;
             createOrderCommand.Session = HttpContext.Session;
             createOrderCommand.BooksIds = queryDispatcher.Dispatch<GetBooksIdsFromCartQuery, IEnumerable<string>>(
                 new GetBooksIdsFromCartQuery { CurrentSession = HttpContext.Session });

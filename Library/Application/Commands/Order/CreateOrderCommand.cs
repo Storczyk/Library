@@ -1,8 +1,7 @@
 ﻿using Library.Application.General;
-using Library.Application.Queries.Books;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Library.Application.Commands.Order
 {
@@ -15,5 +14,7 @@ namespace Library.Application.Commands.Order
         public IEnumerable<string> BooksIds { get; set; }
 
         public ISession Session { get; set; }
+
+        public ClaimsPrincipal User { get; set; }
     }
 }

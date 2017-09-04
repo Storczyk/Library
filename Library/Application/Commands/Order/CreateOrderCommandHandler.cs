@@ -20,15 +20,27 @@ namespace Library.Application.Commands.Order
 
         public void Handle(CreateOrderCommand createOrderCommand)
         {
-            var order = new Library.DomainModel.Order
+            var booksIds = new List<string>();
+            foreach(var book in createOrderCommand.BooksIds)
             {
+                var b = bookRepository.GetByID(Guid.Parse(book));
+                if(b.Quantity <= 0)
+                {
+                    continue;
+                }
+
+                booksIds.Add(book);
+            }
+
+            var order = new Library.DomainModel.Order
+            {               
                 Address = createOrderCommand.Address,
                 OrderDate = DateTime.Now,
                 PhoneNumber = createOrderCommand.PhoneNumber,
             };
+            orderRepository.Insert(order, booksIds, createOrderCommand.User);
 
-            orderRepository.Insert(order, createOrderCommand.BooksIds);
-
+            //Clear cart
             var keys = createOrderCommand.Session.Keys.Where(key => key.Contains("cart_")).ToList();
             foreach(var key in keys)
             {

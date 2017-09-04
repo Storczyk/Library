@@ -3,7 +3,6 @@ using Library.DomainModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace Library.Infrastructure.Data
@@ -21,8 +20,15 @@ namespace Library.Infrastructure.Data
 
         public IEnumerable<Book> Get(int page = 1, int pageSize = 10)
         {
-            if (page < 1) page = 1;
-            if (pageSize < 1) pageSize = 10;
+            if (page < 1)
+            {
+                page = 1;
+            }
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
             return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).ToList();
         }
 
@@ -77,7 +83,7 @@ namespace Library.Infrastructure.Data
                 return context.Books.Where(i => i.BookId == id).Include(i => i.Author).FirstOrDefault();
             }
 
-            return context.Books.Where(i => i.BookId == id).FirstOrDefault();            
+            return context.Books.Where(i => i.BookId == id).FirstOrDefault();
         }
     }
 }

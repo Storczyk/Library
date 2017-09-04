@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Library.DomainModel
 {
@@ -20,5 +17,7 @@ namespace Library.DomainModel
         public Order Order { get; set; }
 
         public Book Book { get; set; }
+        
+        public bool IsBookReturned { get; set; }
     }
 }

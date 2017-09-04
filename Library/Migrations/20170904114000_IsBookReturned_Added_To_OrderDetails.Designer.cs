@@ -12,9 +12,10 @@ using System;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170904114000_IsBookReturned_Added_To_OrderDetails")]
+    partial class IsBookReturned_Added_To_OrderDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

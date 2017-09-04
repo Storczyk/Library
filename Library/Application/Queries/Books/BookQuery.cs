@@ -1,6 +1,4 @@
-﻿using Library.DomainModel;
-using Library.DomainModel.Enums;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Library.Application.Queries.Books
 {
@@ -17,5 +15,9 @@ namespace Library.Application.Queries.Books
 
         [DisplayName("EAN")]
         public string Ean { get; set; }
+
+        public int Quantity { get; set; }
+
+        public int CurrentQuantity { get; set; }
     }
 }

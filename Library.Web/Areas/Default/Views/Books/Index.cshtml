@@ -48,7 +48,7 @@
                             <span style="margin-left: 10px;">ISBN: </span>
                             <span class="book-span">@book.Isbn</span>
                         </p>
-                        <p style="font-weight:bold;">@book.Id</p>
+                        <span class="book-span" style="font-size: 14px;">Available: @book.CurrentQuantity / @book.Quantity</span>
                     </div>
                     <div class="col-sm-5">
                         <p class="book-description">@book.Description</p>

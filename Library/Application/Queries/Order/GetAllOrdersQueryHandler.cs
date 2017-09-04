@@ -15,7 +15,7 @@ namespace Library.Application.Queries.Order
         }
         public IEnumerable<OrderQuery> Handle(GetAllOrdersQuery query)
         {
-            return orderRepository.GetAll(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize);
+            return orderRepository.GetAllOrders(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize);
         }
     }
 }

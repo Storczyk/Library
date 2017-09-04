@@ -1,36 +1,37 @@
 ﻿using Library.Application.Queries.Books;
 using Library.Application.Queries.Order;
 using Library.DomainModel;
+using Library.Infrastructure.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Library.Infrastructure.Data
 {
     public class OrderRepository : IOrderRepository
     {
         private readonly LibraryDbContext context;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public OrderRepository()
+        public OrderRepository(UserManager<ApplicationUser> userManager)
         {
+            this.userManager = userManager;
             var options = new DbContextOptionsBuilder<LibraryDbContext>();
             options.UseSqlServer("Server=PSROCZYK-RZE\\SQLEXPRESS;Database=libraryDB;User Id=test;Password=test;MultipleActiveResultSets=True");
             context = new LibraryDbContext(options.Options);
         }
 
-        public IEnumerable<OrderQuery> GetAll(int page = 1, int pageSize = 50)
+        public int GetCurrentQuantityForBook(Guid bookId)
         {
-            if (page < 1)
-            {
-                page = 1;
-            }
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
+            return context.OrderDetails.Where(x => x.IsBookReturned == false && x.BookId == bookId).Count();
+        }
 
-            var list = context.Orders.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
+        public IEnumerable<OrderQuery> GetAllOrders(int page, int pageSize)
+        {
+            return context.Orders.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
             {
                 Address = i.Address,
                 PhoneNumber = i.PhoneNumber,
@@ -42,10 +43,9 @@ namespace Library.Infrastructure.Data
                     Genre = j.Book.Genre,
                 })
             }).ToList();
-            return list;
         }
 
-        public void Insert(Order order, IEnumerable<string> booksIds)
+        public void Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
         {
             var details = new List<OrderDetails>();
             foreach (var book in booksIds)
@@ -57,13 +57,15 @@ namespace Library.Infrastructure.Data
                     BookId = repoBook.BookId,
                     ReturnDate = DateTime.Now.AddDays(30),
                     Order = order,
+                    IsBookReturned = false
                 });
             }
+            var userId = userManager.GetUserId(userPrincipal);
+            order.User = context.Users.Find(userId);
             order.OrderDetails = new List<OrderDetails>();
             order.OrderDetails = details;
             context.Orders.Add(order);
             context.SaveChanges();
-
         }
 
         public void InsertDetails(OrderDetails orderDetails)

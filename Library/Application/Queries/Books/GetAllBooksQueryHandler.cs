@@ -1,6 +1,6 @@
 ﻿using Library.Application.General;
-using Library.DomainModel;
 using Library.Infrastructure.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,14 +8,18 @@ namespace Library.Application.Queries.Books
 {
     public class GetAllBooksQueryHandler : IQueryHandler<GetAllBooksQuery, IEnumerable<BookQuery>>
     {
-        private readonly IBookRepository repository;
-        public GetAllBooksQueryHandler(IBookRepository repository)
+        private readonly IBookRepository bookRepository;
+        private readonly IOrderRepository orderRepository;
+
+        public GetAllBooksQueryHandler(IBookRepository bookRepository, IOrderRepository orderRepository)
         {
-            this.repository = repository;
+            this.bookRepository = bookRepository;
+            this.orderRepository = orderRepository;
         }
+
         public IEnumerable<BookQuery> Handle(GetAllBooksQuery query)
         {
-            var list = repository.Get(query.Page, query.PageSize).Select(i => new BookQuery
+            var list = bookRepository.Get(query.Page, query.PageSize).Select(i => new BookQuery
             {
                 Author = i.Author,
                 Genre = i.Genre,
@@ -27,7 +31,15 @@ namespace Library.Application.Queries.Books
                 Pages = i.Pages,
                 Publisher = i.Publisher,
                 Year = i.Year,
+                Quantity = i.Quantity,
             }).ToList();
+
+            foreach(var book in list)
+            {
+                var currentQuantity = orderRepository.GetCurrentQuantityForBook(Guid.Parse(book.Id));
+                book.CurrentQuantity = book.Quantity - currentQuantity; 
+            }
+
             return list;
         }
     }

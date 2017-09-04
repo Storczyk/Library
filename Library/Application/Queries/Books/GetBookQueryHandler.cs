@@ -1,32 +1,37 @@
 ﻿using Library.Application.General;
-using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
-using System.Linq;
 namespace Library.Application.Queries.Books
 {
     public class GetBookQueryHandler : IQueryHandler<GetBookQuery, BookQuery>
     {
-        private readonly IBookRepository repository;
-        public GetBookQueryHandler(IBookRepository repository)
+        private readonly IBookRepository bookRepository;
+        private readonly IOrderRepository orderRepository;
+
+        public GetBookQueryHandler(IBookRepository bookRepository, IOrderRepository orderRepository)
         {
-            this.repository = repository;
+            this.bookRepository = bookRepository;
+            this.orderRepository = orderRepository;
         }
-        public BookQuery Handle(GetBookQuery query)
+
+        public BookQuery Handle(GetBookQuery bookQuery)
         {
-            var x = repository.GetByID(Guid.Parse(query.Id));
+            var currentQuantity = orderRepository.GetCurrentQuantityForBook(Guid.Parse(bookQuery.Id));
+            var book = bookRepository.GetByID(Guid.Parse(bookQuery.Id));
             return new BookQuery
             {
-                Id = x.BookId.ToString(),
-                Author = x.Author,
-                BookTitle = x.BookTitle,
-                Description = x.Description,
-                Ean = x.Ean,
-                Genre = x.Genre,
-                Isbn = x.Isbn,
-                Pages = x.Pages,
-                Publisher = x.Publisher,
-                Year = x.Year,
+                Id = book.BookId.ToString(),
+                Author = book.Author,
+                BookTitle = book.BookTitle,
+                Description = book.Description,
+                Ean = book.Ean,
+                Genre = book.Genre,
+                Isbn = book.Isbn,
+                Pages = book.Pages,
+                Publisher = book.Publisher,
+                Year = book.Year,
+                Quantity = book.Quantity,
+                CurrentQuantity = book.Quantity - currentQuantity
             };
         }
     }
