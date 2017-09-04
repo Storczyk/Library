@@ -5,9 +5,7 @@ using System.ComponentModel;
 namespace Library.Application.Queries.Books
 {
     public class BookQuery:BookShortQuery
-    {
-        public string Id { get; set; }
-      
+    { 
         public int Year { get; set; }
 
         public int Pages { get; set; }
