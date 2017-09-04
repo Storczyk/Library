@@ -18,6 +18,7 @@ namespace Library.Infrastructure.Data
             options.UseSqlServer("Server=PSROCZYK-RZE\\SQLEXPRESS;Database=libraryDB;User Id=test;Password=test;MultipleActiveResultSets=True");
             context = new LibraryDbContext(options.Options);
         }
+
         public IEnumerable<Book> Get(int page = 1, int pageSize = 10)
         {
             if (page < 1) page = 1;

@@ -8,10 +8,12 @@ namespace Library.Application.Commands.Books
     public class EditBookCommandHandler : ICommandHandler<EditBookCommand>
     {
         private readonly IBookRepository repository;
+
         public EditBookCommandHandler(IBookRepository repository)
         {
             this.repository = repository;
         }
+
         public void Handle(EditBookCommand command)
         {
             repository.Update(new Book
@@ -26,6 +28,7 @@ namespace Library.Application.Commands.Books
                 Pages = command.Pages,
                 Publisher = command.Publisher,
                 Year = command.Year,
+                Quantity = command.Quantity
             });
         }
     }
