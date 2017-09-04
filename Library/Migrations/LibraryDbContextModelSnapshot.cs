@@ -54,6 +54,8 @@ namespace Library.Migrations
 
                     b.Property<string>("Publisher");
 
+                    b.Property<int>("Quantity");
+
                     b.Property<int>("Year");
 
                     b.HasKey("BookId");
@@ -91,6 +93,8 @@ namespace Library.Migrations
                     b.Property<Guid>("BookId");
 
                     b.Property<Guid>("OrderId");
+
+                    b.Property<DateTime>("ReturnDate");
 
                     b.HasKey("OrderDetailId");
 
@@ -199,7 +203,7 @@ namespace Library.Migrations
             modelBuilder.Entity("Library.DomainModel.Order", b =>
                 {
                     b.HasOne("Library.Infrastructure.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId");
                 });
 

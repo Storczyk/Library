@@ -1,4 +1,4 @@
-﻿@model Library.DomainModel.Order
+﻿@model Library.Application.Queries.Order.OrderQuery
 @{
     <link rel="stylesheet" href="~/css/bookStyle.css" />
     ViewData["Title"] = "Order Details";
@@ -21,10 +21,36 @@
                 @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control add-textbox" })
             </div>
+            <div class="row">
+
+                <table class=" table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.Books.FirstOrDefault().BookTitle)</th>
+                            <th>@Html.DisplayNameFor(m => m.Books.FirstOrDefault().Author)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var book in Model.Books)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => book.BookTitle)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => book.Author.Name)
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
             <div class="button-wrapper" style="margin-top: 50px;">
                 <input type="submit" value="Finish" class="btn btn-primary" style="margin-right: 70px;" />
             </div>
         </div>
-        <div class="col-md-3"></div>
     </div>
 }

@@ -3,6 +3,7 @@ using Library.Application.General;
 using Library.Application.Queries.Books;
 using Library.Application.Queries.Cart;
 using Library.Application.Queries.Order;
+using Library.DomainModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -51,7 +52,10 @@ namespace Library.Web.Areas.Default.Controllers
         [HttpGet]
         public IActionResult Checkout()
         {
-            return View();
+            var books = queryDispatcher.Dispatch<GetBooksFromCartQuery, IEnumerable<BookQuery>>(new GetBooksFromCartQuery { CurrentSession = this.HttpContext.Session });
+            var order = new OrderQuery { Books = books};
+
+            return View(order);
         }
 
         [Authorize]

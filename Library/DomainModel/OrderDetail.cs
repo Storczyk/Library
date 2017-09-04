@@ -10,6 +10,7 @@ namespace Library.DomainModel
         [Key]
         public Guid OrderDetailId { get; set; }
 
+        public DateTime ReturnDate { get; set; }
         public Guid OrderId { get; set; }
         public Guid BookId { get; set; }
 

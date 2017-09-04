@@ -32,5 +32,6 @@ namespace Library.Application.Commands.Books
 
         [DisplayName("EAN")]
         public string Ean { get; set; }
+        public int Quantity { get; set; }
     }
 }
