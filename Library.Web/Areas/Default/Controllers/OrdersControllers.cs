@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Library.Application.General;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Library.Application.Queries.Order;
 
 namespace Library.Web.Areas.Default.Controllers
 {
@@ -18,7 +19,8 @@ namespace Library.Web.Areas.Default.Controllers
         [Route("[controller]/[action]")]
         public IActionResult Index()
         {
-            return View();
+            
+            return View(queryDispatcher.Dispatch<GetAllOrdersQuery,IEnumerable<OrderQuery>>(new GetAllOrdersQuery { Page = 1, PageSize = 10}));
         }
     }
 }

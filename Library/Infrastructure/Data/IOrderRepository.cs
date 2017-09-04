@@ -1,10 +1,11 @@
-﻿using Library.DomainModel;
+﻿using Library.Application.Queries.Order;
+using Library.DomainModel;
 using System.Collections.Generic;
 
 namespace Library.Infrastructure.Data
 {
-    interface IOrderRepository
+    public interface IOrderRepository
     {
-        IEnumerable<Order> GetAll(int page = 1, int pageSize = 50);
+        IEnumerable<OrderQuery> GetAll(int page, int pageSize);
     }
 }

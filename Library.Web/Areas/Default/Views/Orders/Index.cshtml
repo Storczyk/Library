@@ -1,3 +1,20 @@
 ﻿@{
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
 }
+@model IEnumerable<Library.Application.Queries.Order.OrderQuery>
+<div class="row">
+    <div class="col-lg-6">
+        @foreach (var item in Model)
+        {
+            @Html.DisplayFor(m => item.Address)
+            @Html.DisplayFor(m => item.PhoneNumber)
+            @foreach(var book in item.Books)
+            {
+                @Html.DisplayFor(m => book.BookTitle)
+
+            }
+
+        }
+
+    </div>
+</div>
