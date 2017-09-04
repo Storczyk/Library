@@ -23,7 +23,8 @@ namespace Library.Application.Commands.Books
                 Isbn = command.Isbn,
                 Pages = command.Pages,
                 Publisher = command.Publisher,
-                Year = command.Year
+                Year = command.Year,
+                Quantity = command.Quantity
             });
         }
     }
