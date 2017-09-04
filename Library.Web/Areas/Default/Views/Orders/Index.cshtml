@@ -2,22 +2,71 @@
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
 }
 @model IEnumerable<Library.Application.Queries.Order.OrderQuery>
-<div class="row">
-    <div class="col-lg-6">
-        <table class="table table-bordered">
-
-        </table>
-        @foreach (var item in Model)
-        {
-            @Html.DisplayFor(m => item.Address)
-            @Html.DisplayFor(m => item.PhoneNumber)
-            @foreach(var book in item.Books)
-            {
-                @Html.DisplayFor(m => book.BookTitle)
-
-            }
-
-        }
-
+@if (Model.Any())
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(m => m.FirstOrDefault().OrderDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.FirstOrDefault().Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.FirstOrDefault().Books)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.OrderDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.PhoneNumber)
+                            </td>
+                            <td>
+                                <table>
+                                    @foreach (var book in item.Books)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(m => book.BookTitle)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(m => book.Author.Name)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(m => book.Description)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(m => book.Genre)
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+}

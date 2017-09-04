@@ -35,6 +35,7 @@ namespace Library.Infrastructure.Data
             {
                 Address = i.Address,
                 PhoneNumber = i.PhoneNumber,
+                OrderDate = i.OrderDate,
                 Books = i.OrderDetails.Select(j => new BookShortQuery
                 {
                     BookTitle = j.Book.BookTitle,
