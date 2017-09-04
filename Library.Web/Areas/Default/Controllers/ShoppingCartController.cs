@@ -1,4 +1,5 @@
 ﻿using Library.Application.Commands.Cart;
+using Library.Application.Commands.Order;
 using Library.Application.General;
 using Library.Application.Queries.Books;
 using Library.Application.Queries.Cart;
@@ -53,7 +54,7 @@ namespace Library.Web.Areas.Default.Controllers
         public IActionResult Checkout()
         {
             var books = queryDispatcher.Dispatch<GetBooksFromCartQuery, IEnumerable<BookQuery>>(new GetBooksFromCartQuery { CurrentSession = this.HttpContext.Session });
-            var order = new OrderQuery { Books = books};
+            var order = new OrderQuery { Books = books };
 
             return View(order);
         }
@@ -61,9 +62,15 @@ namespace Library.Web.Areas.Default.Controllers
         [Authorize]
         [Route("[controller]/[action]")]
         [HttpPost]
-        public IActionResult Checkout(int id)
+        public IActionResult Checkout(CreateOrderCommand createOrderCommand)
         {
-            return View();
+
+            createOrderCommand.BooksIds = queryDispatcher.Dispatch<GetBooksIdsFromCartQuery, IEnumerable<string>>(
+                new GetBooksIdsFromCartQuery { CurrentSession = HttpContext.Session });
+
+            commandBus.Send(createOrderCommand);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -5,8 +5,9 @@
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Checkout", "Books", FormMethod.Post))
+@using (Html.BeginForm("Checkout", "ShoppingCart", FormMethod.Post))
 {
+    @Html.HiddenFor(m => m.Books)
     <div class="col-lg-12">
         <div class="col-md-3" style="height: 100%"></div>
         <div class="col-md-6">
