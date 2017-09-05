@@ -59,10 +59,9 @@
     </nav>
     <div class="container body-content">
         <div class="col-lg-12" style="margin-top: 20px;"></div>
-        <div class="content">
-            
-            @await  Html.PartialAsync("~/Areas/Default/Views/Shared/_CommandResult.cshtml")
+        <div class="content">            
             @RenderBody()
+            @await Html.PartialAsync("~/Areas/Default/Views/Shared/_CommandResult.cshtml")
         </div>
     </div>
     <div class="footer-color">

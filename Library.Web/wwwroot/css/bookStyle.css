@@ -70,3 +70,12 @@ li.dropdown:hover > .dropdown-menu {
 .button-wrapper {
     text-align: center;
 }
+
+.msg {
+    position: fixed;
+    width: 300px;
+    left: calc(50% - 150px);
+    height: 50px;
+    top: 100px;
+    background-color: black;
+}

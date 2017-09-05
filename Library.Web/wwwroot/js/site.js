@@ -35,11 +35,13 @@ function Delete(Id) {
         }
     });
 }
+
 function CommandResult() {
     $('#TempMessage').load("/Base/ShortMessage");
 }
+
 function CommandResultShowMessage() {
-    $('#tdata').css('display', 'inline-block').fadeTo(3000, 0).slideUp(2000, function () {
+    $('#tdata').css('display', 'inline-block').fadeTo(10000, 0).slideUp(2000, function () {
         $(this).remove();
     });
 }
