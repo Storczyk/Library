@@ -36,7 +36,7 @@ namespace Library.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            commandBus.Send(addBookCommand);
+            var result = commandBus.Send(addBookCommand);
             return RedirectToAction("Index");
         }
 

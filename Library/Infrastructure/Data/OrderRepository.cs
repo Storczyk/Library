@@ -46,7 +46,7 @@ namespace Library.Infrastructure.Data
             }).ToList();
         }
 
-        public void Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
+        public bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
         {
             var details = new List<OrderDetails>();
             foreach (var book in booksIds)
@@ -67,12 +67,15 @@ namespace Library.Infrastructure.Data
             order.OrderDetails = details;
             context.Orders.Add(order);
             context.SaveChanges();
+
+            return true;
         }
 
-        public void InsertDetails(OrderDetails orderDetails)
+        public bool InsertDetails(OrderDetails orderDetails)
         {
             context.OrderDetails.Add(orderDetails);
             context.SaveChanges();
+            return true;
         }
     }
 }

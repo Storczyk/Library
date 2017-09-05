@@ -1,5 +1,4 @@
 ﻿using Library.Application.General;
-using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
 
@@ -7,14 +6,23 @@ namespace Library.Application.Commands.Books
 {
     public class DeleteBookCommandHandler : ICommandHandler<DeleteBookCommand>
     {
-        private readonly IBookRepository repository;
+        private readonly IBookRepository bookRepository;
+
         public DeleteBookCommandHandler(IBookRepository repository)
         {
-            this.repository = repository;
+            this.bookRepository = repository;
         }
-        public void Handle(DeleteBookCommand command)
+
+        public CommandResult Handle(DeleteBookCommand command)
         {
-            repository.Delete(Guid.Parse(command.Id));
+            var isDeleted = bookRepository.Delete(Guid.Parse(command.Id));
+
+            string result = isDeleted ? $"Book deleted from the library" : $"Could not delete from the library";
+
+            return new CommandResult
+            {
+                Result = result
+            };
         }
     }
 }
