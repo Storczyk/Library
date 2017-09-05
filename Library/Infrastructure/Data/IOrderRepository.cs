@@ -12,8 +12,6 @@ namespace Library.Infrastructure.Data
 
         void Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal);
 
-        void InsertDetails(OrderDetails orderDetails);
-
         int GetCurrentQuantityForBook(Guid bookId);
     }
 }

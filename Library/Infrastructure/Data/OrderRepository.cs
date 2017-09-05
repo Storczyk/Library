@@ -68,11 +68,5 @@ namespace Library.Infrastructure.Data
             context.Orders.Add(order);
             context.SaveChanges();
         }
-
-        public void InsertDetails(OrderDetails orderDetails)
-        {
-            context.OrderDetails.Add(orderDetails);
-            context.SaveChanges();
-        }
     }
 }

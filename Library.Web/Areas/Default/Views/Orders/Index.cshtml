@@ -5,8 +5,8 @@
 @if (Model.Any())
 {
     <div class="row">
-        <div class="col-lg-6">
-            <table class="table table-bordered">
+        <div class="col-lg-12">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>
@@ -37,25 +37,29 @@
                                 @Html.DisplayFor(m => item.PhoneNumber)
                             </td>
                             <td>
-                                <table>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayNameFor(m => item.Books.FirstOrDefault().BookTitle)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayNameFor(m => item.Books.FirstOrDefault().Author.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayNameFor(m => item.Books.FirstOrDefault().Genre)
+                                        </td>
+                                    </tr>
                                     @foreach (var book in item.Books)
                                     {
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(m => book.BookTitle)
                                             </td>
-                                        </tr>
-                                        <tr>
+
                                             <td>
                                                 @Html.DisplayFor(m => book.Author.Name)
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(m => book.Description)
-                                            </td>
-                                        </tr>
-                                        <tr>
+
                                             <td>
                                                 @Html.DisplayFor(m => book.Genre)
                                             </td>
