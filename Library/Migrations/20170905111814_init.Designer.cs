@@ -12,7 +12,7 @@ using System;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20170905110512_init")]
+    [Migration("20170905111814_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,13 +77,11 @@ namespace Library.Migrations
 
                     b.Property<int>("PhoneNumber");
 
-                    b.Property<Guid>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<string>("UserId");
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -209,7 +207,7 @@ namespace Library.Migrations
                 {
                     b.HasOne("Library.Infrastructure.Models.ApplicationUser", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Library.DomainModel.OrderDetails", b =>

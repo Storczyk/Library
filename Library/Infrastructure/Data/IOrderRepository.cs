@@ -15,6 +15,6 @@ namespace Library.Infrastructure.Data
         int GetCurrentQuantityForBook(Guid bookId);
 
         IEnumerable<OrderReturnQuery> GetAllNotReturnedOrders(int page = 1, int pageSize = 50);
-        bool BookReturment(Guid bookId, Guid userId);
+        bool BookReturment(Guid bookId, string userId);
     }
 }
