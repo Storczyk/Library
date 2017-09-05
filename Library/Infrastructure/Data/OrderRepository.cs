@@ -69,25 +69,50 @@ namespace Library.Infrastructure.Data
                 order.OrderDetails = new List<OrderDetails>();
                 order.OrderDetails = details;
                 context.Orders.Add(order);
-                context.SaveChanges();
-
-                return true;
+                if (context.SaveChanges() > 0)
+                    return true;
+                return false;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Logger.Log(exception.Message);
                 return false;
             }
         }
 
-        public bool InsertDetails(OrderDetails orderDetails)
+        public IEnumerable<OrderReturnQuery> GetAllNotReturnedOrders(int page = 1, int pageSize = 50)
+        {
+            return context.OrderDetails.Where(i => !i.IsBookReturned).Select(i => new OrderReturnQuery
+            {
+                UserEmail = i.Order.User.Email,
+                UserId = i.Order.UserId.ToString(),
+                Order = new OrderDetailQuery
+                {
+                    Book = new BookShortQuery
+                    {
+                        Author = i.Book.Author,
+                        BookTitle = i.Book.BookTitle,
+                        Description = i.Book.Description,
+                        Genre = i.Book.Genre,
+                        Id = i.Book.BookId.ToString(),
+                    },
+                    OrderDetailId = i.OrderDetailId,
+                    OrderId = i.OrderId,
+                    ReturnDate = i.ReturnDate,
+                }
+            }).ToList();
+        }
+
+        public bool BookReturment(Guid bookId, Guid userId)
         {
             try
             {
-                context.OrderDetails.Add(orderDetails);
-                context.SaveChanges();
-
-                return true;
+                var orderDetail = context.OrderDetails.FirstOrDefault(i => i.Order.UserId == userId && i.BookId == bookId);
+                orderDetail.IsBookReturned = true;
+                orderDetail.ReturnDate = DateTime.Now;
+                if (context.SaveChanges() > 0)
+                    return true;
+                return false;
             }
             catch (Exception exception)
             {

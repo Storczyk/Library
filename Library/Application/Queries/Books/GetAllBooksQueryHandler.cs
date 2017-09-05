@@ -19,7 +19,7 @@ namespace Library.Application.Queries.Books
 
         public IEnumerable<BookQuery> Handle(GetAllBooksQuery query)
         {
-            var list = bookRepository.Get(query.Page, query.PageSize).Select(i => new BookQuery
+            var list = bookRepository.Get(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize).Select(i => new BookQuery
             {
                 Author = i.Author,
                 Genre = i.Genre,

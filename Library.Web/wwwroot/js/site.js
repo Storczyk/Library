@@ -45,3 +45,16 @@ function CommandResultShowMessage() {
         $(this).remove();
     });
 }
+function BookReturment(bookId, userId) {
+    $.ajax({
+        type: "POST",
+        url: "/Admin/Orders/BookReturment",
+        data: JSON.stringify({ bookId, userId }),
+        contentType: "application/json",
+        dataType: 'json',
+        complete: function () {
+            window.location.reload();
+            CommandResult();
+        }
+    });
+}

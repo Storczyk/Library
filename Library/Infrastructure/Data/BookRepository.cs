@@ -10,32 +10,23 @@ namespace Library.Infrastructure.Data
 {
     public class BookRepository : IBookRepository
     {
-        private readonly LibraryDbContext libraryDbContext;
+        private readonly LibraryDbContext context;
 
         public BookRepository()
         {
             var options = new DbContextOptionsBuilder<LibraryDbContext>();
             options.UseSqlServer("Server=PSROCZYK-RZE\\SQLEXPRESS;Database=libraryDB;User Id=test;Password=test;MultipleActiveResultSets=True");
-            libraryDbContext = new LibraryDbContext(options.Options);
+            context = new LibraryDbContext(options.Options);
         }
 
         public IEnumerable<Book> Get(int page = 1, int pageSize = 10)
         {
-            if (page < 1)
-            {
-                page = 1;
-            }
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
-
-            return libraryDbContext.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).ToList();
+            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).ToList();
         }
 
         public IEnumerable<BookQuery> Get(string[] filters)
         {
-            var books = libraryDbContext.Books.Where(i => filters.Contains(i.BookId.ToString())).Include(i => i.Author).Select(i => new BookQuery
+            return context.Books.Where(i => filters.Contains(i.BookId.ToString())).Include(i => i.Author).Select(i => new BookQuery
             {
                 Author = i.Author,
                 Genre = i.Genre,
@@ -48,24 +39,22 @@ namespace Library.Infrastructure.Data
                 Publisher = i.Publisher,
                 Year = i.Year,
             }).ToList();
-
-            return books;
         }
 
         public bool Insert(Book entity)
         {
             try
             {
-                var author = libraryDbContext.Authors.FirstOrDefault(i => i.Name == entity.Author.Name);
+                var author = context.Authors.FirstOrDefault(i => i.Name == entity.Author.Name);
                 if (author != null)
                 {
                     entity.Author = author;
                 }
 
-                libraryDbContext.Books.Add(entity);
-                libraryDbContext.SaveChanges();
-
-                return true;
+                context.Books.Add(entity);
+                if (context.SaveChanges() > 0)
+                    return true;
+                return false;
             }
             catch (Exception exception)
             {
@@ -78,10 +67,10 @@ namespace Library.Infrastructure.Data
         {
             try
             {
-                libraryDbContext.Books.Remove(GetByID(id));
-                libraryDbContext.SaveChanges();
-
-                return true;
+                context.Books.Remove(GetByID(id));
+                if (context.SaveChanges() > 0)
+                    return true;
+                return false;
             }
             catch (Exception exception)
             {
@@ -94,16 +83,16 @@ namespace Library.Infrastructure.Data
         {
             try
             {
-                var author = libraryDbContext.Authors.FirstOrDefault(i => i.Name == entityToUpdate.Author.Name);
+                var author = context.Authors.FirstOrDefault(i => i.Name == entityToUpdate.Author.Name);
                 if (author != null)
                 {
                     entityToUpdate.Author = author;
                 }
 
-                libraryDbContext.Books.Update(entityToUpdate);
-                libraryDbContext.SaveChanges();
-
-                return true;
+                context.Books.Update(entityToUpdate);
+                if (context.SaveChanges() > 0)
+                    return true;
+                return false;
             }
             catch (Exception exception)
             {
@@ -116,10 +105,10 @@ namespace Library.Infrastructure.Data
         {
             if (isWithAuthor)
             {
-                return libraryDbContext.Books.Where(i => i.BookId == id).Include(i => i.Author).FirstOrDefault();
+                return context.Books.Where(i => i.BookId == id).Include(i => i.Author).FirstOrDefault();
             }
 
-            return libraryDbContext.Books.Where(i => i.BookId == id).FirstOrDefault();
+            return context.Books.Where(i => i.BookId == id).FirstOrDefault();
         }
     }
 }

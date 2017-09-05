@@ -5,9 +5,9 @@ namespace Library.Application.Commands.Cart
 {
     public class AddToCartCommandHandler : ICommandHandler<AddToCartCommand>
     {
-        public CommandResult Handle(AddToCartCommand command)
+        public CommandResult Handle(AddToCartCommand createOrderCommand)
         {
-            command.CurrentSession.SetString("cart_" + command.Id.ToString(), command.Id.ToString());
+            createOrderCommand.CurrentSession.SetString("cart_" + createOrderCommand.Id.ToString(), createOrderCommand.Id.ToString());
 
             return new CommandResult
             {

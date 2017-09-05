@@ -6,10 +6,12 @@ using Library.Application.General;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Library.Application.Queries.Order;
+using Library.Application.Commands.Order;
 
-namespace Library.Web.Areas.Default.Controllers
+namespace Library.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class OrdersController : BaseController
     {
         public OrdersController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher)
@@ -17,8 +19,14 @@ namespace Library.Web.Areas.Default.Controllers
         }
 
         public IActionResult Index()
-        {          
-            return View(queryDispatcher.Dispatch<GetAllOrdersQuery,IEnumerable<OrderQuery>>(new GetAllOrdersQuery { Page = 1, PageSize = 10}));
+        {
+            var orders = queryDispatcher.Dispatch<GetAllNotReturnedOrdersQuery, IEnumerable<OrderReturnQuery>>(new GetAllNotReturnedOrdersQuery { Page = 1, PageSize = 50 });
+            return View(orders);
         }
+        [HttpPost]
+        public void BookReturment(ReturnBookCommand returnBookCommand)
+        {
+
+        } 
     }
 }

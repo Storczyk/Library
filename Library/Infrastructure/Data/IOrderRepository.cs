@@ -12,8 +12,9 @@ namespace Library.Infrastructure.Data
 
         bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal);
 
-        bool InsertDetails(OrderDetails orderDetails);
-
         int GetCurrentQuantityForBook(Guid bookId);
+
+        IEnumerable<OrderReturnQuery> GetAllNotReturnedOrders(int page = 1, int pageSize = 50);
+        bool BookReturment(Guid bookId, Guid userId);
     }
 }

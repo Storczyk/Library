@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Library.Application.Queries.Order.OrderReturnQuery>
+@{
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => Model.FirstOrDefault().UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => Model.FirstOrDefault().UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => Model.FirstOrDefault().Order.Book.BookTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => Model.FirstOrDefault().Order.Book.Author.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => Model.FirstOrDefault().Order.Book.Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => Model.FirstOrDefault().Order.ReturnDate)
+        </th>
+        <th>Returned</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Order.Book.BookTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Order.Book.Author.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Order.Book.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Order.ReturnDate)
+            </td>
+            <td><a href="#" onclick="BookReturment('@item.Order.Book.Id', '@item.UserId')"><span class="glyphicon glyphicon-retweet"> Confirm</span></a></td>
+        </tr>
+    }
+</table>
