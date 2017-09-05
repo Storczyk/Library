@@ -8,6 +8,7 @@ namespace Library.Application.Commands.Cart
     {
         public Guid Id { get; set; }
 
+
         public ISession CurrentSession { get; set; }
     }
 }

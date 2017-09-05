@@ -33,12 +33,13 @@ namespace Library.Infrastructure.Data
         public IEnumerable<OrderQuery> GetAllOrders(int page, int pageSize)
         {
             return context.Orders.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
-            {
+            {               
                 Address = i.Address,
                 PhoneNumber = i.PhoneNumber,
                 OrderDate = i.OrderDate,
                 Books = i.OrderDetails.Select(j => new BookShortQuery
                 {
+                    Id = j.Book.BookId.ToString(),
                     BookTitle = j.Book.BookTitle,
                     Author = j.Book.Author,
                     Description = j.Book.Description,

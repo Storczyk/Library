@@ -10,6 +10,7 @@ namespace Library.Application.Queries.Books
     public class BookShortQuery
     {
         public string Id { get; set; }
+
         [DisplayName("Title")]
         public string BookTitle { get; set; }
 

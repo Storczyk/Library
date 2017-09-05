@@ -17,5 +17,11 @@ namespace Library.Web.Areas.Default.Controllers
             var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(getAllBooksQuery);
             return View(books);
         }
+
+        public IActionResult Book(GetBookQuery getBookQuery)
+        {
+            var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(getBookQuery);
+            return View(book);
+        }
     }
 }

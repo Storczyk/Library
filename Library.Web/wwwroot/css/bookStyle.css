@@ -75,7 +75,11 @@ li.dropdown:hover > .dropdown-menu {
     position: fixed;
     width: 300px;
     left: calc(50% - 150px);
-    height: 50px;
+    color: white;
     top: 100px;
     background-color: black;
+}
+
+p {
+    margin-bottom: 0;
 }
