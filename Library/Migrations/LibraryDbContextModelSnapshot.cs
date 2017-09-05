@@ -76,11 +76,13 @@ namespace Library.Migrations
 
                     b.Property<int>("PhoneNumber");
 
-                    b.Property<string>("UserId");
+                    b.Property<Guid>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Orders");
                 });
@@ -206,7 +208,7 @@ namespace Library.Migrations
                 {
                     b.HasOne("Library.Infrastructure.Models.ApplicationUser", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Library.DomainModel.OrderDetails", b =>

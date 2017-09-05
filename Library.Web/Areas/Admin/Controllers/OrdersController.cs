@@ -26,7 +26,7 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpPost]
         public void BookReturment(ReturnBookCommand returnBookCommand)
         {
-
+            DisplayShortMessage(commandBus.Send(returnBookCommand).Result);
         } 
     }
 }

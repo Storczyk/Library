@@ -83,7 +83,7 @@ namespace Library.Infrastructure.Data
 
         public IEnumerable<OrderReturnQuery> GetAllNotReturnedOrders(int page = 1, int pageSize = 50)
         {
-            return context.OrderDetails.Where(i => !i.IsBookReturned).Select(i => new OrderReturnQuery
+            var orders =  context.OrderDetails.Where(i => !i.IsBookReturned).Select(i => new OrderReturnQuery
             {
                 UserEmail = i.Order.User.Email,
                 UserId = i.Order.UserId.ToString(),
@@ -102,6 +102,7 @@ namespace Library.Infrastructure.Data
                     ReturnDate = i.ReturnDate,
                 }
             }).ToList();
+            return orders;
         }
 
         public bool BookReturment(Guid bookId, Guid userId)

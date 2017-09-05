@@ -12,8 +12,8 @@ using System;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20170904114000_IsBookReturned_Added_To_OrderDetails")]
-    partial class IsBookReturned_Added_To_OrderDetails
+    [Migration("20170905110512_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,11 +77,13 @@ namespace Library.Migrations
 
                     b.Property<int>("PhoneNumber");
 
-                    b.Property<string>("UserId");
+                    b.Property<Guid>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Orders");
                 });
@@ -207,7 +209,7 @@ namespace Library.Migrations
                 {
                     b.HasOne("Library.Infrastructure.Models.ApplicationUser", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Library.DomainModel.OrderDetails", b =>
