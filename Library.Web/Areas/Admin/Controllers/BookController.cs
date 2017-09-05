@@ -18,7 +18,7 @@ namespace Library.Web.Areas.Admin.Controllers
         {
             var query = new GetAllBooksQuery();
             var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(query);
-
+            
             return View(books);
         }
 
@@ -36,7 +36,7 @@ namespace Library.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            var result = commandBus.Send(addBookCommand);
+            DisplayShortMessage(commandBus.Send(addBookCommand).Result);
             return RedirectToAction("Index");
         }
 
@@ -49,15 +49,14 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete([FromBody]DeleteBookCommand deleteBookCommand)
+        public void Delete([FromBody]DeleteBookCommand deleteBookCommand)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return;
             }
 
-            commandBus.Send(deleteBookCommand);
-            return Ok("Deleted");
+            DisplayShortMessage(commandBus.Send(deleteBookCommand).Result);
         }
 
         [HttpPost]
@@ -68,7 +67,7 @@ namespace Library.Web.Areas.Admin.Controllers
                 return View();
             }
 
-            commandBus.Send(editBookCommand);
+            DisplayShortMessage(commandBus.Send(editBookCommand).Result);
             return RedirectToAction("Index");
         }
     }

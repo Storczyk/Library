@@ -30,7 +30,7 @@ namespace Library.Web.Areas.Default.Controllers
         public void AddToCart([FromBody] AddToCartCommand addToCartCommand)
         {
             addToCartCommand.CurrentSession = HttpContext.Session;
-            commandBus.Send(addToCartCommand);
+            DisplayShortMessage(commandBus.Send(addToCartCommand).Result);
         }
 
         [Route("[controller]/[action]")]
@@ -38,7 +38,7 @@ namespace Library.Web.Areas.Default.Controllers
         public void RemoveFromCart([FromBody] RemoveFromCartCommand removeFromCartCommand)
         {
             removeFromCartCommand.CurrentSession = HttpContext.Session;
-            commandBus.Send(removeFromCartCommand);
+            DisplayShortMessage(commandBus.Send(removeFromCartCommand).Result);
         }
 
         [Route("[controller]/[action]")]
@@ -69,7 +69,7 @@ namespace Library.Web.Areas.Default.Controllers
             createOrderCommand.BooksIds = queryDispatcher.Dispatch<GetBooksIdsFromCartQuery, IEnumerable<string>>(
                 new GetBooksIdsFromCartQuery { CurrentSession = HttpContext.Session });
 
-            commandBus.Send(createOrderCommand);
+            DisplayShortMessage(commandBus.Send(createOrderCommand).Result);
             
             return RedirectToAction("Index");
         }

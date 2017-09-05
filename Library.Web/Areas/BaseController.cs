@@ -25,5 +25,11 @@ namespace Library.Web.Areas
             string message = isSucces ? "Succes!" : "Something went wrong!";
             DisplayShortMessage(message);
         }
+
+        [Route("[controller]/[action]")]
+        public IActionResult ShortMessage()
+        {
+            return PartialView("~/Areas/Default/Views/Shared/_CommandResult.cshtml");
+        }
     }
 }

@@ -17,6 +17,7 @@ function SendAddToCartCommand(Id, Quantity) {
             contentType: "application/json",
             complete: function () {
                 CountItemsInCart();
+                CommandResult();
             }
         });
     }
@@ -30,6 +31,15 @@ function Delete(Id) {
         dataType: 'json',
         complete: function () {
             window.location.reload();
+            CommandResult();
         }
+    });
+}
+function CommandResult() {
+    $('#TempMessage').load("/Base/ShortMessage");
+}
+function CommandResultShowMessage() {
+    $('#tdata').css('display', 'inline-block').fadeTo(3000, 0).slideUp(2000, function () {
+        $(this).remove();
     });
 }
