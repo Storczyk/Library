@@ -1,0 +1,10 @@
+﻿<div id="TempMessage"></div>
+@if (TempData[Library.Web.Areas.BaseController.ShortMessageTempDataTag] != null)
+{
+    <div id='tdata' class='alert alert-info' style='display:inline-block; position:fixed'>
+        @TempData[Library.Web.Areas.BaseController.ShortMessageTempDataTag]
+    </div>
+    <script>
+        CommandResultShowMessage()
+    </script>
+}

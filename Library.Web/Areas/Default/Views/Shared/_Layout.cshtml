@@ -29,7 +29,7 @@
                 </button>
                 <a asp-area="" asp-controller="Books" asp-action="Index" class="navbar-brand">Library<span class="glyphicon glyphicon-book"></span></a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse">           
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("Administrator"))
                     {
@@ -60,6 +60,8 @@
     <div class="container body-content">
         <div class="col-lg-12" style="margin-top: 20px;"></div>
         <div class="content">
+            
+            @await  Html.PartialAsync("~/Areas/Default/Views/Shared/_CommandResult.cshtml")
             @RenderBody()
         </div>
     </div>
