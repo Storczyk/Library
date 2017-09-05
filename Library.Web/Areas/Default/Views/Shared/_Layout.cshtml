@@ -27,9 +27,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Books" asp-action="Index" class="navbar-brand">Library<span class="glyphicon glyphicon-book"></span></a>
+                <a asp-area="" asp-controller="Books" asp-action="Index" class="navbar-brand"><span class="glyphicon glyphicon-book"></span> Library</a>
             </div>
-            <div class="navbar-collapse collapse">           
+            <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("Administrator"))
                     {
@@ -39,11 +39,13 @@
                                 <li><a href="/Admin/Book"><span class="glyphicon glyphicon-list-alt"></span> View books</a></li>
                                 <li class="divider"></li>
                                 <li><a href="/Admin/Book/Add"><span class="glyphicon glyphicon-plus"></span> Add new book</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/Admin/Orders"><span class="glyphicon glyphicon-retweet"></span> Returns</a></li>
                             </ul>
                         </li>
                     }
                     <li>
-                        <a href="/Orders">My Orders <span class="glyphicon glyphicon-barcode"></span></a>
+                        <a href="/Orders">My Orders</span></a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -59,7 +61,7 @@
     </nav>
     <div class="container body-content">
         <div class="col-lg-12" style="margin-top: 20px;"></div>
-        <div class="content">            
+        <div class="content">
             @RenderBody()
             @await Html.PartialAsync("~/Areas/Default/Views/Shared/_CommandResult.cshtml")
         </div>
