@@ -26,7 +26,7 @@ namespace Library.Infrastructure.Data
 
         public int GetCurrentQuantityForBook(Guid bookId)
         {
-            return context.OrderDetails.Where(x => x.IsBookReturned == false && x.BookId == bookId).Count();
+            return context.OrderDetails.Where(x => !x.IsBookReturned && x.BookId == bookId).Count();
         }
 
         public IEnumerable<OrderQuery> GetAllOrders(int page, int pageSize)

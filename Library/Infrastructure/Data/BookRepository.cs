@@ -58,7 +58,7 @@ namespace Library.Infrastructure.Data
             {
                 entity.Author = author;
             }
-            
+
             libraryDbContext.Books.Add(entity);
             libraryDbContext.SaveChanges();
 
@@ -80,7 +80,7 @@ namespace Library.Infrastructure.Data
             {
                 entityToUpdate.Author = author;
             }
-            
+
             libraryDbContext.Books.Update(entityToUpdate);
             libraryDbContext.SaveChanges();
 
