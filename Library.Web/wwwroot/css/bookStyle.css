@@ -79,3 +79,7 @@ li.dropdown:hover > .dropdown-menu {
     top: 100px;
     background-color: black;
 }
+
+p {
+    margin-bottom: 0;
+}

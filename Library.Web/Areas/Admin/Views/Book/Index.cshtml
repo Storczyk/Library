@@ -46,11 +46,15 @@
                         <p>
                             <span>EAN: </span>
                             <span class="book-span">@book.Ean</span>
-                            <span style="margin-left: 10px;">ISBN: </span>
-                            <span class="book-span">@book.Isbn</span>
                         </p>
                         <p>
-                            <span class="book-span" style="font-size: 18px;">Available: @book.CurrentQuantity / @book.Quantity</span>
+                            <span>ISBN: </span>
+                            <span class="book-span">@book.Isbn</span>
+                        </p>
+                        <p style="margin-top: 5px;">
+                            <span class="book-span" style="font-size: 18px;">Available: @book.CurrentQuantity / @book.Quantity</span>                            
+                        </p>
+                        <p>
                             <span style="font-weight:bold;">@book.Id</span>
                         </p>
                     </div>
