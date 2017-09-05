@@ -37,7 +37,7 @@ namespace Library.Application.Queries.Books
             foreach(var book in list)
             {
                 var currentQuantity = orderRepository.GetCurrentQuantityForBook(Guid.Parse(book.Id));
-                book.CurrentQuantity = book.Quantity > 0 ? book.Quantity - currentQuantity : 0; 
+                book.CurrentQuantity = book.Quantity - currentQuantity >= 0 ? book.Quantity - currentQuantity : 0; 
             }
 
             return list;
