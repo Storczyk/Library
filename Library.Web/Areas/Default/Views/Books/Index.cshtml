@@ -19,9 +19,9 @@
             <div class="col-md-10">
                 <div class="col-md-12 book-row" style="margin-bottom: 20px;">
                     <div class="col-sm-7 properties-column">
-                        <p>
-                            <div class="book-title" style="display: inline-block">@book.BookTitle</div>
-                        </p>
+                            <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="font-size: 20px; color: black;">
+                                <div class="book-title" style="display: inline-block">@book.BookTitle</div>
+                            </a>
                         <p>
                             <span>Author: </span>
                             <span class="book-span">@book.Author.Name</span>

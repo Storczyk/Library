@@ -1,0 +1,52 @@
+﻿@model Library.Application.Queries.Books.BookQuery
+@{
+    ViewData["Title"] = Model.BookTitle;
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row first-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 book-row" style="margin-bottom: 20px;">
+        <div class="col-sm-7 properties-column">
+            <p>
+                <div class="book-title" style="display: inline-block">@Model.BookTitle</div>
+            </p>
+            <p>
+                <span>Author: </span>
+                <span class="book-span">@Model.Author.Name</span>
+            </p>
+            <p>
+                <span>Genre:</span>
+                <span class="book-span">@Model.Genre</span>
+            </p>
+            <p>
+                <span>Pages: </span>
+                <span class="book-span">@Model.Pages</span>
+            </p>
+            <p>
+                <span>Year: </span>
+                <span class="book-span">@Model.Year</span>
+            </p>
+            <p>
+                <span>Publisher: </span>
+                <span class="book-span">@Model.Publisher</span>
+            </p>
+            <p>
+                <span>EAN: </span>
+                <span class="book-span">@Model.Ean</span>
+                <span style="margin-left: 10px;">ISBN: </span>
+                <span class="book-span">@Model.Isbn</span>
+            </p>
+            <p>
+                <span class="book-span" style="font-size: 18px;">Available: @Model.CurrentQuantity / @Model.Quantity</span>
+            </p>
+        </div>
+        <div class="col-sm-5">
+            <p class="book-description">@Model.Description</p>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div style="margin-top: 30px; float: right; margin-right: 100px;">
+        @Html.ActionLink("Back to the library", "Index", null, new { @class = "btn btn-primary back-btn" })
+    </div>
+</div>

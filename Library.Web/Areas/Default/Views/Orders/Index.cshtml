@@ -6,19 +6,19 @@
 {
     <div class="row">
         <div class="col-lg-12">
-            <table class="table table-bordered text-center">
+            <table class="table table-bordered col-md-12" style="border-color: black;">
                 <thead>
                     <tr>
-                        <th>
+                        <th class="col-md-3" style="border-color: black; background-color: lightgray;">
                             @Html.DisplayNameFor(m => m.FirstOrDefault().OrderDate)
                         </th>
-                        <th>
+                        <th class="col-md-3" style="border-color: black; background-color: lightgray;">
                             @Html.DisplayNameFor(m => m.FirstOrDefault().Address)
                         </th>
-                        <th>
+                        <th class="col-md-3" style="border-color: black; background-color: lightgray;">
                             @Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)
                         </th>
-                        <th>
+                        <th class="col-md-3" style="border-color: black; background-color: lightgray;">
                             @Html.DisplayNameFor(m => m.FirstOrDefault().Books)
                         </th>
                     </tr>
@@ -27,45 +27,26 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
+                            <td class="col-md-3" style="border-color: black;">
                                 @Html.DisplayFor(m => item.OrderDate)
                             </td>
-                            <td>
+                            <td class="col-md-3" style="border-color: black;">
                                 @Html.DisplayFor(m => item.Address)
                             </td>
-                            <td>
+                            <td class="col-md-3" style="border-color: black;">
                                 @Html.DisplayFor(m => item.PhoneNumber)
                             </td>
-                            <td>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayNameFor(m => item.Books.FirstOrDefault().BookTitle)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayNameFor(m => item.Books.FirstOrDefault().Author.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayNameFor(m => item.Books.FirstOrDefault().Genre)
-                                        </td>
-                                    </tr>
+                            <td class="col-md-3" style="border-color: black;">
+                                <ul>
                                     @foreach (var book in item.Books)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(m => book.BookTitle)
-                                            </td>
-
-                                            <td>
-                                                @Html.DisplayFor(m => book.Author.Name)
-                                            </td>
-
-                                            <td>
-                                                @Html.DisplayFor(m => book.Genre)
-                                            </td>
-                                        </tr>
+                                        <li>
+                                            <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="color: black;">
+                                                @book.BookTitle
+                                            </a>
+                                        </li>
                                     }
-                                </table>
+                                </ul>
                             </td>
                         </tr>
                     }
