@@ -18,7 +18,7 @@ namespace Library.Application.Commands.Order
             this.orderRepository = orderRepository;
         }
 
-        public void Handle(CreateOrderCommand createOrderCommand)
+        public CommandResult Handle(CreateOrderCommand createOrderCommand)
         {
             var booksIds = new List<string>();
             foreach(var book in createOrderCommand.BooksIds)
@@ -38,7 +38,9 @@ namespace Library.Application.Commands.Order
                 OrderDate = DateTime.Now,
                 PhoneNumber = createOrderCommand.PhoneNumber,
             };
-            orderRepository.Insert(order, booksIds, createOrderCommand.User);
+
+            var isAdded = orderRepository.Insert(order, booksIds, createOrderCommand.User);
+            string result = isAdded ? "Order completed" : "Could not complete the order";
 
             //Clear cart
             var keys = createOrderCommand.Session.Keys.Where(key => key.Contains("cart_")).ToList();
@@ -46,6 +48,11 @@ namespace Library.Application.Commands.Order
             {
                 createOrderCommand.Session.Remove(key);
             }
+
+            return new CommandResult
+            {
+                Result = result
+            };
         }
     }
 }

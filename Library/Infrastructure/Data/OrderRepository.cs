@@ -26,7 +26,7 @@ namespace Library.Infrastructure.Data
 
         public int GetCurrentQuantityForBook(Guid bookId)
         {
-            return context.OrderDetails.Where(x => x.IsBookReturned == false && x.BookId == bookId).Count();
+            return context.OrderDetails.Where(x => !x.IsBookReturned && x.BookId == bookId).Count();
         }
 
         public IEnumerable<OrderQuery> GetAllOrders(int page, int pageSize)
@@ -46,7 +46,7 @@ namespace Library.Infrastructure.Data
             }).ToList();
         }
 
-        public void Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
+        public bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
         {
             var details = new List<OrderDetails>();
             foreach (var book in booksIds)
@@ -67,6 +67,15 @@ namespace Library.Infrastructure.Data
             order.OrderDetails = details;
             context.Orders.Add(order);
             context.SaveChanges();
+
+            return true;
+        }
+
+        public bool InsertDetails(OrderDetails orderDetails)
+        {
+            context.OrderDetails.Add(orderDetails);
+            context.SaveChanges();
+            return true;
         }
     }
 }

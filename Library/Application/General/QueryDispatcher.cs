@@ -1,18 +1,18 @@
 ﻿using Autofac;
-using Library.Application.General;
 
-namespace Library.Application.GeneralConcrete
+namespace Library.Application.General
 {
     public class QueryDispatcher : IQueryDispatcher
     {
-        private readonly IComponentContext context;
+        private readonly IComponentContext componentContext;
         public QueryDispatcher(IComponentContext context)
         {
-            this.context = context;
+            this.componentContext = context;
         }
+
         public TResult Dispatch<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>
         {
-            var handler = context.Resolve<IQueryHandler<TQuery, TResult>>();
+            var handler = componentContext.Resolve<IQueryHandler<TQuery, TResult>>();
             return handler.Handle(query);
         }
     }

@@ -4,17 +4,22 @@
             $('#counter').text('(' + data + ')')
         });
 }
-function SendAddToCartCommand(Id) {
-    $.ajax({
-        type: "POST",
-        data: JSON.stringify({ Id }),
-        dataType: 'json',
-        url: "/ShoppingCart/AddToCart",
-        contentType: "application/json",
-        complete: function () {
-            CountItemsInCart();
-        }
-    });
+function SendAddToCartCommand(Id, Quantity) {
+    if (Quantity == 0) {
+        alert("You cannot order this book - current quantity is 0");
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({ Id }),
+            dataType: 'json',
+            url: "/ShoppingCart/AddToCart",
+            contentType: "application/json",
+            complete: function () {
+                CountItemsInCart();
+            }
+        });
+    }
 }
 function Delete(Id) {
     $.ajax({

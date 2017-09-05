@@ -10,7 +10,9 @@ namespace Library.Infrastructure.Data
     {
         IEnumerable<OrderQuery> GetAllOrders(int page = 1, int pageSize = 50);
 
-        void Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal);
+        bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal);
+
+        bool InsertDetails(OrderDetails orderDetails);
 
         int GetCurrentQuantityForBook(Guid bookId);
     }

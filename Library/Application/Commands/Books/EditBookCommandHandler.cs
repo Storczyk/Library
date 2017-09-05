@@ -7,16 +7,16 @@ namespace Library.Application.Commands.Books
 {
     public class EditBookCommandHandler : ICommandHandler<EditBookCommand>
     {
-        private readonly IBookRepository repository;
+        private readonly IBookRepository bookRepository;
 
         public EditBookCommandHandler(IBookRepository repository)
         {
-            this.repository = repository;
+            this.bookRepository = repository;
         }
 
-        public void Handle(EditBookCommand command)
+        public CommandResult Handle(EditBookCommand command)
         {
-            repository.Update(new Book
+            var isUpdated = bookRepository.Update(new Book
             {
                 BookId = Guid.Parse(command.Id),
                 Author = new Author { Name = command.Author },
@@ -30,6 +30,13 @@ namespace Library.Application.Commands.Books
                 Year = command.Year,
                 Quantity = command.Quantity
             });
+
+            string result = isUpdated ? $"{command.BookTitle} edited" : $"Could not edit {command.BookTitle}";
+
+            return new CommandResult
+            {
+                Result = result
+            };
         }
     }
 }
