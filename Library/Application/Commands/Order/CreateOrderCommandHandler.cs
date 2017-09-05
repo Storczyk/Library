@@ -4,6 +4,7 @@ using Library.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Library.Application.Commands.Order
 {
@@ -20,12 +21,14 @@ namespace Library.Application.Commands.Order
 
         public CommandResult Handle(CreateOrderCommand createOrderCommand)
         {
+            var resultString = new StringBuilder();
             var booksIds = new List<string>();
             foreach(var book in createOrderCommand.BooksIds)
             {
                 var b = bookRepository.GetByID(Guid.Parse(book));
                 if(b.Quantity <= 0)
                 {
+                    resultString.AppendLine($"{b.BookTitle} could not be ordered! It is not available!");
                     continue;
                 }
 
@@ -40,7 +43,8 @@ namespace Library.Application.Commands.Order
             };
 
             var isAdded = orderRepository.Insert(order, booksIds, createOrderCommand.User);
-            string result = isAdded ? "Order completed" : "Could not complete the order";
+            resultString.AppendLine();
+            resultString.AppendLine(isAdded ? "Order completed" : "Could not complete the order");
 
             //Clear cart
             var keys = createOrderCommand.Session.Keys.Where(key => key.Contains("cart_")).ToList();
@@ -51,7 +55,7 @@ namespace Library.Application.Commands.Order
 
             return new CommandResult
             {
-                Result = result
+                Result = resultString.ToString()
             };
         }
     }
