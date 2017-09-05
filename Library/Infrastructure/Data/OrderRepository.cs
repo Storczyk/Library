@@ -1,4 +1,5 @@
-﻿using Library.Application.Queries.Books;
+﻿using Library.Application.Logger;
+using Library.Application.Queries.Books;
 using Library.Application.Queries.Order;
 using Library.DomainModel;
 using Library.Infrastructure.Models;
@@ -48,34 +49,51 @@ namespace Library.Infrastructure.Data
 
         public bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
         {
-            var details = new List<OrderDetails>();
-            foreach (var book in booksIds)
+            try
             {
-                var repoBook = context.Books.Find(Guid.Parse(book));
-                details.Add(new OrderDetails
+                var details = new List<OrderDetails>();
+                foreach (var book in booksIds)
                 {
-                    Book = repoBook,
-                    BookId = repoBook.BookId,
-                    ReturnDate = DateTime.Now.AddDays(30),
-                    Order = order,
-                    IsBookReturned = false
-                });
-            }
-            var userId = userManager.GetUserId(userPrincipal);
-            order.User = context.Users.Find(userId);
-            order.OrderDetails = new List<OrderDetails>();
-            order.OrderDetails = details;
-            context.Orders.Add(order);
-            context.SaveChanges();
+                    var repoBook = context.Books.Find(Guid.Parse(book));
+                    details.Add(new OrderDetails
+                    {
+                        Book = repoBook,
+                        BookId = repoBook.BookId,
+                        ReturnDate = DateTime.Now.AddDays(30),
+                        Order = order,
+                        IsBookReturned = false
+                    });
+                }
+                var userId = userManager.GetUserId(userPrincipal);
+                order.User = context.Users.Find(userId);
+                order.OrderDetails = new List<OrderDetails>();
+                order.OrderDetails = details;
+                context.Orders.Add(order);
+                context.SaveChanges();
 
-            return true;
+                return true;
+            }
+            catch(Exception exception)
+            {
+                Logger.Log(exception.Message);
+                return false;
+            }
         }
 
         public bool InsertDetails(OrderDetails orderDetails)
         {
-            context.OrderDetails.Add(orderDetails);
-            context.SaveChanges();
-            return true;
+            try
+            {
+                context.OrderDetails.Add(orderDetails);
+                context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                Logger.Log(exception.Message);
+                return false;
+            }
         }
     }
 }

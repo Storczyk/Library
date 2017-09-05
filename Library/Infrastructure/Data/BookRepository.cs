@@ -1,4 +1,5 @@
-﻿using Library.Application.Queries.Books;
+﻿using Library.Application.Logger;
+using Library.Application.Queries.Books;
 using Library.DomainModel;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -53,38 +54,62 @@ namespace Library.Infrastructure.Data
 
         public bool Insert(Book entity)
         {
-            var author = libraryDbContext.Authors.FirstOrDefault(i => i.Name == entity.Author.Name);
-            if (author != null)
+            try
             {
-                entity.Author = author;
+                var author = libraryDbContext.Authors.FirstOrDefault(i => i.Name == entity.Author.Name);
+                if (author != null)
+                {
+                    entity.Author = author;
+                }
+
+                libraryDbContext.Books.Add(entity);
+                libraryDbContext.SaveChanges();
+
+                return true;
             }
-
-            libraryDbContext.Books.Add(entity);
-            libraryDbContext.SaveChanges();
-
-            return true;
+            catch (Exception exception)
+            {
+                Logger.Log(exception.Message);
+                return false;
+            }
         }
 
         public bool Delete(Guid id)
         {
-            libraryDbContext.Books.Remove(GetByID(id));
-            libraryDbContext.SaveChanges();
+            try
+            {
+                libraryDbContext.Books.Remove(GetByID(id));
+                libraryDbContext.SaveChanges();
 
-            return true;
+                return true;
+            }
+            catch (Exception exception)
+            {
+                Logger.Log(exception.Message);
+                return false;
+            }
         }
 
         public bool Update(Book entityToUpdate)
         {
-            var author = libraryDbContext.Authors.FirstOrDefault(i => i.Name == entityToUpdate.Author.Name);
-            if (author != null)
+            try
             {
-                entityToUpdate.Author = author;
+                var author = libraryDbContext.Authors.FirstOrDefault(i => i.Name == entityToUpdate.Author.Name);
+                if (author != null)
+                {
+                    entityToUpdate.Author = author;
+                }
+
+                libraryDbContext.Books.Update(entityToUpdate);
+                libraryDbContext.SaveChanges();
+
+                return true;
             }
-
-            libraryDbContext.Books.Update(entityToUpdate);
-            libraryDbContext.SaveChanges();
-
-            return true;
+            catch (Exception exception)
+            {
+                Logger.Log(exception.Message);
+                return false;
+            }
         }
 
         public Book GetByID(Guid id, bool isWithAuthor = true)
