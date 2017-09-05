@@ -15,7 +15,7 @@ namespace Library.Application.Commands.Order
         }
         public CommandResult Handle(ReturnBookCommand createOrderCommand)
         {
-            var result = orderRepository.BookReturment(Guid.Parse(createOrderCommand.BookId), Guid.Parse(createOrderCommand.UserId));
+            var result = orderRepository.BookReturment(Guid.Parse(createOrderCommand.BookId), createOrderCommand.UserId);
             return new CommandResult
             {
                 Result = result ? "Book Returned" : "Book not returned"

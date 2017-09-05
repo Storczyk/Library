@@ -67,6 +67,7 @@ namespace Library.Infrastructure.Data
                 }
                 var userId = userManager.GetUserId(userPrincipal);
                 order.User = context.Users.Find(userId);
+                order.UserId = userId;
                 order.OrderDetails = new List<OrderDetails>();
                 order.OrderDetails = details;
                 context.Orders.Add(order);
@@ -105,7 +106,7 @@ namespace Library.Infrastructure.Data
             return orders;
         }
 
-        public bool BookReturment(Guid bookId, Guid userId)
+        public bool BookReturment(Guid bookId, string userId)
         {
             try
             {
