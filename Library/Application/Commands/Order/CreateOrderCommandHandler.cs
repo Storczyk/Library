@@ -23,10 +23,10 @@ namespace Library.Application.Commands.Order
         {
             var resultString = new StringBuilder();
             var booksIds = new List<string>();
-            foreach(var book in createOrderCommand.BooksIds)
+            foreach (var book in createOrderCommand.BooksIds)
             {
                 var b = bookRepository.GetByID(Guid.Parse(book));
-                if(b.Quantity <= 0)
+                if (b.Quantity <= 0)
                 {
                     resultString.AppendLine($"{b.BookTitle} could not be ordered! It is not available!");
                     continue;
@@ -35,8 +35,8 @@ namespace Library.Application.Commands.Order
                 booksIds.Add(book);
             }
 
-            var order = new Library.DomainModel.Order
-            {               
+            var order = new DomainModel.Order
+            {
                 Address = createOrderCommand.Address,
                 OrderDate = DateTime.Now,
                 PhoneNumber = createOrderCommand.PhoneNumber,
@@ -48,7 +48,7 @@ namespace Library.Application.Commands.Order
 
             //Clear cart
             var keys = createOrderCommand.Session.Keys.Where(key => key.Contains("cart_")).ToList();
-            foreach(var key in keys)
+            foreach (var key in keys)
             {
                 createOrderCommand.Session.Remove(key);
             }
