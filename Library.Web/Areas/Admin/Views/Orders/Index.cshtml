@@ -2,27 +2,27 @@
 @{
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
 }
-<table class="table table-bordered">
+<table class="table table-bordered" style="border-color: black;">
     <tr>
-        <th>
+        <th style="border-color: black; background-color: lightgray;">
             @Html.DisplayNameFor(m => Model.FirstOrDefault().UserEmail)
         </th>
-        <th>
+        <th style="border-color: black; background-color: lightgray;">
             @Html.DisplayNameFor(m => Model.FirstOrDefault().UserId)
         </th>
-        <th>
+        <th style="border-color: black; background-color: lightgray;">
             @Html.DisplayNameFor(m => Model.FirstOrDefault().Order.Book.BookTitle)
         </th>
-        <th>
+        <th style="border-color: black; background-color: lightgray;">
             @Html.DisplayNameFor(m => Model.FirstOrDefault().Order.Book.Author.Name)
         </th>
-        <th>
+        <th style="border-color: black; background-color: lightgray;">
             @Html.DisplayNameFor(m => Model.FirstOrDefault().Order.Book.Genre)
         </th>
-        <th>
+        <th style="border-color: black; background-color: lightgray;">
             @Html.DisplayNameFor(m => Model.FirstOrDefault().Order.ReturnDate)
         </th>
-        <th>Returned</th>
+        <th style="border-color: black; background-color: lightgray;">Returned</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -45,7 +45,8 @@
             <td>
                 @Html.DisplayFor(m => item.Order.ReturnDate)
             </td>
-            <td><a href="#" onclick="BookReturment('@item.Order.Book.Id', '@item.UserId')"><span class="glyphicon glyphicon-retweet"> Confirm</span></a></td>
+            <td><a href="#" onclick="BookReturment('@item.Order.Book.Id', '@item.UserId')" style="color: black; font-weight: bold;">
+                <span class="glyphicon glyphicon-retweet" style="color: black; font-weight: bold;"> Confirm</span></a></td>
         </tr>
     }
 </table>

@@ -8,7 +8,7 @@ namespace Library.Application.Queries.Order
     {
         public Guid OrderDetailId { get; set; }
 
-        [DisplayName("Date of returnment")]
+        [DisplayName("Expiration date")]
         public DateTime ReturnDate { get; set; }
 
         [DisplayName("Order's ID")]
