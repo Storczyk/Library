@@ -10,8 +10,8 @@
     <div class="col-md-3">
         <div class="form-group text-center" style="margin-top: 20px; margin-bottom: 20px;">
             <div class="col-md-12" style="margin-bottom: 30px;">
-                    <a href="/Admin/Book/Add" style="font-size: 20px; color: black"><span class="glyphicon glyphicon-plus"></span> Add book</a>
-            </div>                
+                <a href="/Admin/Book/Add" style="font-size: 20px; color: black"><span class="glyphicon glyphicon-plus"></span> Add book</a>
+            </div>
             <label style="color: black; font-family: Georgia; font-size: 14px; display: block;">Search by title</label>
             <input type="text" class="form-control" style="height: 20px; width:130px; display: inline-block; margin-left: 15px;" />
             <a href="#" class="btn btn-link" style="display:inline-block"><span class="glyphicon glyphicon-search" style="color: black; font-size: 20px;"></span></a>
@@ -24,7 +24,9 @@
                 <div class="col-md-12 book-row" style="margin-bottom: 20px;">
                     <div class="col-sm-7 properties-column">
                         <p>
-                            <div class="book-title" style="display: inline-block">@book.BookTitle</div>
+                            <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="font-size: 20px; color: black;">
+                                <div class="book-title" style="display: inline-block">@book.BookTitle</div>
+                            </a>
                         </p>
                         <p>
                             <span>Author: </span>
@@ -55,7 +57,7 @@
                             <span class="book-span">@book.Isbn</span>
                         </p>
                         <p style="margin-top: 5px;">
-                            <span class="book-span" style="font-size: 18px;">Available: @book.CurrentQuantity / @book.Quantity</span>                            
+                            <span class="book-span" style="font-size: 18px;">Available: @book.CurrentQuantity / @book.Quantity</span>
                         </p>
                         <p>
                             <span style="font-weight:bold;">@book.Id</span>
