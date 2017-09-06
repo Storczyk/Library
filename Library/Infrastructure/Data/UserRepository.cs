@@ -18,15 +18,13 @@ namespace Library.Infrastructure.Data
 
         public IEnumerable<UserQuery> GetAllUsers()
         {
-            var users = libraryDbContext.Users.Include(user => user.Orders).Select(user => new UserQuery
+            return libraryDbContext.Users.Include(user => user.Orders).Select(user => new UserQuery
             {
                 Username = user.UserName,
                 Email = user.Email,
                 UserId = user.Id,
                 OrdersCount = user.Orders.Count
             }).ToList();
-
-            return users;
         }
     }
 }

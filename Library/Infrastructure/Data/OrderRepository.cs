@@ -1,4 +1,5 @@
 ﻿using Library.Application.Logger;
+using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Library.Application.Queries.Order;
 using Library.DomainModel;
@@ -30,10 +31,10 @@ namespace Library.Infrastructure.Data
             return context.OrderDetails.Where(x => !x.IsBookReturned && x.BookId == bookId).Count();
         }
 
-        public IEnumerable<OrderQuery> GetAllOrders(int page, int pageSize)
+        public PaginatedList<OrderQuery> GetAllOrders(int page, int pageSize)
         {
-            return context.Orders.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
-            {               
+            return PaginatedList<OrderQuery>.Create(context.Orders.Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
+            {
                 Address = i.Address,
                 PhoneNumber = i.PhoneNumber,
                 OrderDate = i.OrderDate,
@@ -45,7 +46,27 @@ namespace Library.Infrastructure.Data
                     Description = j.Book.Description,
                     Genre = j.Book.Genre,
                 })
-            }).ToList();
+            }).AsQueryable(), page, pageSize);
+        }
+
+        public PaginatedList<OrderQuery> GetAllOrders(string userId, int page, int pageSize)
+        {
+            return PaginatedList<OrderQuery>.Create(context.Orders.Where(i => i.UserId == userId)
+                .Include(i => i.User).Include(i => i.OrderDetails)
+                .Select(i => new OrderQuery
+                {
+                    Address = i.Address,
+                    PhoneNumber = i.PhoneNumber,
+                    OrderDate = i.OrderDate,
+                    Books = i.OrderDetails.Select(j => new BookShortQuery
+                    {
+                        Id = j.Book.BookId.ToString(),
+                        BookTitle = j.Book.BookTitle,
+                        Author = j.Book.Author,
+                        Description = j.Book.Description,
+                        Genre = j.Book.Genre,
+                    })
+                }), page, pageSize);
         }
 
         public bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
@@ -84,10 +105,10 @@ namespace Library.Infrastructure.Data
 
         public IEnumerable<OrderReturnQuery> GetAllNotReturnedOrders(int page = 1, int pageSize = 50)
         {
-            var orders =  context.OrderDetails.Where(i => !i.IsBookReturned).Select(i => new OrderReturnQuery
+            var orders = context.OrderDetails.Where(i => !i.IsBookReturned).Select(i => new OrderReturnQuery
             {
                 UserEmail = i.Order.User.Email,
-                UserId = i.Order.UserId.ToString(),
+                UserId = i.Order.UserId,
                 Order = new OrderDetailQuery
                 {
                     Book = new BookShortQuery

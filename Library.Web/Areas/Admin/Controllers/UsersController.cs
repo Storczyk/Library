@@ -1,8 +1,10 @@
 ﻿using Library.Application.General;
+using Library.Application.Queries.Order;
 using Library.Application.Queries.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Library.Application.Queries;
 
 namespace Library.Web.Areas.Admin.Controllers
 {
@@ -21,9 +23,11 @@ namespace Library.Web.Areas.Admin.Controllers
             return View(users);
         }
 
-        public void GetOrders(string userId)
+        public IActionResult GetOrders(GetAllOrdersForUserQuery getAllOrdersForUserQuery)
         {
+            var orders = queryDispatcher.Dispatch <GetAllOrdersForUserQuery, PaginatedList<OrderQuery>>(getAllOrdersForUserQuery);
 
+            return View(orders);
         }
     }
 }

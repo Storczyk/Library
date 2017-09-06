@@ -1,7 +1,6 @@
 ﻿using Library.Application.General;
 using Library.Infrastructure.Data;
 using System;
-using System.Collections.Generic;
 
 namespace Library.Application.Queries.Books
 {

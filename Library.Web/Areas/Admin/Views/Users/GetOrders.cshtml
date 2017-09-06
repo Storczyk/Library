@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Library.Application.Queries.Order.OrderQuery>
+@{
+    <link rel="stylesheet" href="~/css/bookStyle.css" />
+    ViewData["Title"] = "Orders";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered col-md-12" style="border-color: black;">
+            <thead>
+                <tr>
+                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                        @Html.DisplayNameFor(m => m.FirstOrDefault().OrderDate)
+                    </th>
+                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                        @Html.DisplayNameFor(m => m.FirstOrDefault().Address)
+                    </th>
+                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                        @Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)
+                    </th>
+                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                        @Html.DisplayNameFor(m => m.FirstOrDefault().Books)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="col-md-3" style="border-color: black; font-weight: bold">
+                            @Html.DisplayFor(m => item.OrderDate)
+                        </td>
+                        <td class="col-md-3" style="border-color: black;">
+                            @Html.DisplayFor(m => item.Address)
+                        </td>
+                        <td class="col-md-3" style="border-color: black;">
+                            @Html.DisplayFor(m => item.PhoneNumber)
+                        </td>
+                        <td class="col-md-3" style="border-color: black;">
+                            <ul>
+                                @foreach (var book in item.Books)
+                {
+                                    <li>
+                                        <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="color: black;">
+                                            @book.BookTitle
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
