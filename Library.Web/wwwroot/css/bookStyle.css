@@ -95,3 +95,7 @@ p {
     border: none;
     background: none;
 }
+
+#pagination{
+    margin-bottom: 30px;
+}

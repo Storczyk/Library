@@ -65,6 +65,9 @@
                 <a onclick="SendAddToCartCommand('@book.Id', '@book.CurrentQuantity')" class="btn btn-link" style="font-size: 16px; margin-top: 100px; color: black;"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
             </div>
         }
-        @Html.Partial("~/Areas/Default/Views/Shared/_Pagination.cshtml", Model.PaginationInfo)
+
+        <div class="text-center" style="margin-left: -100px;">
+            @Html.Partial("~/Areas/Default/Views/Shared/_Pagination.cshtml", Model.PaginationInfo)
+        </div>
     </div>
 </div>
