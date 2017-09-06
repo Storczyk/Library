@@ -23,5 +23,12 @@ namespace Library.Web.Areas.Default.Controllers
             var book = queryDispatcher.Dispatch<GetBookQuery, BookQuery>(getBookQuery);
             return View(book);
         }
+
+        public IActionResult SearchByTitle(SearchBooksByTitleQuery searchBooksByTitleQuery)
+        {
+            var books = queryDispatcher.Dispatch<SearchBooksByTitleQuery, IEnumerable<BookQuery>>(searchBooksByTitleQuery);
+
+            return View("Index", books);
+        }
     }
 }

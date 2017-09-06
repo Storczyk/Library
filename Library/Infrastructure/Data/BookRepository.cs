@@ -19,9 +19,22 @@ namespace Library.Infrastructure.Data
             context = new LibraryDbContext(options.Options);
         }
 
-        public IEnumerable<Book> Get(int page = 1, int pageSize = 10)
+        public IEnumerable<BookQuery> Get(int page = 1, int pageSize = 10)
         {
-            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).ToList();
+            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).Select(i => new BookQuery
+            {
+                Author = i.Author,
+                Genre = i.Genre,
+                Description = i.Description,
+                BookTitle = i.BookTitle,
+                Ean = i.Ean,
+                Id = i.BookId.ToString(),
+                Isbn = i.Isbn,
+                Pages = i.Pages,
+                Publisher = i.Publisher,
+                Year = i.Year,
+                Quantity = i.Quantity,
+            }).ToList();
         }
 
         public IEnumerable<BookQuery> Get(string[] filters)
@@ -109,6 +122,26 @@ namespace Library.Infrastructure.Data
             }
 
             return context.Books.Where(i => i.BookId == id).FirstOrDefault();
+        }
+
+        public IEnumerable<BookQuery> GetByTitle(string title)
+        {
+            return context.Books
+                .Where(book => book.BookTitle.Contains(title))
+                .Select(book => new BookQuery
+                {
+                    Author = book.Author,
+                    Genre = book.Genre,
+                    BookTitle = book.BookTitle,
+                    Description = book.Description,
+                    Ean = book.Ean,
+                    Id = book.BookId.ToString(),
+                    Isbn = book.Isbn,
+                    Pages = book.Pages,
+                    Publisher = book.Publisher,
+                    Year = book.Year,
+                    Quantity = book.Quantity
+                }).ToList();
         }
     }
 }

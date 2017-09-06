@@ -45,6 +45,7 @@ function CommandResultShowMessage() {
         $(this).remove();
     });
 }
+
 function BookReturment(orderDetailId) {
     $.ajax({
         type: "POST",
@@ -58,3 +59,20 @@ function BookReturment(orderDetailId) {
         }
     });
 }
+
+//function SearchByTitle()
+//{
+//    var Title = document.getElementById('titleToSearch').value;
+    
+//    $.ajax({
+//        type: "POST",
+//        url: "/Books/SearchByTitle",
+//        data: JSON.stringify({ Title }),
+//        contentType: "application/json",
+//        dataType: 'json',
+//        complete: function () {
+//            window.location.reload();
+//            CommandResult();
+//        }
+//    });
+//}
