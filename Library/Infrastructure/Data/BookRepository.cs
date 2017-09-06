@@ -2,6 +2,7 @@
 using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Library.DomainModel;
+using Library.DomainModel.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -145,6 +146,30 @@ namespace Library.Infrastructure.Data
                     Year = i.Year,
                     Quantity = i.Quantity,
                 }).AsQueryable(), page, pageSize, title);
+        }
+
+        public PaginatedList<BookQuery> GetByGenre(Genre genre, int page, int pageSize)
+        {
+            //if(!Enum.TryParse(genre, out Genre result))
+            //{
+            //    throw new Exception("Incorrect genre");
+            //}
+
+            return PaginatedList<BookQuery>.Create(
+                context.Books.Where(i => i.Genre == genre).Select(i => new BookQuery
+                {
+                    Author = i.Author,
+                    BookTitle = i.BookTitle,
+                    Description = i.Description,
+                    Ean = i.Ean,
+                    Genre = i.Genre,
+                    Id = i.BookId.ToString(),
+                    Isbn = i.Isbn,
+                    Pages = i.Pages,
+                    Publisher = i.Publisher,
+                    Quantity = i.Quantity,
+                    Year = i.Year,
+                }), page, pageSize);
         }
     }
 }

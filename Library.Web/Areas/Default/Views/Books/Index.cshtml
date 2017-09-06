@@ -1,4 +1,5 @@
 ﻿@model Library.Application.Queries.PaginatedList<Library.Application.Queries.Books.BookQuery>
+@using Library.DomainModel.Enums
 @{
     <link rel="stylesheet" href="~/css/bookStyle.css" />
     ViewData["Title"] = "Books";
@@ -8,13 +9,20 @@
 <div class="col-md-12 row">
     <div class="col-md-3">
         <div class="form-group text-center" style="margin-top: 20px; margin-bottom: 20px;">
-            <label style="color: black; font-family: Georgia; font-size: 14px;">Search by title</label>
+            <label style="color: black; font-family: Georgia; font-size: 18px;">Search by title</label>
             <form action="/Books/SearchByTitle">
                 <input type="text" name="Title" class="form-control" style="height: 30px; width:130px; display: inline-block; margin-left: 15px;" />
                 <button type="submit" class="borderlessbtn">
                     <span class="glyphicon glyphicon-search" style="color: black; font-size: 30px; margin-left: 10px;"></span>
                 </button>              
             </form>            
+        </div>
+        <div class="genres text-center">
+            <label style="color: black; font-family: Georgia; font-size: 18px; margin-bottom: 20px;">Search by genre</label>
+            @foreach (var genre in Enum.GetValues(typeof(Genre)))
+            {
+                <a href="/Books/GetByGenre?Genre=@genre.ToString()" class="agenre">@genre</a>
+            }
         </div>
     </div>
     <div class="col-md-9">

@@ -32,5 +32,12 @@ namespace Library.Web.Areas.Default.Controllers
 
             return View("Index", books);
         }
+
+        public IActionResult GetByGenre(GetBooksByGenreQuery getBooksByGenreQuery)
+        {
+            var books = queryDispatcher.Dispatch<GetBooksByGenreQuery, PaginatedList<BookQuery>>(getBooksByGenreQuery);
+
+            return View("Index", books);
+        }
     }
 }

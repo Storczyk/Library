@@ -19,7 +19,7 @@ namespace Library.Web.Areas.Admin.Controllers
         {
             var getAllBooksQuery = new GetAllBooksQuery { Page = page };
             var books = queryDispatcher.Dispatch<GetAllBooksQuery, PaginatedList<BookQuery>>(getAllBooksQuery);
-            
+
             return View(books);
         }
 

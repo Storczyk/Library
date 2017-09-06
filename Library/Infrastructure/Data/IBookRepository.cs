@@ -1,6 +1,7 @@
 ﻿using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Library.DomainModel;
+using Library.DomainModel.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -21,5 +22,7 @@ namespace Library.Infrastructure.Data
         bool Delete(Guid id);
 
         bool Update(Book entityToUpdate);
+
+        PaginatedList<BookQuery> GetByGenre(Genre genre, int page, int pageSize);
     }
 }
