@@ -1,6 +1,7 @@
 ﻿using Library.Application.General;
 using Library.Application.Queries;
 using Library.Application.Queries.Books;
+using Library.DomainModel.Enums;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ namespace Library.Web.Areas.Default.Controllers
         {
         }
 
-        public IActionResult Index(int page)
+        public IActionResult Index(int page, string BookTitle, Genre genre)
         {
             var getAllBooksQuery = new GetAllBooksQuery { Page = page };
             var books = queryDispatcher.Dispatch<GetAllBooksQuery, PaginatedList<BookQuery>>(getAllBooksQuery);
