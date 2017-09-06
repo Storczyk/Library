@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Library.Application.Queries.Order.OrderQuery>
+﻿@model Library.Application.Queries.PaginatedList<Library.Application.Queries.Order.OrderQuery>
 @{
     <link rel="stylesheet" href="~/css/bookStyle.css" />
     ViewData["Title"] = "Orders";
@@ -54,4 +54,5 @@
             </tbody>
         </table>
     </div>
+    @Html.Partial("~/Areas/Default/Views/Shared/_Pagination.cshtml", Model.PaginationInfo)
 </div>

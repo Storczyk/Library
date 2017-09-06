@@ -7,7 +7,7 @@
     var dict = new Dictionary<string, string>();
     dict.Add("page", "1");
     var method = "Index";
-    if (Model.BookTitle!=null && Model.BookTitle!= "")
+    if (Model.BookTitle != null && Model.BookTitle != "")
     {
         method = "SearchByTitle";
         dict.Add("Title", Model.BookTitle);
@@ -15,6 +15,11 @@
     @if (Model.Genre.HasValue)
     {
         method = "SearchByGenre";
+    }
+    @if (Model.UserId !=null && Model.UserId != "")
+    {
+        method = "GetOrders";
+        dict.Add("UserId", Model.UserId);
     }
 }
 <div class="row col-lg-12">
@@ -25,7 +30,7 @@
         <a id="pagination" asp-action="@method" asp-all-route-data="dict" class="btn btn-default @prevDisabled">Previous</a>
         dict["page"] = "1";
         <a id="pagination" asp-action="@method" asp-all-route-data="dict" class="btn btn-default">1</a>
-    }
+        }
     @if (Model.TotalPages >= 2)
     {
         if (Model.PageIndex - 5 > 1)
@@ -55,7 +60,7 @@
     }
     @if (Model.PageIndex < Model.TotalPages)
     {
-        dict["page"] = Model.TotalPages.ToString();        
+        dict["page"] = Model.TotalPages.ToString();
         <a id="pagination" asp-action="@method" asp-all-route-data="dict" class="btn btn-default">@(Model.TotalPages)</a>
         dict["page"] = (Model.PageIndex + 1).ToString();
         <a id="pagination" asp-action="@method" asp-all-route-data="dict" class="btn btn-default @nextDisabled">Next</a>
