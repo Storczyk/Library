@@ -106,11 +106,11 @@ namespace Library.Infrastructure.Data
             return orders;
         }
 
-        public bool BookReturment(Guid bookId, string userId)
+        public bool BookReturment(string orderDetailId)
         {
             try
             {
-                var orderDetail = context.OrderDetails.FirstOrDefault(i => i.Order.UserId == userId && i.BookId == bookId);
+                var orderDetail = context.OrderDetails.FirstOrDefault(i => i.OrderDetailId == Guid.Parse(orderDetailId));
                 orderDetail.IsBookReturned = true;
                 orderDetail.ReturnDate = DateTime.Now;
                 if (context.SaveChanges() > 0)

@@ -1,7 +1,7 @@
 ﻿function CountItemsInCart() {
     $.get("/ShoppingCart/HowManyItemsInCart",
         function (data) {
-            $('#counter').text('(' + data + ')')
+            $('#counter').text('(' + data + ')');
         });
 }
 function SendAddToCartCommand(Id, Quantity) {
@@ -45,11 +45,11 @@ function CommandResultShowMessage() {
         $(this).remove();
     });
 }
-function BookReturment(bookId, userId) {
+function BookReturment(orderDetailId) {
     $.ajax({
         type: "POST",
         url: "/Admin/Orders/BookReturment",
-        data: JSON.stringify({ bookId, userId }),
+        data: JSON.stringify({ orderDetailId }),
         contentType: "application/json",
         dataType: 'json',
         complete: function () {

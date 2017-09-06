@@ -45,8 +45,11 @@
             <td>
                 @Html.DisplayFor(m => item.Order.ReturnDate)
             </td>
-            <td><a href="#" onclick="BookReturment('@item.Order.Book.Id', '@item.UserId')" style="color: black; font-weight: bold;">
-                <span class="glyphicon glyphicon-retweet" style="color: black; font-weight: bold;"> Confirm</span></a></td>
+            <td>
+            <a href="#" onclick="BookReturment('@item.Order.OrderDetailId')" style="color: black; font-weight: bold;">
+                <span class="glyphicon glyphicon-retweet" style="color: black; font-weight: bold;"> Confirm</span></a>
+            
+            </td>
         </tr>
     }
 </table>
