@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Library.Application.Queries.Books
 {
-    public class SearchBooksByTitleQueryHandler : IQueryHandler<SearchBooksByTitleQuery, IEnumerable<BookQuery>>
+    public class SearchBooksByTitleQueryHandler : IQueryHandler<SearchBooksByTitleQuery, PaginatedList<BookQuery>>
     {
         private readonly IBookRepository bookRepository;
         private readonly IOrderRepository orderRepository;
@@ -16,9 +16,9 @@ namespace Library.Application.Queries.Books
             this.orderRepository = orderRepository;
         }
 
-        public IEnumerable<BookQuery> Handle(SearchBooksByTitleQuery query)
+        public PaginatedList<BookQuery> Handle(SearchBooksByTitleQuery query)
         {
-            var books = bookRepository.GetByTitle(query.Title);
+            var books = bookRepository.GetByTitle(query.Title, query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize);
             foreach (var book in books)
             {
                 var currentQuantity = orderRepository.GetCurrentQuantityForBook(Guid.Parse(book.Id));
