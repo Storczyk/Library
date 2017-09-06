@@ -1,4 +1,5 @@
 ﻿using Library.Application.General;
+using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -11,10 +12,10 @@ namespace Library.Web.Areas.Default.Controllers
         {
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page)
         {
             var getAllBooksQuery = new GetAllBooksQuery();
-            var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(getAllBooksQuery);
+            var books = queryDispatcher.Dispatch<GetAllBooksQuery, PaginatedList<BookQuery>>(getAllBooksQuery);
             return View(books);
         }
 

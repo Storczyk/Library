@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Library.Application.Queries.Books
 {
-    public class GetAllBooksQueryHandler : IQueryHandler<GetAllBooksQuery, IEnumerable<BookQuery>>
+    public class GetAllBooksQueryHandler : IQueryHandler<GetAllBooksQuery, PaginatedList<BookQuery>>
     {
         private readonly IBookRepository bookRepository;
         private readonly IOrderRepository orderRepository;
@@ -17,7 +17,7 @@ namespace Library.Application.Queries.Books
             this.orderRepository = orderRepository;
         }
 
-        public IEnumerable<BookQuery> Handle(GetAllBooksQuery query)
+        public PaginatedList<BookQuery> Handle(GetAllBooksQuery query)
         {
             var list = bookRepository.Get(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize);
 

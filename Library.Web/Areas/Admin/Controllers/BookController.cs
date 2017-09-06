@@ -1,5 +1,6 @@
 ﻿using Library.Application.Commands.Books;
 using Library.Application.General;
+using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace Library.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var query = new GetAllBooksQuery();
-            var books = queryDispatcher.Dispatch<GetAllBooksQuery, IEnumerable<BookQuery>>(query);
+            var books = queryDispatcher.Dispatch<GetAllBooksQuery, PaginatedList<BookQuery>>(query);
             
             return View(books);
         }
