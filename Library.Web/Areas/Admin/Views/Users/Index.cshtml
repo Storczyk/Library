@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Library.Application.Queries.Users.UserQuery>
+@{
+    <link rel="stylesheet" href="~/css/bookStyle.css" />
+    ViewData["Title"] = "Users";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered col-md-12" style="border-color: black;">
+            <thead>
+                <tr>
+                    <th class="col-md-4" style="border-color: black; background-color: lightgray;">
+                        @Html.DisplayNameFor(m => m.FirstOrDefault().Username)
+                    </th>
+                    <th class="col-md-4" style="border-color: black; background-color: lightgray;">
+                        @Html.DisplayNameFor(m => m.FirstOrDefault().UserId)
+                    </th>
+                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                        @Html.DisplayNameFor(m => m.FirstOrDefault().Email)
+                    </th>
+                    <th class="col-md-1" style="border-color: black; background-color: lightgray;">
+                        @Html.DisplayNameFor(m => m.FirstOrDefault().OrdersCount)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td class="col-md-4" style="border-color: black;">
+                            <a href="#" style="color: black; font-size: 16px;">@user.Username</a>
+                        </td>
+                        <td class="col-md-4" style="border-color: black;">
+                            @Html.DisplayFor(m => user.UserId)
+                        </td>
+                        <td class="col-md-3" style="border-color: black;">
+                            @Html.DisplayFor(m => user.Email)
+                        </td>
+                        <td class="col-md-1" style="border-color: black;">
+                            @Html.DisplayFor(m => user.OrdersCount)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

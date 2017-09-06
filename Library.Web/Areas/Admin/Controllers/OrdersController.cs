@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Library.Application.General;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -23,10 +20,11 @@ namespace Library.Web.Areas.Admin.Controllers
             var orders = queryDispatcher.Dispatch<GetAllNotReturnedOrdersQuery, IEnumerable<OrderReturnQuery>>(new GetAllNotReturnedOrdersQuery { Page = 1, PageSize = 50 });
             return View(orders);
         }
+
         [HttpPost]
         public void BookReturment([FromBody] ReturnBookCommand returnBookCommand)
         {
             DisplayShortMessage(commandBus.Send(returnBookCommand).Result);
-        } 
+        }
     }
 }

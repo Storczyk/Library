@@ -7,13 +7,12 @@ namespace Library.Application.Queries
 {
     public class PaginatedList<T> : List<T>
     {
-        public PaginationInfo paginationInfo { get; set; }
-
-
+        public PaginationInfo PaginationInfo { get; set; }
         public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
         {
-            paginationInfo.PageIndex = pageIndex;
-            paginationInfo.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+            PaginationInfo = new PaginationInfo();
+            PaginationInfo.PageIndex = pageIndex;
+            PaginationInfo.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
             this.AddRange(items);
         }
 

@@ -46,6 +46,7 @@ namespace Library.Web
             });
 
             services.AddTransient<UserManager<ApplicationUser>>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
