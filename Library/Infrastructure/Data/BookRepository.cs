@@ -144,7 +144,7 @@ namespace Library.Infrastructure.Data
                     Publisher = i.Publisher,
                     Year = i.Year,
                     Quantity = i.Quantity,
-                }).AsQueryable(), page, pageSize);
+                }).AsQueryable(), page, pageSize, title);
         }
     }
 }
