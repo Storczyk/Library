@@ -14,7 +14,7 @@ namespace Library.Infrastructure.Data
 
         Book GetByID(Guid id, bool isWithAuthor = true);
 
-        IEnumerable<BookQuery> GetByTitle(string title);
+        PaginatedList<BookQuery> GetByTitle(string title, int page, int pageSize);
 
         bool Insert(Book entity);
 

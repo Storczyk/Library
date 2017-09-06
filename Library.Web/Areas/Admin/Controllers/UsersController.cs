@@ -21,7 +21,7 @@ namespace Library.Web.Areas.Admin.Controllers
             return View(users);
         }
 
-        public IActionResult GetOrders(string userId)
+        public void GetOrders(string userId)
         {
 
         }

@@ -28,14 +28,14 @@ namespace Library.Infrastructure.Data
                     Author = i.Author,
                     BookTitle = i.BookTitle,
                     Description = i.Description,
-                    Ean=i.Ean,
-                    Genre=i.Genre,
-                    Id=i.BookId.ToString(),
+                    Ean = i.Ean,
+                    Genre = i.Genre,
+                    Id = i.BookId.ToString(),
                     Isbn = i.Isbn,
                     Pages = i.Pages,
                     Publisher = i.Publisher,
-                    Quantity=i.Quantity,
-                    Year=i.Year,
+                    Quantity = i.Quantity,
+                    Year = i.Year,
                 })
                 .AsQueryable(), page, pageSize);
         }
@@ -127,24 +127,24 @@ namespace Library.Infrastructure.Data
             return context.Books.Where(i => i.BookId == id).FirstOrDefault();
         }
 
-        public IEnumerable<BookQuery> GetByTitle(string title)
+        public PaginatedList<BookQuery> GetByTitle(string title, int page, int pageSize)
         {
-            return context.Books
-                .Where(book => book.BookTitle.Contains(title))
-                .Select(book => new BookQuery
+            return PaginatedList<BookQuery>.Create(context.Books
+                .Where(i => i.BookTitle.Contains(title))
+                .Select(i => new BookQuery
                 {
-                    Author = book.Author,
-                    Genre = book.Genre,
-                    BookTitle = book.BookTitle,
-                    Description = book.Description,
-                    Ean = book.Ean,
-                    Id = book.BookId.ToString(),
-                    Isbn = book.Isbn,
-                    Pages = book.Pages,
-                    Publisher = book.Publisher,
-                    Year = book.Year,
-                    Quantity = book.Quantity
-                }).ToList();
+                    Author = i.Author,
+                    Genre = i.Genre,
+                    BookTitle = i.BookTitle,
+                    Description = i.Description,
+                    Ean = i.Ean,
+                    Id = i.BookId.ToString(),
+                    Isbn = i.Isbn,
+                    Pages = i.Pages,
+                    Publisher = i.Publisher,
+                    Year = i.Year,
+                    Quantity = i.Quantity,
+                }).AsQueryable(), page, pageSize);
         }
     }
 }

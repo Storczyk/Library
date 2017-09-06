@@ -15,10 +15,10 @@ namespace Library.Web.Areas.Admin.Controllers
         public BookController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int page)
         {
-            var query = new GetAllBooksQuery();
-            var books = queryDispatcher.Dispatch<GetAllBooksQuery, PaginatedList<BookQuery>>(query);
+            var getAllBooksQuery = new GetAllBooksQuery { Page = page };
+            var books = queryDispatcher.Dispatch<GetAllBooksQuery, PaginatedList<BookQuery>>(getAllBooksQuery);
             
             return View(books);
         }

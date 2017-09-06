@@ -14,7 +14,7 @@ namespace Library.Web.Areas.Default.Controllers
 
         public IActionResult Index(int page)
         {
-            var getAllBooksQuery = new GetAllBooksQuery();
+            var getAllBooksQuery = new GetAllBooksQuery { Page = page };
             var books = queryDispatcher.Dispatch<GetAllBooksQuery, PaginatedList<BookQuery>>(getAllBooksQuery);
             return View(books);
         }
@@ -27,7 +27,7 @@ namespace Library.Web.Areas.Default.Controllers
 
         public IActionResult SearchByTitle(SearchBooksByTitleQuery searchBooksByTitleQuery)
         {
-            var books = queryDispatcher.Dispatch<SearchBooksByTitleQuery, IEnumerable<BookQuery>>(searchBooksByTitleQuery);
+            var books = queryDispatcher.Dispatch<SearchBooksByTitleQuery, PaginatedList<BookQuery>>(searchBooksByTitleQuery);
 
             return View("Index", books);
         }
