@@ -127,7 +127,7 @@ namespace Library.Infrastructure.Data
         public IEnumerable<BookQuery> GetByTitle(string title)
         {
             return context.Books
-                .Where(book => book.BookTitle == title)
+                .Where(book => book.BookTitle.Contains(title))
                 .Select(book => new BookQuery
                 {
                     Author = book.Author,

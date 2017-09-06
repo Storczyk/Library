@@ -60,19 +60,19 @@ function BookReturment(orderDetailId) {
     });
 }
 
-function SearchByTitle()
-{
-    var Title = document.getElementById('titleToSearch').value;
+//function SearchByTitle()
+//{
+//    var Title = document.getElementById('titleToSearch').value;
     
-    $.ajax({
-        type: "POST",
-        url: "/Books/SearchByTitle",
-        data: JSON.stringify({ Title }),
-        contentType: "application/json",
-        dataType: 'json',
-        complete: function () {
-            window.location.reload();
-            CommandResult();
-        }
-    });
-}
+//    $.ajax({
+//        type: "POST",
+//        url: "/Books/SearchByTitle",
+//        data: JSON.stringify({ Title }),
+//        contentType: "application/json",
+//        dataType: 'json',
+//        complete: function () {
+//            window.location.reload();
+//            CommandResult();
+//        }
+//    });
+//}

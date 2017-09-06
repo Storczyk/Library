@@ -24,11 +24,11 @@ namespace Library.Web.Areas.Default.Controllers
             return View(book);
         }
 
-        public IActionResult SearchByTitle([FromBody]SearchBooksByTitleQuery searchBooksByTitleQuery)
+        public IActionResult SearchByTitle(SearchBooksByTitleQuery searchBooksByTitleQuery)
         {
             var books = queryDispatcher.Dispatch<SearchBooksByTitleQuery, IEnumerable<BookQuery>>(searchBooksByTitleQuery);
 
-            return RedirectToAction("Index", books);
+            return View("Index", books);
         }
     }
 }
