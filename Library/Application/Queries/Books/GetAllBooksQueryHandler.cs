@@ -19,20 +19,7 @@ namespace Library.Application.Queries.Books
 
         public IEnumerable<BookQuery> Handle(GetAllBooksQuery query)
         {
-            var list = bookRepository.Get(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize).Select(i => new BookQuery
-            {
-                Author = i.Author,
-                Genre = i.Genre,
-                Description = i.Description,
-                BookTitle = i.BookTitle,
-                Ean = i.Ean,
-                Id = i.BookId.ToString(),
-                Isbn = i.Isbn,
-                Pages = i.Pages,
-                Publisher = i.Publisher,
-                Year = i.Year,
-                Quantity = i.Quantity,
-            }).ToList();
+            var list = bookRepository.Get(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize);
 
             foreach(var book in list)
             {

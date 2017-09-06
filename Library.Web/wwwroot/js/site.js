@@ -45,11 +45,29 @@ function CommandResultShowMessage() {
         $(this).remove();
     });
 }
+
 function BookReturment(orderDetailId) {
     $.ajax({
         type: "POST",
         url: "/Admin/Orders/BookReturment",
         data: JSON.stringify({ orderDetailId }),
+        contentType: "application/json",
+        dataType: 'json',
+        complete: function () {
+            window.location.reload();
+            CommandResult();
+        }
+    });
+}
+
+function SearchByTitle()
+{
+    var Title = document.getElementById('titleToSearch').value;
+    
+    $.ajax({
+        type: "POST",
+        url: "/Books/SearchByTitle",
+        data: JSON.stringify({ Title }),
         contentType: "application/json",
         dataType: 'json',
         complete: function () {
