@@ -66,7 +66,7 @@ namespace Library.Infrastructure.Data
                         Description = j.Book.Description,
                         Genre = j.Book.Genre,
                     })
-                }), page, pageSize);
+                }), page, pageSize, userId:userId);
         }
 
         public bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
