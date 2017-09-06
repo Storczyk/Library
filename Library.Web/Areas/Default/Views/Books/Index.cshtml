@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Library.Application.Queries.Books.BookQuery>
+﻿@model Library.Application.Queries.PaginatedList<Library.Application.Queries.Books.BookQuery>
 @{
     <link rel="stylesheet" href="~/css/bookStyle.css" />
     ViewData["Title"] = "Books";
@@ -65,5 +65,15 @@
                 <a onclick="SendAddToCartCommand('@book.Id', '@book.CurrentQuantity')" class="btn btn-link" style="font-size: 16px; margin-top: 100px; color: black;"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
             </div>
         }
+
+        @* PRZYKŁAD DLA PAGINACJI I FILTRóW JAKBY TO WYGLĄDAŁO-MOŻNA BĘDZIE ZMIENIC @VIEWDATA TYLKO NA COŚ INNEGO *@
+        @* <a asp-action="Index"
+       asp-route-page="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a> *@
+
+        @Html.Partial("~/Areas/Default/Views/Shared/_Pagination.cshtml", Model)
     </div>
 </div>

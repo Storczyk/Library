@@ -24,7 +24,7 @@ namespace Library.Application.Queries.Cart
                 {
                     continue;
                 }
-                
+             
                 bookIdsList.Add(item.Replace(Cart,""));
             }
             var books = bookRepository.Get(bookIdsList.ToArray());

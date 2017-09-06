@@ -1,4 +1,5 @@
 ﻿using Library.Application.Logger;
+using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Library.DomainModel;
 using Microsoft.EntityFrameworkCore;
@@ -19,22 +20,24 @@ namespace Library.Infrastructure.Data
             context = new LibraryDbContext(options.Options);
         }
 
-        public IEnumerable<BookQuery> Get(int page = 1, int pageSize = 10)
+        public PaginatedList<BookQuery> Get(int page = 1, int pageSize = 10)
         {
-            return context.Books.Skip(pageSize * (page - 1)).Take(pageSize).Include(i => i.Author).Select(i => new BookQuery
-            {
-                Author = i.Author,
-                Genre = i.Genre,
-                Description = i.Description,
-                BookTitle = i.BookTitle,
-                Ean = i.Ean,
-                Id = i.BookId.ToString(),
-                Isbn = i.Isbn,
-                Pages = i.Pages,
-                Publisher = i.Publisher,
-                Year = i.Year,
-                Quantity = i.Quantity,
-            }).ToList();
+            return PaginatedList<BookQuery>.Create(context.Books
+                .Select(i => new BookQuery
+                {
+                    Author = i.Author,
+                    BookTitle = i.BookTitle,
+                    Description = i.Description,
+                    Ean=i.Ean,
+                    Genre=i.Genre,
+                    Id=i.BookId.ToString(),
+                    Isbn = i.Isbn,
+                    Pages = i.Pages,
+                    Publisher = i.Publisher,
+                    Quantity=i.Quantity,
+                    Year=i.Year,
+                })
+                .AsQueryable(), page, pageSize);
         }
 
         public IEnumerable<BookQuery> Get(string[] filters)
