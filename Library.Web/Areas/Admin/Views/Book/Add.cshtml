@@ -8,7 +8,7 @@
 <div class="row first-row">
     <div class="text-center col-md-4"> MIEJSCE NA REKLAMY ( ͡° ͜ʖ ͡°) </div>
     <div class="col-md-4">
-        @using (Html.BeginForm("Add", "Book", FormMethod.Post))
+        @using (Html.BeginForm("Add", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="form-group">
                 @Html.LabelFor(m => m.BookTitle, new { @class = "required add-label" })
@@ -59,7 +59,9 @@
                 @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                 @Html.TextAreaFor(m => m.Description, new { @class = "form-control description-add-textbox" })
             </div>
-
+            <div class="form-group">
+                <input type="file" name="files"/>
+            </div>
             <div style="margin-top: 50px;">
                 <input type="submit" value="Add book" class="btn btn-primary" style="margin-right: 70px;" />
                 @Html.ActionLink("Go back to the list", "Index", null, new { @class = "btn btn-primary back-btn" })

@@ -1,5 +1,6 @@
 ﻿using Library.Application.General;
 using Library.DomainModel.Enums;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -33,5 +34,7 @@ namespace Library.Application.Commands.Books
         public string Ean { get; set; }
 
         public int Quantity { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }

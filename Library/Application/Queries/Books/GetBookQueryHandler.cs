@@ -32,7 +32,8 @@ namespace Library.Application.Queries.Books
                 Publisher = book.Publisher,
                 Year = book.Year,
                 Quantity = book.Quantity,
-                CurrentQuantity = book.Quantity - currentQuantity >= 0 ? book.Quantity - currentQuantity : 0
+                CurrentQuantity = book.Quantity - currentQuantity >= 0 ? book.Quantity - currentQuantity : 0,
+                Image = book.Image,
             };
         }
     }
