@@ -11,7 +11,7 @@ namespace Library.Infrastructure.Data
     {
         PaginatedList<BookQuery> Get(int page = 1, int pageSize = 10);
 
-        IEnumerable<BookQuery> Get(string[] filters);
+        IEnumerable<BookQuery> Get(string[] booksIds);
 
         Book GetByID(Guid id, bool isWithAuthor = true);
 
