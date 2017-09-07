@@ -26,6 +26,7 @@ li.dropdown:hover > .dropdown-menu {
 
 .description-add-textbox {
     min-height: 100px;
+    word-wrap: break-word;
 }
 
 .add-label {
@@ -61,6 +62,7 @@ li.dropdown:hover > .dropdown-menu {
 .book-description {
     margin-top: 10px;
     font-size: 12px;
+    word-break: break-all;
 }
 
 .text-danger {

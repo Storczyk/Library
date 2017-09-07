@@ -75,5 +75,19 @@ namespace Library.Web.Areas.Admin.Controllers
             DisplayShortMessage(commandBus.Send(editBookCommand).Result);
             return RedirectToAction("Index");
         }
+
+        public IActionResult SearchByTitle(SearchBooksByTitleQuery searchBooksByTitleQuery)
+        {
+            var books = queryDispatcher.Dispatch<SearchBooksByTitleQuery, PaginatedList<BookQuery>>(searchBooksByTitleQuery);
+
+            return View("Index", books);
+        }
+
+        public IActionResult GetByGenre(GetBooksByGenreQuery getBooksByGenreQuery)
+        {
+            var books = queryDispatcher.Dispatch<GetBooksByGenreQuery, PaginatedList<BookQuery>>(getBooksByGenreQuery);
+
+            return View("Index", books);
+        }
     }
 }
