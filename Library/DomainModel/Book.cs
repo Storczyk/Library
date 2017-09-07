@@ -30,6 +30,8 @@ namespace Library.DomainModel
 
         public int Quantity { get; set; }
 
+        public byte[] Image { get; set; }
+
         public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

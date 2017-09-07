@@ -1,13 +1,13 @@
 ﻿using Library.Application.General;
 using Library.DomainModel;
 using Library.Infrastructure.Data;
+using System.IO;
 
 namespace Library.Application.Commands.Books
 {
     public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
     {
         private readonly IBookRepository repository;
-
         public AddBookCommandHandler(IBookRepository repository)
         {
             this.repository = repository;
@@ -15,7 +15,7 @@ namespace Library.Application.Commands.Books
 
         public CommandResult Handle(AddBookCommand command)
         {
-            var isAdded = repository.Insert(new Book
+            var book = new Book
             {
                 Author = new Author
                 {
@@ -30,7 +30,14 @@ namespace Library.Application.Commands.Books
                 Publisher = command.Publisher,
                 Year = command.Year,
                 Quantity = command.Quantity,
-            });
+            };
+            if (command.Image !=null || command.Image.ContentType.ToLower().StartsWith("image/"))
+            {
+                MemoryStream ms = new MemoryStream();
+                command.Image.OpenReadStream().CopyTo(ms);
+                book.Image = ms.ToArray();
+            }
+            var isAdded = repository.Insert(book);
 
             string result = isAdded ? $"{command.BookTitle} added to the library" : $"Could not add {command.BookTitle} to the library";
 
