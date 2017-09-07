@@ -12,7 +12,7 @@ namespace Library.Web.Areas.Default.Controllers
         {
         }
 
-        public IActionResult Index(int page, string BookTitle, Genre genre)
+        public IActionResult Index(int page)
         {
             var getAllBooksQuery = new GetAllBooksQuery { Page = page };
             var books = queryDispatcher.Dispatch<GetAllBooksQuery, PaginatedList<BookQuery>>(getAllBooksQuery);
