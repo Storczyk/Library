@@ -9,6 +9,7 @@ namespace Library.Application.Commands.Books
     {
         private int DescriptionMaxLength = 493;
         private readonly IBookRepository repository;
+
         public AddBookCommandHandler(IBookRepository repository)
         {
             this.repository = repository;
@@ -36,6 +37,7 @@ namespace Library.Application.Commands.Books
             {
                 MemoryStream ms = new MemoryStream();
                 command.Image.OpenReadStream().CopyTo(ms);
+                
                 book.Image = ms.ToArray();
             }
             var isAdded = repository.Insert(book);

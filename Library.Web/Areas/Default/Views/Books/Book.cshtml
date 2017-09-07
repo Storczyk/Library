@@ -44,9 +44,15 @@
         <div class="col-sm-5">
             <p class="book-description">@Model.Description</p>
         </div>
-        <div class="col-sm-5">
-            <img src="data:image;base64,@Convert.ToBase64String(Model.Image)" />
-        </div>
+        @{
+            if (Model.Image != null && Model.Image.Length > 0)
+            {
+                <div class="col-sm-5">
+                    <img src="data:image;base64,@Convert.ToBase64String(Model.Image)" alt="asd" height="200" width="200" />
+                </div>
+            }
+        }
+
     </div>
     <div class="col-md-1"></div>
     <div style="margin-top: 30px; float: right; margin-right: 100px;">

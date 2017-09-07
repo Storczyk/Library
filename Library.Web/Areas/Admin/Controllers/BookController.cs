@@ -4,7 +4,6 @@ using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 
 namespace Library.Web.Areas.Admin.Controllers
 {
@@ -37,10 +36,11 @@ namespace Library.Web.Areas.Admin.Controllers
                 return View();
             }
             var img = HttpContext.Request.Form.Files[0];
-            if(img!=null && img.Length > 0)
+            if(img?.Length > 0)
             {
                 addBookCommand.Image = img;
             }
+
             DisplayShortMessage(commandBus.Send(addBookCommand).Result);
             return RedirectToAction("Index");
         }
@@ -54,6 +54,22 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        public IActionResult Edit(EditBookCommand editBookCommand)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var img = HttpContext.Request.Form.Files[0];
+            if (img?.Length > 0)
+            {
+                editBookCommand.Image = img;
+            }
+            DisplayShortMessage(commandBus.Send(editBookCommand).Result);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
         public void Delete([FromBody]DeleteBookCommand deleteBookCommand)
         {
             if (!ModelState.IsValid)
@@ -62,18 +78,6 @@ namespace Library.Web.Areas.Admin.Controllers
             }
 
             DisplayShortMessage(commandBus.Send(deleteBookCommand).Result);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(EditBookCommand editBookCommand)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-
-            DisplayShortMessage(commandBus.Send(editBookCommand).Result);
-            return RedirectToAction("Index");
         }
 
         public IActionResult SearchByTitle(SearchBooksByTitleQuery searchBooksByTitleQuery)

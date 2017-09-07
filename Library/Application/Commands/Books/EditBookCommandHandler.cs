@@ -2,6 +2,7 @@
 using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
+using System.IO;
 
 namespace Library.Application.Commands.Books
 {
@@ -16,7 +17,7 @@ namespace Library.Application.Commands.Books
 
         public CommandResult Handle(EditBookCommand command)
         {
-            var isUpdated = bookRepository.Update(new Book
+            var book = new Book
             {
                 BookId = Guid.Parse(command.Id),
                 Author = new Author { Name = command.Author },
@@ -28,9 +29,17 @@ namespace Library.Application.Commands.Books
                 Pages = command.Pages,
                 Publisher = command.Publisher,
                 Year = command.Year,
-                Quantity = command.Quantity
-            });
+                Quantity = command.Quantity,
+            };
 
+            if (command.Image != null || command.Image.ContentType.ToLower().StartsWith("image/"))
+            {
+                MemoryStream ms = new MemoryStream();
+                command.Image.OpenReadStream().CopyTo(ms);
+                book.Image = ms.ToArray();
+            }
+
+            var isUpdated = bookRepository.Update(book);
             string result = isUpdated ? $"{command.BookTitle} edited" : $"Could not edit {command.BookTitle}";
 
             return new CommandResult
