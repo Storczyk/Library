@@ -1,9 +1,6 @@
 ﻿using Library.DomainModel;
 using Library.DomainModel.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace Library.Application.Queries.Books
 {

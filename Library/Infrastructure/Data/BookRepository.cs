@@ -41,9 +41,9 @@ namespace Library.Infrastructure.Data
                 .AsQueryable(), page, pageSize);
         }
 
-        public IEnumerable<BookQuery> Get(string[] filters)
+        public IEnumerable<BookQuery> Get(string[] booksIds)
         {
-            return context.Books.Where(i => filters.Contains(i.BookId.ToString())).Include(i => i.Author).Select(i => new BookQuery
+            return context.Books.Where(i => booksIds.Contains(i.BookId.ToString())).Include(i => i.Author).Select(i => new BookQuery
             {
                 Author = i.Author,
                 Genre = i.Genre,

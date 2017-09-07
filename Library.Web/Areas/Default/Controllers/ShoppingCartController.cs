@@ -4,7 +4,6 @@ using Library.Application.General;
 using Library.Application.Queries.Books;
 using Library.Application.Queries.Cart;
 using Library.Application.Queries.Order;
-using Library.DomainModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -63,14 +62,14 @@ namespace Library.Web.Areas.Default.Controllers
         [Route("[controller]/[action]")]
         [HttpPost]
         public IActionResult Checkout(CreateOrderCommand createOrderCommand)
-        {            
+        {
             createOrderCommand.User = this.User;
             createOrderCommand.Session = HttpContext.Session;
             createOrderCommand.BooksIds = queryDispatcher.Dispatch<GetBooksIdsFromCartQuery, IEnumerable<string>>(
                 new GetBooksIdsFromCartQuery { CurrentSession = HttpContext.Session });
 
             DisplayShortMessage(commandBus.Send(createOrderCommand).Result);
-            
+
             return RedirectToAction("Index");
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Library.Application.General;
-using Library.DomainModel;
 using Library.DomainModel.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -32,6 +31,7 @@ namespace Library.Application.Commands.Books
 
         [DisplayName("EAN")]
         public string Ean { get; set; }
+
         public int Quantity { get; set; }
     }
 }

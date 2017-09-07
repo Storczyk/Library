@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Library.Application.General;
+﻿using Library.Application.General;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Library.Application.Queries.Order;
@@ -25,7 +21,6 @@ namespace Library.Web.Areas.Default.Controllers
                 PageSize = pageSize,
                 User = User
             };
-            //query.User = User;
             return View(queryDispatcher.Dispatch<GetAllOrdersQuery,PaginatedList<OrderQuery>>(query));
         }
     }

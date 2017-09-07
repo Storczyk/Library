@@ -26,6 +26,7 @@ namespace Library.Application.Commands.Books
         public string Isbn { get; set; }
 
         public string Ean { get; set; }
+
         public int Quantity { get; set; }
     }
 }

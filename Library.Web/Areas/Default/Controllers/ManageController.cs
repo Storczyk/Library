@@ -22,8 +22,6 @@ namespace Library.Web.Areas.Default.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
-
-
         public ManageController(
           UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,

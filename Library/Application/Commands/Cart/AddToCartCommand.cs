@@ -1,8 +1,6 @@
 ﻿using Library.Application.General;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Application.Commands.Cart
 {

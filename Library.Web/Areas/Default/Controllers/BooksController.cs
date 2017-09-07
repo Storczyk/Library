@@ -3,7 +3,6 @@ using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Library.DomainModel.Enums;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Library.Web.Areas.Default.Controllers
 {
