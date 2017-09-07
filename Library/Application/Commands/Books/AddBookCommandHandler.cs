@@ -25,7 +25,7 @@ namespace Library.Application.Commands.Books
                 },
                 Genre = command.Genre,
                 BookTitle = command.BookTitle,
-                Description = command.Description.Length > DescriptionMaxLength ? command.Description.Substring(0, DescriptionMaxLength) : command.Description,
+                Description = command.Description.Length > DescriptionMaxLength ? command.Description.Substring(0, DescriptionMaxLength) + "..." : command.Description,
                 Ean = command.Ean,
                 Isbn = command.Isbn,
                 Pages = command.Pages,
