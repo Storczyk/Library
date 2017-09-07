@@ -33,7 +33,7 @@ namespace Library.Application.Commands.Books
                 Year = command.Year,
                 Quantity = command.Quantity,
             };
-            if (command.Image !=null || command.Image.ContentType.ToLower().StartsWith("image/"))
+            if (command.Image != null || command.Image.ContentType.ToLower().StartsWith("image/"))
             {
                 MemoryStream ms = new MemoryStream();
                 command.Image.OpenReadStream().CopyTo(ms);
