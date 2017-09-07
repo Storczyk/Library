@@ -2,7 +2,7 @@
 using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System.IO;
-
+using System.Drawing;
 namespace Library.Application.Commands.Books
 {
     public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
@@ -35,6 +35,7 @@ namespace Library.Application.Commands.Books
             {
                 MemoryStream ms = new MemoryStream();
                 command.Image.OpenReadStream().CopyTo(ms);
+                
                 book.Image = ms.ToArray();
             }
             var isAdded = repository.Insert(book);
