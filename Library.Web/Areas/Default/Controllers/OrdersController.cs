@@ -6,6 +6,7 @@ using Library.Application.General;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Library.Application.Queries.Order;
+using Library.Application.Queries;
 
 namespace Library.Web.Areas.Default.Controllers
 {
@@ -16,9 +17,16 @@ namespace Library.Web.Areas.Default.Controllers
         {
         }
 
-        public IActionResult Index()
-        {          
-            return View(queryDispatcher.Dispatch<GetAllOrdersQuery,IEnumerable<OrderQuery>>(new GetAllOrdersQuery { Page = 1, PageSize = 10}));
+        public IActionResult Index(int page = 1, int pageSize = 10)
+        {
+            var query = new GetAllOrdersQuery
+            {
+                Page = page,
+                PageSize = pageSize,
+                User = User
+            };
+            //query.User = User;
+            return View(queryDispatcher.Dispatch<GetAllOrdersQuery,PaginatedList<OrderQuery>>(query));
         }
     }
 }

@@ -150,11 +150,6 @@ namespace Library.Infrastructure.Data
 
         public PaginatedList<BookQuery> GetByGenre(Genre genre, int page, int pageSize)
         {
-            //if(!Enum.TryParse(genre, out Genre result))
-            //{
-            //    throw new Exception("Incorrect genre");
-            //}
-
             return PaginatedList<BookQuery>.Create(
                 context.Books.Where(i => i.Genre == genre).Select(i => new BookQuery
                 {
@@ -169,7 +164,7 @@ namespace Library.Infrastructure.Data
                     Publisher = i.Publisher,
                     Quantity = i.Quantity,
                     Year = i.Year,
-                }), page, pageSize);
+                }), page, pageSize, genre: genre);
         }
     }
 }

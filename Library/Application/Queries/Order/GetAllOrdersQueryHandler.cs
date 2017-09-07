@@ -6,16 +6,16 @@ using System.Text;
 
 namespace Library.Application.Queries.Order
 {
-    public class GetAllOrdersQueryHandler : IQueryHandler<GetAllOrdersQuery, IEnumerable<OrderQuery>>
+    public class GetAllOrdersQueryHandler : IQueryHandler<GetAllOrdersQuery, PaginatedList<OrderQuery>>
     {
         private readonly IOrderRepository orderRepository;
         public GetAllOrdersQueryHandler(IOrderRepository orderRepository)
         {
             this.orderRepository = orderRepository;
         }
-        public IEnumerable<OrderQuery> Handle(GetAllOrdersQuery query)
+        public PaginatedList<OrderQuery> Handle(GetAllOrdersQuery query)
         {
-            return orderRepository.GetAllOrders(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize);
+            return orderRepository.GetAllOrders(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize, userPrincipal:query.User);
         }
     }
 }

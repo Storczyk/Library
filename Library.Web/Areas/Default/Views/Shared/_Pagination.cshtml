@@ -15,6 +15,7 @@
     @if (Model.Genre.HasValue)
     {
         method = "SearchByGenre";
+        dict.Add("Genre", Model.Genre.Value.ToString());
     }
     @if (Model.UserId !=null && Model.UserId != "")
     {

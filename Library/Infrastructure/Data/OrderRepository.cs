@@ -31,7 +31,7 @@ namespace Library.Infrastructure.Data
             return context.OrderDetails.Where(x => !x.IsBookReturned && x.BookId == bookId).Count();
         }
 
-        public PaginatedList<OrderQuery> GetAllOrders(int page, int pageSize)
+        /*public PaginatedList<OrderQuery> GetAllOrders(int page, int pageSize)
         {
             return PaginatedList<OrderQuery>.Create(context.Orders.Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
             {
@@ -47,11 +47,19 @@ namespace Library.Infrastructure.Data
                     Genre = j.Book.Genre,
                 })
             }).AsQueryable(), page, pageSize);
-        }
+        }*/
 
-        public PaginatedList<OrderQuery> GetAllOrders(string userId, int page, int pageSize)
+        public PaginatedList<OrderQuery> GetAllOrders(int page, int pageSize, ClaimsPrincipal userPrincipal = null, string userId = "")
         {
-            return PaginatedList<OrderQuery>.Create(context.Orders.Where(i => i.UserId == userId)
+            if (userPrincipal != null)
+            {
+                var user = userManager.GetUserId(userPrincipal);
+                if (user != null && user != "")
+                {
+                    userId = user;
+                }
+            }
+            var orders = PaginatedList<OrderQuery>.Create(context.Orders.Where(i => i.UserId == userId)
                 .Include(i => i.User).Include(i => i.OrderDetails)
                 .Select(i => new OrderQuery
                 {
@@ -66,7 +74,8 @@ namespace Library.Infrastructure.Data
                         Description = j.Book.Description,
                         Genre = j.Book.Genre,
                     })
-                }), page, pageSize, userId:userId);
+                }), page, pageSize, userId: userId);
+            return orders;
         }
 
         public bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)

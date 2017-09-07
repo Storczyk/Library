@@ -15,7 +15,7 @@ namespace Library.Application.Queries.Order
 
         public PaginatedList<OrderQuery> Handle(GetAllOrdersForUserQuery query)
         {
-            var orders = orderRepository.GetAllOrders(query.UserId, query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize);
+            var orders = orderRepository.GetAllOrders(query.Page < 1 ? 1 : query.Page, query.PageSize < 1 ? 10 : query.PageSize, userId:query.UserId);
 
             return orders;
         }
