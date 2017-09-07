@@ -14,8 +14,8 @@
                 <input type="text" name="Title" class="form-control" style="height: 30px; width:130px; display: inline-block; margin-left: 15px;" />
                 <button type="submit" class="borderlessbtn">
                     <span class="glyphicon glyphicon-search" style="color: black; font-size: 30px; margin-left: 10px;"></span>
-                </button>              
-            </form>            
+                </button>
+            </form>
         </div>
         <div class="genres text-center">
             <label style="color: black; font-family: Georgia; font-size: 18px; margin-bottom: 20px;">Search by genre</label>
@@ -30,10 +30,20 @@
         {
             <div class="col-md-10">
                 <div class="col-md-12 book-row" style="margin-bottom: 20px;">
-                    <div class="col-sm-7 properties-column">
-                            <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="font-size: 20px; color: black;">
-                                <div class="book-title" style="display: inline-block">@book.BookTitle</div>
-                            </a>
+                    <div class="col-md-4" style="padding-left: 0">
+                        @{
+                            if (book.Image != null && book.Image.Length > 0)
+                            {
+                                <div style="margin-top: 20px;">
+                                    <img src="data:image;base64,@Convert.ToBase64String(book.Image)" alt="asd" height="200" width="200" />
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="col-md-4 properties-column">
+                        <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="font-size: 20px; color: black;">
+                            <div class="book-title" style="display: inline-block">@book.BookTitle</div>
+                        </a>
                         <p>
                             <span>Author: </span>
                             <span class="book-span">@book.Author.Name</span>
@@ -62,9 +72,9 @@
                             <span>ISBN: </span>
                             <span class="book-span">@book.Isbn</span>
                         </p>
-                        <span class="book-span" style="font-size: 14px;">Available: @book.CurrentQuantity / @book.Quantity</span>
+                        <span class="book-span" style="font-size: 13px;">Available: @book.CurrentQuantity / @book.Quantity</span>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-md-4">
                         <p class="book-description">@book.Description</p>
                     </div>
                 </div>
@@ -72,7 +82,7 @@
             <div class="col-md-2">
                 <a onclick="SendAddToCartCommand('@book.Id', '@book.CurrentQuantity')" class="btn btn-link" style="font-size: 16px; margin-top: 100px; color: black;"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>
             </div>
-        }
+                            }
 
         <div class="text-center" style="margin-left: -100px;">
             @Html.Partial("~/Areas/Default/Views/Shared/_Pagination.cshtml", Model.PaginationInfo)

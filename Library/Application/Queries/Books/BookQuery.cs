@@ -2,7 +2,7 @@
 
 namespace Library.Application.Queries.Books
 {
-    public class BookQuery:BookShortQuery
+    public class BookQuery : BookShortQuery
     { 
         public int Year { get; set; }
 
@@ -19,6 +19,7 @@ namespace Library.Application.Queries.Books
         public int Quantity { get; set; }
 
         public int CurrentQuantity { get; set; }
+
         public byte[] Image { get; set; }
     }
 }

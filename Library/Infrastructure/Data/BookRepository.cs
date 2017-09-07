@@ -37,6 +37,7 @@ namespace Library.Infrastructure.Data
                     Publisher = i.Publisher,
                     Quantity = i.Quantity,
                     Year = i.Year,
+                    Image = i.Image
                 })
                 .AsQueryable(), page, pageSize);
         }
@@ -55,6 +56,7 @@ namespace Library.Infrastructure.Data
                 Pages = i.Pages,
                 Publisher = i.Publisher,
                 Year = i.Year,
+                Image = i.Image
             }).ToList();
         }
 
@@ -145,6 +147,7 @@ namespace Library.Infrastructure.Data
                     Publisher = i.Publisher,
                     Year = i.Year,
                     Quantity = i.Quantity,
+                    Image = i.Image
                 }).AsQueryable(), page, pageSize, title);
         }
 
@@ -164,6 +167,7 @@ namespace Library.Infrastructure.Data
                     Publisher = i.Publisher,
                     Quantity = i.Quantity,
                     Year = i.Year,
+                    Image = i.Image
                 }), page, pageSize, genre: genre);
         }
     }
