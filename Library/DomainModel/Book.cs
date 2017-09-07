@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Library.DomainModel
 {
@@ -12,9 +11,11 @@ namespace Library.DomainModel
         public Guid BookId { get; set; }
 
         public string BookTitle { get; set; }
+
         public string Description { get; set; }
 
         public Author Author { get; set; }
+
         public Genre Genre { get; set; }
 
         public int Year { get; set; }
@@ -26,6 +27,7 @@ namespace Library.DomainModel
         public string Isbn { get; set; }
 
         public string Ean { get; set; }
+
         public int Quantity { get; set; }
 
         public ICollection<OrderDetails> OrderDetails { get; set; }

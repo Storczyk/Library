@@ -25,8 +25,8 @@ namespace Library.Application.Queries
             var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return new PaginatedList<T>(items, count, pageIndex, pageSize, bookTitle, genre, userId);
         }
-
     }
+
     public class PaginationInfo
     {
         public int PageIndex { get; set; }

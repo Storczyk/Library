@@ -1,5 +1,4 @@
 ﻿using Library.Application.General;
-using Library.DomainModel;
 using Library.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -46,7 +45,6 @@ namespace Library.Application.Commands.Order
             resultString.AppendLine();
             resultString.AppendLine(isAdded ? "Order completed" : "Could not complete the order");
 
-            //Clear cart
             var keys = createOrderCommand.Session.Keys.Where(key => key.Contains("cart_")).ToList();
             foreach (var key in keys)
             {

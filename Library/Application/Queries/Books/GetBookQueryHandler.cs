@@ -18,6 +18,7 @@ namespace Library.Application.Queries.Books
         {
             var currentQuantity = orderRepository.GetCurrentQuantityForBook(Guid.Parse(bookQuery.Id));
             var book = bookRepository.GetByID(Guid.Parse(bookQuery.Id));
+
             return new BookQuery
             {
                 Id = book.BookId.ToString(),

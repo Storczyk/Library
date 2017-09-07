@@ -14,7 +14,7 @@ namespace Library.Web.Extensions
                 "Areas/Default/Views/Shared/{0}.cshtml",
 
             };
-            return locations.Union(viewLocations);          //Add mvc default locations after ours
+            return locations.Union(viewLocations);
         }
 
         public void PopulateValues(ViewLocationExpanderContext context)

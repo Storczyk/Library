@@ -17,8 +17,10 @@ namespace Library.Application.Commands.Books
         {
             var isAdded = repository.Insert(new Book
             {
-                Author = new Author {
-                    Name = command.Author },
+                Author = new Author
+                {
+                    Name = command.Author
+                },
                 Genre = command.Genre,
                 BookTitle = command.BookTitle,
                 Description = command.Description,
@@ -27,7 +29,7 @@ namespace Library.Application.Commands.Books
                 Pages = command.Pages,
                 Publisher = command.Publisher,
                 Year = command.Year,
-                Quantity = command.Quantity
+                Quantity = command.Quantity,
             });
 
             string result = isAdded ? $"{command.BookTitle} added to the library" : $"Could not add {command.BookTitle} to the library";

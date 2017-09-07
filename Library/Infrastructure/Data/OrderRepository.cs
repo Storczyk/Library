@@ -31,24 +31,6 @@ namespace Library.Infrastructure.Data
             return context.OrderDetails.Where(x => !x.IsBookReturned && x.BookId == bookId).Count();
         }
 
-        /*public PaginatedList<OrderQuery> GetAllOrders(int page, int pageSize)
-        {
-            return PaginatedList<OrderQuery>.Create(context.Orders.Include(i => i.User).Include(i => i.OrderDetails).Select(i => new OrderQuery
-            {
-                Address = i.Address,
-                PhoneNumber = i.PhoneNumber,
-                OrderDate = i.OrderDate,
-                Books = i.OrderDetails.Select(j => new BookShortQuery
-                {
-                    Id = j.Book.BookId.ToString(),
-                    BookTitle = j.Book.BookTitle,
-                    Author = j.Book.Author,
-                    Description = j.Book.Description,
-                    Genre = j.Book.Genre,
-                })
-            }).AsQueryable(), page, pageSize);
-        }*/
-
         public PaginatedList<OrderQuery> GetAllOrders(int page, int pageSize, ClaimsPrincipal userPrincipal = null, string userId = "")
         {
             if (userPrincipal != null)
