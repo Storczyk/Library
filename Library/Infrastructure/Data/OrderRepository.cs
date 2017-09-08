@@ -93,10 +93,18 @@ namespace Library.Infrastructure.Data
         {
             try
             {
+                var userId = userManager.GetUserId(userPrincipal);
+                var user = context.Users.Find(userId);
                 var details = new List<OrderDetails>();
                 foreach (var book in booksIds)
                 {
                     var repoBook = context.Books.Find(Guid.Parse(book));
+                    if(!CanOrderBook(userId, repoBook.BookId))
+                    {
+                        return false;
+                    }
+
+
                     details.Add(new OrderDetails
                     {
                         Book = repoBook,
@@ -106,8 +114,7 @@ namespace Library.Infrastructure.Data
                         IsBookReturned = false
                     });
                 }
-                var userId = userManager.GetUserId(userPrincipal);
-                order.User = context.Users.Find(userId);
+                order.User = user;
                 order.UserId = userId;
                 order.OrderDetails = new List<OrderDetails>();
                 order.OrderDetails = details;
@@ -121,6 +128,16 @@ namespace Library.Infrastructure.Data
                 Logger.Log(exception.Message);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Checks if user can order a book. True if user didn't not return that book, else False
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <param name="bookId">Book Id</param>
+        private bool CanOrderBook(string userId, Guid bookId)
+        {
+            return !context.Orders.Any(i => i.User.Id == userId && i.OrderDetails.Any(j => j.BookId == bookId && !j.IsBookReturned));
         }
 
         public IEnumerable<OrderReturnQuery> GetAllNotReturnedOrders(int page = 1, int pageSize = 50)

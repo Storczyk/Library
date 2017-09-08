@@ -46,9 +46,12 @@
                             </ul>
                         </li>
                     }
-                    <li>
-                        <a href="/Orders">My Orders</a>
-                    </li>
+                    @if (User.Claims.Any())
+                    {
+                        <li>
+                            <a href="/Orders">My Orders</a>
+                        </li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li style="margin-right:40px">
