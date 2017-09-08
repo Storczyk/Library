@@ -29,7 +29,6 @@ namespace Library.Infrastructure.Data
         /// </summary>
         /// <param name="id">Book Id</param>
         /// <param name="isWithAuthor">If author is included</param>
-        /// <returns></returns>
         Book GetByID(Guid id, bool isWithAuthor = true);
 
         /// <summary>
@@ -38,7 +37,6 @@ namespace Library.Infrastructure.Data
         /// <param name="title">Title to search</param>
         /// <param name="page">Page Index</param>
         /// <param name="pageSize">Items per page</param>
-        /// <returns></returns>
         PaginatedList<BookQuery> GetByTitle(string title, int page, int pageSize);
 
         /// <summary>
@@ -47,28 +45,24 @@ namespace Library.Infrastructure.Data
         /// <param name="genre">Genre</param>
         /// <param name="page">Page index</param>
         /// <param name="pageSize">Items per page</param>
-        /// <returns></returns>
         PaginatedList<BookQuery> GetByGenre(Genre genre, int page, int pageSize);
 
         /// <summary>
         /// Adds book to database
         /// </summary>
         /// <param name="entity">Book to add</param>
-        /// <returns></returns>
         bool Insert(Book entity);
 
         /// <summary>
         /// Deletes book from database
         /// </summary>
         /// <param name="id">Book id</param>
-        /// <returns></returns>
         bool Delete(Guid id);
 
         /// <summary>
         /// Updates book in database
         /// </summary>
         /// <param name="entityToUpdate">Updated book entity</param>
-        /// <returns></returns>
         bool Update(Book entityToUpdate);
 
         /// <summary>
