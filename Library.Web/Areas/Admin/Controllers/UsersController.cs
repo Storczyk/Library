@@ -22,5 +22,12 @@ namespace Library.Web.Areas.Admin.Controllers
 
             return View(users);
         }
+
+        public IActionResult GetOrders(GetAllOrdersForUserQuery getAllOrdersForUserQuery)
+        {
+            var orders = queryDispatcher.Dispatch <GetAllOrdersForUserQuery, PaginatedList<OrderQuery>>(getAllOrdersForUserQuery);
+
+            return View(orders);
+        }
     }
 }
