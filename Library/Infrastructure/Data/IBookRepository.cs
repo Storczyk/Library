@@ -4,6 +4,8 @@ using Library.DomainModel;
 using Library.DomainModel.Enums;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Library.Infrastructure.Data
 {
@@ -24,5 +26,7 @@ namespace Library.Infrastructure.Data
         bool Update(Book entityToUpdate);
 
         PaginatedList<BookQuery> GetByGenre(Genre genre, int page, int pageSize);
+
+        bool AddRating(string bookId, int value, ClaimsPrincipal userPrincipal);
     }
 }

@@ -9,6 +9,8 @@ namespace Library.Infrastructure.Data
 {
     public interface IOrderRepository
     {
+        PaginatedList<ShortOrderQuery> GetAllShortOrders(int page, int pageSize, ClaimsPrincipal userPrincipal = null, string userId = "");
+
         PaginatedList<OrderQuery> GetAllOrders(int page, int pageSize, ClaimsPrincipal userPrincipal = null, string userId = "");
 
         bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal);

@@ -60,6 +60,35 @@ namespace Library.Infrastructure.Data
             return orders;
         }
 
+        public PaginatedList<ShortOrderQuery> GetAllShortOrders(int page, int pageSize, ClaimsPrincipal userPrincipal = null, string userId = "")
+        {
+            if (userPrincipal != null)
+            {
+                var user = userManager.GetUserId(userPrincipal);
+                if (user != null && user != "")
+                {
+                    userId = user;
+                }
+            }
+
+            var orders = PaginatedList<ShortOrderQuery>.Create(context.Orders.Where(i => i.UserId == userId)
+                .Include(i => i.User).Include(i => i.OrderDetails)
+                .Select(i => new ShortOrderQuery
+                {
+                    Address = i.Address,
+                    PhoneNumber = i.PhoneNumber,
+                    OrderDate = i.OrderDate,
+                    Books = i.OrderDetails.Select(j => new BookRatingQuery
+                    {
+                        Id = j.Book.BookId.ToString(),
+                        BookTitle = j.Book.BookTitle,
+                        IsRated = j.Book.Ratings.Where(x => x.User.Id == userId).Any()
+                    })
+                }), page, pageSize, userId: userId);
+
+            return orders;
+        }
+
         public bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
         {
             try

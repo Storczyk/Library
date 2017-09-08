@@ -16,21 +16,23 @@ namespace Library.Web.Areas.Default.Controllers
 
         public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            var query = new GetAllOrdersQuery
-            {
+            var query = new GetAllShortOrdersForUserQuery
+            {               
                 Page = page,
                 PageSize = pageSize,
                 User = User
             };
-            return View(queryDispatcher.Dispatch<GetAllOrdersQuery,PaginatedList<OrderQuery>>(query));
+            var orders = queryDispatcher.Dispatch<GetAllShortOrdersForUserQuery, PaginatedList<ShortOrderQuery>>(query);
+
+            return View(orders);
         }
 
         [HttpPost]
-        public IActionResult Index(RateBookCommand rateBookCommand)
+        public void RateBook([FromBody]RateBookCommand rateBookCommand)
         {
+            rateBookCommand.User = User;
             var response = commandBus.Send(rateBookCommand);
-
-            return View();
+            DisplayShortMessage(response.Result);
         }
     }
 }

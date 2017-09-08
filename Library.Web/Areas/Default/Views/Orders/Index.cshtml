@@ -1,8 +1,7 @@
 ﻿@{
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
-    <link rel="stylesheet" href="~/css/bookStyle.css" />
 }
-@model IEnumerable<Library.Application.Queries.Order.OrderQuery>
+@model IEnumerable<Library.Application.Queries.Order.ShortOrderQuery>
 
 <div class="row">
     <div class="col-lg-12">
@@ -40,17 +39,21 @@
                             @foreach (var book in item.Books)
                             {
                                 <div class="col-md-12">
-                                    <span class="rating">
-                                        @for (int i = 1; i <= 5; i++)
-                                        {
-                                            var starClass = "star";
-                                            starClass += " active";
-                                            <span data-value="@(6 - i)" class="@starClass"></span>
-                                        }
-                                    </span>
                                     <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="color: black; font-weight: bold">
                                         @book.BookTitle
                                     </a>
+                                    @if (!@book.IsRated)
+                                    {
+                                        <span class="rating">
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                var value = 6 - i;
+                                                var starClass = "star";
+                                                starClass += " active";
+                                                <span data-value="@value" class="@starClass" style="float: right" onclick="RateBook('@book.Id', '@value')"></span>
+                                            }
+                                        </span>
+                                    }
                                 </div>
                             }
                         </td>
@@ -61,6 +64,7 @@
     </div>
 </div>
 @section Scripts {
-    <script src="~/js/site.js">        
+    <script src="~/js/Rating.js">
+
     </script>
 }

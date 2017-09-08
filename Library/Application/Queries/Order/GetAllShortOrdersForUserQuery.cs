@@ -3,9 +3,9 @@ using System.Security.Claims;
 
 namespace Library.Application.Queries.Order
 {
-    public class GetAllOrdersForUserQuery : IQuery<PaginatedList<OrderQuery>>
+    public class GetAllShortOrdersForUserQuery : IQuery<PaginatedList<ShortOrderQuery>>
     {
-        public string UserId { get; set; }
+        public ClaimsPrincipal User { get; set; }
 
         public int Page { get; set; }
 
