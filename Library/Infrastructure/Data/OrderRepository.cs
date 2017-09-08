@@ -41,7 +41,7 @@ namespace Library.Infrastructure.Data
                     userId = user;
                 }
             }
-            var orders = PaginatedList<OrderQuery>.Create(context.Orders.Where(i => i.UserId == userId)
+            return PaginatedList<OrderQuery>.Create(context.Orders.Where(i => i.UserId == userId)
                 .Include(i => i.User).Include(i => i.OrderDetails)
                 .Select(i => new OrderQuery
                 {
@@ -57,7 +57,6 @@ namespace Library.Infrastructure.Data
                         Genre = j.Book.Genre,
                     })
                 }), page, pageSize, userId: userId);
-            return orders;
         }
 
         public PaginatedList<ShortOrderQuery> GetAllShortOrders(int page, int pageSize, ClaimsPrincipal userPrincipal = null, string userId = "")
@@ -71,7 +70,7 @@ namespace Library.Infrastructure.Data
                 }
             }
 
-            var orders = PaginatedList<ShortOrderQuery>.Create(context.Orders.Where(i => i.UserId == userId)
+            return PaginatedList<ShortOrderQuery>.Create(context.Orders.Where(i => i.UserId == userId)
                 .Include(i => i.User).Include(i => i.OrderDetails)
                 .Select(i => new ShortOrderQuery
                 {
@@ -85,8 +84,6 @@ namespace Library.Infrastructure.Data
                         IsRated = j.Book.Ratings.Where(x => x.User.Id == userId).Any()
                     })
                 }), page, pageSize, userId: userId);
-
-            return orders;
         }
 
         public bool Insert(Order order, IEnumerable<string> booksIds, ClaimsPrincipal userPrincipal)
@@ -99,7 +96,7 @@ namespace Library.Infrastructure.Data
                 foreach (var book in booksIds)
                 {
                     var repoBook = context.Books.Find(Guid.Parse(book));
-                    if(!CanOrderBook(userId, repoBook.BookId))
+                    if (!CanOrderBook(userId, repoBook.BookId))
                     {
                         return false;
                     }
