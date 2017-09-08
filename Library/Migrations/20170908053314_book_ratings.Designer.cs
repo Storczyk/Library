@@ -12,9 +12,10 @@ using System;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170908053314_book_ratings")]
+    partial class book_ratings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,7 +247,7 @@ namespace Library.Migrations
 
             modelBuilder.Entity("Library.DomainModel.Rating", b =>
                 {
-                    b.HasOne("Library.DomainModel.Book", "Book")
+                    b.HasOne("Library.DomainModel.Book")
                         .WithMany("Ratings")
                         .HasForeignKey("BookId");
 

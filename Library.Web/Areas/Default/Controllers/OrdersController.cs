@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Library.Application.Queries.Order;
 using Library.Application.Queries;
+using Library.Application.Commands.Books;
 
 namespace Library.Web.Areas.Default.Controllers
 {
@@ -22,6 +23,14 @@ namespace Library.Web.Areas.Default.Controllers
                 User = User
             };
             return View(queryDispatcher.Dispatch<GetAllOrdersQuery,PaginatedList<OrderQuery>>(query));
+        }
+
+        [HttpPost]
+        public IActionResult Index(RateBookCommand rateBookCommand)
+        {
+            var response = commandBus.Send(rateBookCommand);
+
+            return View();
         }
     }
 }

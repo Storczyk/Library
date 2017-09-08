@@ -60,19 +60,24 @@ function BookReturment(orderDetailId) {
     });
 }
 
-//function SearchByTitle()
-//{
-//    var Title = document.getElementById('titleToSearch').value;
-    
-//    $.ajax({
-//        type: "POST",
-//        url: "/Books/SearchByTitle",
-//        data: JSON.stringify({ Title }),
-//        contentType: "application/json",
-//        dataType: 'json',
-//        complete: function () {
-//            window.location.reload();
-//            CommandResult();
-//        }
-//    });
-//}
+(function ($) {
+    function Rating() {
+        var $this = this;
+        function initialize() {
+            $(".star").click(function () {
+                $(".star").removeClass('active');
+                $(this).addClass('active');
+                var starValue = $(this).data("value");
+                $("#Rating").val(starValue);
+                console.log(starValue);
+            })
+        }
+        $this.init = function () {
+            initialize();
+        }
+    }
+    $(function () {
+        var self = new Rating();
+        self.init();
+    })
+}(jQuery))

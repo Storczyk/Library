@@ -21,5 +21,7 @@ namespace Library.Application.Queries.Books
         public int CurrentQuantity { get; set; }
 
         public byte[] Image { get; set; }
+
+        public double Rating { get; set; }
     }
 }

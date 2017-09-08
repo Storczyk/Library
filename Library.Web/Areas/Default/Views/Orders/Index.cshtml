@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="~/css/bookStyle.css" />
 }
 @model IEnumerable<Library.Application.Queries.Order.OrderQuery>
 
@@ -14,10 +15,10 @@
                     <th class="col-md-3" style="border-color: black; background-color: lightgray;">
                         @Html.DisplayNameFor(m => m.FirstOrDefault().Address)
                     </th>
-                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                    <th class="col-md-2" style="border-color: black; background-color: lightgray;">
                         @Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)
                     </th>
-                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                    <th class="col-md-4" style="border-color: black; background-color: lightgray;">
                         @Html.DisplayNameFor(m => m.FirstOrDefault().Books)
                     </th>
                 </tr>
@@ -32,20 +33,26 @@
                         <td class="col-md-3" style="border-color: black;">
                             @Html.DisplayFor(m => item.Address)
                         </td>
-                        <td class="col-md-3" style="border-color: black;">
+                        <td class="col-md-2" style="border-color: black;">
                             @Html.DisplayFor(m => item.PhoneNumber)
                         </td>
-                        <td class="col-md-3" style="border-color: black;">
-                            <ul>
-                                @foreach (var book in item.Books)
-                                {
-                                    <li>
-                                        <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="color: black;">
-                                            @book.BookTitle
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
+                        <td class="col-md-4" style="border-color: black;">
+                            @foreach (var book in item.Books)
+                            {
+                                <div class="col-md-12">
+                                    <span class="rating">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            var starClass = "star";
+                                            starClass += " active";
+                                            <span data-value="@(6 - i)" class="@starClass"></span>
+                                        }
+                                    </span>
+                                    <a href="/Books/Book?Id=@book.Id" class="btn btn-link" style="color: black; font-weight: bold">
+                                        @book.BookTitle
+                                    </a>
+                                </div>
+                            }
                         </td>
                     </tr>
                 }
@@ -53,3 +60,7 @@
         </table>
     </div>
 </div>
+@section Scripts {
+    <script src="~/js/site.js">        
+    </script>
+}

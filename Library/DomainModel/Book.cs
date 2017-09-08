@@ -33,5 +33,7 @@ namespace Library.DomainModel
         public byte[] Image { get; set; }
 
         public ICollection<OrderDetails> OrderDetails { get; set; }
+
+        public ICollection<Rating> Ratings { get; set; }
     }
 }

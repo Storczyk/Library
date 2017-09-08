@@ -23,7 +23,7 @@ namespace Library.Infrastructure.Data
 
         public PaginatedList<BookQuery> Get(int page = 1, int pageSize = 10)
         {
-            return PaginatedList<BookQuery>.Create(context.Books
+            var books = PaginatedList<BookQuery>.Create(context.Books.Include(i => i.Ratings)
                 .Select(i => new BookQuery
                 {
                     Author = i.Author,
@@ -37,14 +37,17 @@ namespace Library.Infrastructure.Data
                     Publisher = i.Publisher,
                     Quantity = i.Quantity,
                     Year = i.Year,
-                    Image = i.Image
+                    Image = i.Image,
+                    Rating = i.Ratings.Any() ? i.Ratings.Average(j => j.Value) : 0
                 })
                 .AsQueryable(), page, pageSize);
+
+            return books;
         }
 
         public IEnumerable<BookQuery> Get(string[] booksIds)
         {
-            return context.Books.Where(i => booksIds.Contains(i.BookId.ToString())).Include(i => i.Author).Select(i => new BookQuery
+            var books = context.Books.Where(i => booksIds.Contains(i.BookId.ToString())).Include(i => i.Author).Include(i => i.Ratings).Select(i => new BookQuery
             {
                 Author = i.Author,
                 Genre = i.Genre,
@@ -56,8 +59,11 @@ namespace Library.Infrastructure.Data
                 Pages = i.Pages,
                 Publisher = i.Publisher,
                 Year = i.Year,
-                Image = i.Image
+                Image = i.Image,
+                Rating = i.Ratings.Any() ? i.Ratings.Average(j => j.Value) : 0
             }).ToList();
+
+            return books;
         }
 
         public bool Insert(Book entity)
@@ -147,7 +153,8 @@ namespace Library.Infrastructure.Data
                     Publisher = i.Publisher,
                     Year = i.Year,
                     Quantity = i.Quantity,
-                    Image = i.Image
+                    Image = i.Image,
+                    Rating = i.Ratings.Any() ? i.Ratings.Average(j => j.Value) : 0
                 }).AsQueryable(), page, pageSize, title);
         }
 
@@ -167,7 +174,8 @@ namespace Library.Infrastructure.Data
                     Publisher = i.Publisher,
                     Quantity = i.Quantity,
                     Year = i.Year,
-                    Image = i.Image
+                    Image = i.Image,
+                    Rating = i.Ratings.Any() ? i.Ratings.Average(j => j.Value) : 0
                 }), page, pageSize, genre: genre);
         }
     }

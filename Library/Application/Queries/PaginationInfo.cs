@@ -23,6 +23,7 @@ namespace Library.Application.Queries
         {
             var count = source.Count();
             var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
             return new PaginatedList<T>(items, count, pageIndex, pageSize, bookTitle, genre, userId);
         }
     }
