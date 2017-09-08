@@ -8,16 +8,16 @@
         <table class="table table-bordered col-md-12" style="border-color: black;">
             <thead>
                 <tr>
-                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                    <th class="col-md-2" style="border-color: black; background-color: lightgray;">
                         @Html.DisplayNameFor(m => m.FirstOrDefault().OrderDate)
                     </th>
-                    <th class="col-md-3" style="border-color: black; background-color: lightgray;">
+                    <th class="col-md-4" style="border-color: black; background-color: lightgray;">
                         @Html.DisplayNameFor(m => m.FirstOrDefault().Address)
                     </th>
-                    <th class="col-md-2" style="border-color: black; background-color: lightgray;">
+                    <th class="col-md-1" style="border-color: black; background-color: lightgray;">
                         @Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)
                     </th>
-                    <th class="col-md-4" style="border-color: black; background-color: lightgray;">
+                    <th class="col-md-5" style="border-color: black; background-color: lightgray;">
                         @Html.DisplayNameFor(m => m.FirstOrDefault().Books)
                     </th>
                 </tr>
@@ -26,16 +26,16 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td class="col-md-3" style="border-color: black; font-weight: bold">
+                        <td class="col-md-2" style="border-color: black; font-weight: bold">
                             @Html.DisplayFor(m => item.OrderDate)
                         </td>
-                        <td class="col-md-3" style="border-color: black;">
+                        <td class="col-md-4" style="border-color: black;">
                             @Html.DisplayFor(m => item.Address)
                         </td>
-                        <td class="col-md-2" style="border-color: black;">
+                        <td class="col-md-1" style="border-color: black;">
                             @Html.DisplayFor(m => item.PhoneNumber)
                         </td>
-                        <td class="col-md-4" style="border-color: black;">
+                        <td class="col-md-5" style="border-color: black;">
                             @foreach (var book in item.Books)
                             {
                                 <div class="col-md-12">
