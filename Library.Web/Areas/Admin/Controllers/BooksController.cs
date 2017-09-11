@@ -9,9 +9,9 @@ namespace Library.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Administrator")]
-    public class BookController : BaseController
+    public class BooksController : BaseController
     {
-        public BookController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
+        public BooksController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
 
         [HttpGet]
         public IActionResult Index(int page)
@@ -35,8 +35,8 @@ namespace Library.Web.Areas.Admin.Controllers
             {
                 return View();
             }
-            var img = HttpContext.Request.Form.Files[0];
-            if(img?.Length > 0)
+            var img = HttpContext.Request.Form.Files.Count > 0 ? HttpContext.Request.Form.Files[0] : null;
+            if (img?.Length > 0)
             {
                 addBookCommand.Image = img;
             }
@@ -60,7 +60,7 @@ namespace Library.Web.Areas.Admin.Controllers
             {
                 return View();
             }
-            var img = HttpContext.Request.Form.Files[0];
+            var img = HttpContext.Request.Form.Files.Count > 0 ? HttpContext.Request.Form.Files[0] : null;
             if (img?.Length > 0)
             {
                 editBookCommand.Image = img;
