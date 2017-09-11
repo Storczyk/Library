@@ -66,6 +66,7 @@ namespace Library.Web.Areas.Admin.Controllers
                 editBookCommand.Image = img;
             }
             DisplayShortMessage(commandBus.Send(editBookCommand).Result);
+
             return RedirectToAction("Index");
         }
 

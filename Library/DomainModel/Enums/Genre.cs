@@ -6,6 +6,7 @@
         Drama,
         Action,
         Romance,
-        Horror
+        Horror,
+        Fantasy
     }
 }

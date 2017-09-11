@@ -1,7 +1,6 @@
 ﻿using Library.Application.General;
 using Library.Application.Queries;
 using Library.Application.Queries.Books;
-using Library.DomainModel.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Web.Areas.Default.Controllers

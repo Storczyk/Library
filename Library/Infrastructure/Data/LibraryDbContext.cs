@@ -31,7 +31,7 @@ namespace Library.Infrastructure.Data
             builder.Entity<ApplicationUser>().ToTable("Users");
             builder.Ignore<IdentityUserClaim<string>>();
             builder.Ignore<IdentityUserLogin<string>>();
-            builder.Ignore<IdentityUserToken<string>>();            
+            builder.Ignore<IdentityUserToken<string>>();
         }
     }
 }

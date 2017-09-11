@@ -5,7 +5,6 @@ using Library.DomainModel.Enums;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Library.Infrastructure.Data
 {
