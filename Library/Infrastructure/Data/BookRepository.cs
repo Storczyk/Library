@@ -29,7 +29,7 @@ namespace Library.Infrastructure.Data
 
         public PaginatedList<BookQuery> Get(int page = 1, int pageSize = 10)
         {
-            var books = PaginatedList<BookQuery>.Create(context.Books.Include(i => i.Ratings).OrderByDescending(i => i.BookTitle)
+            var books = PaginatedList<BookQuery>.Create(context.Books.Include(i => i.Ratings).OrderBy(i => i.BookTitle)
                 .Select(i => new BookQuery
                 {
                     Author = i.Author,
