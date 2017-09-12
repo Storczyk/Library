@@ -1,5 +1,4 @@
-﻿using Library.Application.Logger;
-using Library.Application.Queries;
+﻿using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Library.Application.Queries.Order;
 using Library.DomainModel;
@@ -36,7 +35,7 @@ namespace Library.Infrastructure.Data
             if (userPrincipal != null)
             {
                 var user = userManager.GetUserId(userPrincipal);
-                if (user != null && user != "")
+                if (!string.IsNullOrEmpty(user))
                 {
                     userId = user;
                 }
@@ -64,7 +63,7 @@ namespace Library.Infrastructure.Data
             if (userPrincipal != null)
             {
                 var user = userManager.GetUserId(userPrincipal);
-                if (user != null && user != "")
+                if (!string.IsNullOrEmpty(user))
                 {
                     userId = user;
                 }
@@ -81,7 +80,7 @@ namespace Library.Infrastructure.Data
                     {
                         Id = j.Book.BookId.ToString(),
                         BookTitle = j.Book.BookTitle,
-                        IsRated = j.Book.Ratings.Where(x => x.User.Id == userId).Any()
+                        IsRated = j.Book.Ratings.Any(x => x.User.Id == userId)
                     })
                 }), page, pageSize, userId: userId);
         }
@@ -101,7 +100,6 @@ namespace Library.Infrastructure.Data
                         return false;
                     }
 
-
                     details.Add(new OrderDetails
                     {
                         Book = repoBook,
@@ -120,9 +118,8 @@ namespace Library.Infrastructure.Data
                     return true;
                 return false;
             }
-            catch (Exception exception)
+            catch
             {
-                Logger.Log(exception.Message);
                 return false;
             }
         }
@@ -172,9 +169,8 @@ namespace Library.Infrastructure.Data
                     return true;
                 return false;
             }
-            catch (Exception exception)
+            catch
             {
-                Logger.Log(exception.Message);
                 return false;
             }
         }

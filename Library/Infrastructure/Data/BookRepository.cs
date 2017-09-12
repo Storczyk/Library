@@ -1,5 +1,4 @@
-﻿using Library.Application.Logger;
-using Library.Application.Queries;
+﻿using Library.Application.Queries;
 using Library.Application.Queries.Books;
 using Library.DomainModel;
 using Library.DomainModel.Enums;
@@ -89,9 +88,8 @@ namespace Library.Infrastructure.Data
                     return true;
                 return false;
             }
-            catch (Exception exception)
+            catch
             {
-                Logger.Log(exception.Message);
                 return false;
             }
         }
@@ -105,9 +103,8 @@ namespace Library.Infrastructure.Data
                     return true;
                 return false;
             }
-            catch (Exception exception)
+            catch
             {
-                Logger.Log(exception.Message);
                 return false;
             }
         }
@@ -127,9 +124,8 @@ namespace Library.Infrastructure.Data
                     return true;
                 return false;
             }
-            catch (Exception exception)
+            catch
             {
-                Logger.Log(exception.Message);
                 return false;
             }
         }
