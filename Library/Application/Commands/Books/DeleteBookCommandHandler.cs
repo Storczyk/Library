@@ -17,7 +17,7 @@ namespace Library.Application.Commands.Books
         {
             var isDeleted = bookRepository.Delete(Guid.Parse(command.Id));
 
-            string result = isDeleted ? $"Book deleted from the library" : $"Could not delete from the library";
+            string result = isDeleted ? "Book deleted from the library" : "Could not delete from the library";
 
             return new CommandResult
             {
