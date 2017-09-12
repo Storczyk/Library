@@ -12,9 +12,9 @@ using System.Linq;
 
 namespace Library.Web.Areas.Default.Controllers
 {
-    public class ShoppingCartController : BaseController
+    public class CartController : BaseController
     {
-        public ShoppingCartController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
+        public CartController(ICommandBus commandBus, IQueryDispatcher queryDispatcher) : base(commandBus, queryDispatcher) { }
 
         public IActionResult Index()
         {
