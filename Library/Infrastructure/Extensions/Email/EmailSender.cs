@@ -23,6 +23,7 @@ namespace Library.Infrastructure.Extensions.Email
 
             using(var client = new SmtpClient())
             {
+            //GMAIL
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                 client.Connect("smtp.gmail.com", 587, false);
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
